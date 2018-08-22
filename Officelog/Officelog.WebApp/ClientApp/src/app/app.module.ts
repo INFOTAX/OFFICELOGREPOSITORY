@@ -16,6 +16,7 @@ import {FieldsetModule} from 'primeng/fieldset';
 import { MarketingLogFormComponent } from './marketing-log-form/marketing-log-form.component';
 import { RouterModule, Routes } from "@angular/router";
 import { FrontLayoutComponent } from './front-layout/front-layout.component';
+import {TableModule} from 'primeng/table';
 
 
 const appRoutes: Routes =[
@@ -43,7 +44,8 @@ const appRoutes: Routes =[
     ReactiveFormsModule,
     FormsModule,
     InputTextareaModule,
-    FieldsetModule
+    FieldsetModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

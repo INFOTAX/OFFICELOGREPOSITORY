@@ -119,19 +119,22 @@
       </div>
 
       <div class="ui-g-8 ui-md-offset-4" *ngIf="interested_Yes">
-        <table>
-          <tr>
+        <p-table>
+            <ng-template pTemplate="header">
+              <tr>
             <th>
               Service Type
             </th>
             <th>
               Rate
             </th>
-            <th rowspan="2">
-              <button pButton type="button" icon="pi pi-plus" class="ui-button-info" style="width: 100px"></button>
-            </th>
+            <!-- <th rowspan="2">
+              <button pButton type="button" icon="pi pi-plus" class="ui-button-info" ></button>
+            </th> -->
           </tr>
-          <tr>
+          </ng-template>
+          <ng-template pTemplate="footer">
+            <tr>
             <td>
               <p-dropdown [style]="{'width': '175px'}" [options]="interrestedInSoftware" placeholder="Select a Type" optionLabel="name"
                 [showClear]="true"></p-dropdown>
@@ -140,7 +143,8 @@
               <input type="text" style="height: 30px;">
             </td>
           </tr>
-        </table>
+          </ng-template>
+        </p-table>
       </div>
       <div class="ui-g-8 ui-md-offset-4" *ngIf="interested_No">
         <div class="ui-g-12">
