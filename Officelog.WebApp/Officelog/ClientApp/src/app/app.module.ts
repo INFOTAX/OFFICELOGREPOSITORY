@@ -13,11 +13,23 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {FieldsetModule} from 'primeng/fieldset';
+import { MarketingLogFormComponent } from './marketing-log-form/marketing-log-form.component';
+import { RouterModule, Routes } from "@angular/router";
+import { FrontLayoutComponent } from './front-layout/front-layout.component';
+
+
+const appRoutes: Routes =[
+  {path:'company_log', component:CompanyLogFormComponent},
+  {path:'marketing_log', component:MarketingLogFormComponent},
+  {path: '', redirectTo: '/company_log', pathMatch: 'full'}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    CompanyLogFormComponent
+    CompanyLogFormComponent,
+    MarketingLogFormComponent,
+    FrontLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +39,7 @@ import {FieldsetModule} from 'primeng/fieldset';
     RadioButtonModule,
     ButtonModule,
     PanelModule,
+    RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     FormsModule,
     InputTextareaModule,
