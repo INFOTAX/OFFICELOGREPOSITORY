@@ -24,7 +24,12 @@ export class FrontLayoutComponent implements OnInit {
     // this.compLog=false;
     // this.markLog=true;
   }
+  companyLogList(){
 
+    this._router.navigate(['company_log_list']);
+    // this.compLog=true;
+    // this.markLog=false;
+  }
 
 
   ngOnInit() {

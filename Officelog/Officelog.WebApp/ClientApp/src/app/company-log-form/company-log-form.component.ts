@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '../../../node_modules/@angular/forms';
+import { Router } from '@angular/router';
 interface visitorType{
   name: string;
 }
@@ -18,7 +19,7 @@ export class CompanyLogFormComponent implements OnInit {
 
   visitorType: visitorType[];
 
-  constructor( private fb: FormBuilder ) { 
+  constructor( private fb: FormBuilder,private _router: Router ) { 
     this.visitorType = [
       {name: 'First'},
       {name: 'Second or Third'},
@@ -26,6 +27,12 @@ export class CompanyLogFormComponent implements OnInit {
       {name: 'Franchise'},
   ];
    }
+   companyLogList(){
+
+    this._router.navigate(['company_log_list']);
+    // this.compLog=true;
+    // this.markLog=false;
+  }
 
    ngOnInit() {
 

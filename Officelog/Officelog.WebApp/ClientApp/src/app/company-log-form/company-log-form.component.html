@@ -1,4 +1,6 @@
 <form [formGroup]="userForm" style="margin-left: 220px; margin-right: 220px; margin-top: 50px">
+    <p-button label="Back"   button type="button" (onClick)="companyLogList()" icon="fa fa-fw fa-arrow-left" class="ui-button-rounded ui-button-success"></p-button>
+    <p>&nbsp;</p>
   <p-panel>
     <p-header style="text-align:center; font-size: 20px">
       <div class="ui-helper-clearfix">
@@ -169,4 +171,5 @@
 </form>
 
 <br><br><br><br><br><br>
+<router-outlet></router-outlet>
 {{userForm.value | json}}
