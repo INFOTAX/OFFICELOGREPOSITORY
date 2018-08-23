@@ -17,12 +17,14 @@ import { MarketingLogFormComponent } from './marketing-log-form/marketing-log-fo
 import { RouterModule, Routes } from "@angular/router";
 import { FrontLayoutComponent } from './front-layout/front-layout.component';
 import {TableModule} from 'primeng/table';
-
+import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
+import { CompanylogService } from './services/companylog.service';
+import{ICompanylog} from'./company-log-list/company';
 
 const appRoutes: Routes =[
   {path:'company_log', component:CompanyLogFormComponent},
   {path:'marketing_log', component:MarketingLogFormComponent},
-  {path: '', redirectTo: '/company_log', pathMatch: 'full'}
+  {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -30,7 +32,8 @@ const appRoutes: Routes =[
     AppComponent,
     CompanyLogFormComponent,
     MarketingLogFormComponent,
-    FrontLayoutComponent
+    FrontLayoutComponent,
+    CompanyLogListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +50,7 @@ const appRoutes: Routes =[
     FieldsetModule,
     TableModule
   ],
-  providers: [],
+  providers: [CompanylogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
