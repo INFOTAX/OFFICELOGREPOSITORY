@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 
-interface visitorType {
+export interface MarketingLog {
+  name: string;
+}
+export interface interrestedInSoftware{
   name: string
 }
-interface interrestedInSoftware{
-  name: string
-}
-interface currentScenario{
+export interface currentScenario{
   name: string
 }
 
@@ -59,6 +59,10 @@ export class MarketingLogFormComponent implements OnInit {
 
   ngOnInit() {
 
+    this.userForm= new FormGroup({
+        'moreService': new FormArray([])
+    });
+
     this.userForm = this.fb.group({
       clientName: null,
       tradeName: null,
@@ -69,7 +73,7 @@ export class MarketingLogFormComponent implements OnInit {
       visitorType: null,
       usingSoftware:null,
       rateUs: null,
-      interestedUsingSoftware: null
+      interestedUsingService: null
       });
   }
 
@@ -88,6 +92,11 @@ export class MarketingLogFormComponent implements OnInit {
   interestedNo(){
     this.interested_No=true;
     this.interested_Yes=false;
+  }
+
+  addNewServiceType(){
+    const control=new FormControl(null);
+    (<FormArray>this.userForm.get('moreService')).push(control);
   }
 
 }
