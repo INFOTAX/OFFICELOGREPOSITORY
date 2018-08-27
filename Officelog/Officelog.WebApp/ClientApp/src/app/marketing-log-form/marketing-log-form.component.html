@@ -1,4 +1,6 @@
-<form [formGroup]="userForm" style="margin-left: 220px; margin-right: 220px; margin-top: 50px">
+<form [formGroup]="userForm" style="margin-left: 220px; margin-right: 220px; margin-top:5px">
+    <p-button label="Back"   button type="button" (onClick)="marketingLogList()" icon="fa fa-fw fa-arrow-left" class="ui-button-rounded ui-button-success"></p-button>
+    <p>&nbsp;</p>
   <p-panel>
     <p-header style="text-align:center; font-size: 20px">
       <div class="ui-helper-clearfix">
@@ -22,12 +24,72 @@
         <input id="contact" formControlName="contact" type="number" pInputText>
       </div>
 
-      <div class="ui-sm-4 ui-g-4" style="margin-top: 10px">
-        <label for="currentScenario">Current Scenario:</label>
+      <div class="ui-sm-4 ui-g-4">
+          <label>Are you interested in our service?</label>
+        </div>
+        <div class="ui-sm-8 ui-g-8">
+          <div class="ui-sm-4 ui-g-4 nopad">
+            <p-radioButton name="group5" formControlName="interestedUsingService" value="Yes" label="Yes" (onClick)="interestedYes();"></p-radioButton>
+          </div>
+          <div class="ui-sm-4 ui-g-4 nopad">
+            <p-radioButton name="group5" formControlName="interestedUsingService" value="No" label="No" (onClick)="interestedNo();"></p-radioButton>
+          </div>
+        </div>
+  
+        <div class="ui-sm-8 ui-g-8 ui-md-offset-4" *ngIf="interested_Yes" >
+          <div class="ui-g-12" formArrayName="items"
+          *ngFor="let item of userForm.get('items').controls; let i = index;">
+            <p-table>
+              <ng-template pTemplate="header">
+                  <tr>
+                      <th>Service Type</th>
+                      <th>Rate</th>
+                      <th style="width: 120px">Action</th>
+                  </tr>
+              </ng-template>
+              <ng-template pTemplate="footer">
+                  <tr let [formGroupName]="i">
+                      <td>
+                        <p-dropdown [style]="{'width': '175px'}" [options]="interrestedInService" 
+                         placeholder="Select a Type" formControlName="serviceType" filter="true">
+                         <ng-template let-option pTemplate="item" >
+                        <div translate> {{option.label}}</div>
+                        </ng-template>
+                        </p-dropdown>
+                      </td>
+                      <td ><input type="number" pInputText style="height: 35px" formControlName="rate"/></td>
+                      <td><button pButton type="button" icon="pi pi-plus" (click)="addNewServiceType();"></button>
+                        &nbsp;<button  pButton type="button" icon="pi pi-minus" *ngIf="i > 0" (click)="deleteServiceType(i)" class="ui-button-danger"></button></td>
+                  </tr>
+              </ng-template>
+              
+          </p-table>
+        </div>
       </div>
-      <div class="ui-sm-8 ui-g-8">
-        <p-dropdown [style]="{'width': '175px'}" [options]="currentScenario" placeholder="Select a Type" optionLabel="name" [showClear]="true"></p-dropdown>
-      </div>
+  
+        <div class="ui-sm-5 ui-g-5 ui-md-offset-4" *ngIf="interested_No">
+  
+            <p-table>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Current Scenario:</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <tr>
+                        <td>
+                            <p-dropdown [style]="{'width': '175px'}" [options]="currentScenario" 
+                            placeholder="Select a Type" filter="true">
+                           <ng-template let-option pTemplate="item" >
+                             <div translate> {{option.label}}</div>
+                           </ng-template>
+                          </p-dropdown>
+                        </td>
+                    </tr>
+                </ng-template>
+                
+            </p-table>
+        </div>
 
       <div class="ui-sm-4 ui-g-4" style="margin-top: 10px">
         <label for="rateUs">Are you interested in our software?</label>
@@ -79,125 +141,45 @@
                 <input id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize">
               </div>
             </div>
-            <p-footer>
-              <button pButton type="button" label="Save" class="ui-button-info"></button>
-            </p-footer>
           </p-panel>
         </div>
       </div>
 
-      <div class="ui-sm-12" *ngIf="blockPreviewNo">
+      <div class="ui-g-12" *ngIf="blockPreviewNo">
         <div class="ui-sm-8 ui-g-8 ui-md-offset-4">
           <p-panel>
             <p-header>
               <div class="ui-helper-clearfix">
-                <span class="ui-panel-title">Please give reasons and suggestion, so that we can improve.</span>
+                <span class="ui-panel-title">Please give reasons.</span>
               </div>
             </p-header>
             <div class="ui-g">
-              <div class="ui-sm-12 ui-g-12">
+                <div class="ui-sm-3 ui-g-3 nopad">
+                    <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                     value="alreadyHave" label="Already have" (onClick)="closeOtherReason();"></p-radioButton>
+                  </div>
+                  <div class="ui-sm-3 ui-g-3 nopad">
+                    <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                     value="notFriendly" label="Not Friendly" (onClick)="closeOtherReason();"></p-radioButton>
+                  </div>
+                  <div class="ui-sm-3 ui-g-3 nopad">
+                    <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                     value="others" label="others" (onClick)="otherReason();"></p-radioButton>
+                  </div>
+              <div class="ui-sm-12 ui-g-12" *ngIf="ifOther">
+                <span>Please give reasons and suggestion, so that we can improve.</span><br>
                 <textarea id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize"></textarea>
               </div>
             </div>
-            <p-footer>
-              <button pButton type="button" label="Save" class="ui-button-info"></button>
-            </p-footer>
           </p-panel>
         </div>
       </div>
 
-      <div class="ui-sm-4 ui-g-4">
-        <label>Are you interested our service?</label>
-      </div>
-      <div class="ui-sm-8 ui-g-8">
-        <div class="ui-sm-4 ui-g-4 nopad">
-          <p-radioButton name="group5" formControlName="interestedUsingSoftware" value="Yes" label="Yes" (onClick)="interestedYes();"></p-radioButton>
-        </div>
-        <div class="ui-sm-4 ui-g-4 nopad">
-          <p-radioButton name="group5" formControlName="interestedUsingSoftware" value="No" label="No" (onClick)="interestedNo();"></p-radioButton>
-        </div>
-      </div>
 
-      <div class="ui-sm-8 ui-g-8 ui-md-offset-4" *ngIf="interested_Yes">
-        <p-table>
-      <div class="ui-g-8">
-        <div class="ui-g-4 nopad">
-          <p-radioButton name="group5" formControlName="interestedUsingService" value="Yes" label="Yes" (onClick)="interestedYes();"></p-radioButton>
-        </div>
-        <div class="ui-g-4 nopad">
-          <p-radioButton name="group5" formControlName="interestedUsingService" value="No" label="No" (onClick)="interestedNo();"></p-radioButton>
-        </div>
-      </div>
-      <div class="ui-g-7 ui-md-offset-4" *ngIf="interested_Yes">
-          <div style="border: 1px solid grey" class="ui-g-12">
-        <p-table class="ui-g-10">
-            <ng-template pTemplate="header">
-              <tr>
-            <th>
-              Service Type
-            </th>
-            <th>
-              Rate
-            </th>
-            
-          </tr>
-          </ng-template>
-          <ng-template pTemplate="footer">
-            <tr>
-            <td>
-              <p-dropdown [style]="{'width': '175px'}" [options]="interrestedInSoftware" placeholder="Select a Type" optionLabel="name"
-                [showClear]="true"></p-dropdown>
-            </td>
-            <td>
-              <input type="text" style="height: 30px;">
-            </td>
-          </tr>
-          </ng-template>
-        </p-table>
-        <div class="ui-g-2" style="margin-top: 25px">
-              <button pButton type="button" icon="pi pi-plus" 
-              class="ui-button-info" (onclick)="addNewServiceType()"></button>
-        </div>
 
-        <div formArrayName="moreService"
-        *ngFor="let service of userForm.get('moreService').controls;">
-            <p-table class="ui-g-10">
-                <ng-template pTemplate="header">
-                  <tr>
-                <th>
-                  Service Type
-                </th>
-                <th>
-                  Rate
-                </th>
-              </tr>
-              </ng-template>
-              <ng-template pTemplate="footer">
-                <tr>
-                <td>
-                  <p-dropdown [style]="{'width': '175px'}" [options]="interrestedInSoftware" 
-                  placeholder="Select a Type" optionLabel="name"
-                    [showClear]="true"></p-dropdown>
-                </td>
-                <td>
-                  <input type="text" style="height: 30px;">
-                </td>
-              </tr>
-              </ng-template>
-            </p-table>
-        </div>
-
-      </div>
-      </div>
-      <div class="ui-sm-8 ui-g-8 ui-md-offset-4" *ngIf="interested_No">
-        <div class="ui-sm-12 ui-g-12">
-
-        </div>
-      </div>
     </div>
-
     <p-footer>
-      <button pButton type="button" label="Submit" class="ui-button-info"></button>
+      <button pButton type="button" label="Submit" class="ui-button-success"></button>
     </p-footer>
   </p-panel>
 </form>

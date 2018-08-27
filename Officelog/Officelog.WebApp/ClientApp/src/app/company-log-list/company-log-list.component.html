@@ -1,23 +1,26 @@
 
-<p-button button type="button" label="Add"(onClick)="companyLog()"class="ui-button-rounded ui-button-success" icon="fa fa-fw fa-plus" style="margin-bottom:10px;">
+<p-button button type="button" label="Add"(onClick)="companyLog()"class="ui-button-rounded ui-button-success"
+icon="fa fa-fw fa-plus" style="margin-bottom:10px;">
 </p-button> 
 <p-table [value]="companylogs">
     <ng-template pTemplate="header">
         <tr>
             <th>Name</th>
             <th>Contact No.</th>
-            <th>Type Of Query Rating</th>
+            <th>Visitor Type</th>
+            <th>Query Rating</th>
             <th>Service Rating</th>
-            <th>Software User Rating</th>
+            
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-companylog>
-        <tr>
+    <ng-template pTemplate="body" let-companylog  style="text-align: center;">
+        <tr style="text-align: center;">
             <td>{{companylog.name}}</td>
             <td>{{companylog.contact}}</td>
+            <td>{{companylog.visitorType}}</td>
             <td>{{companylog.typeOfQuery}}</td>
             <td>{{companylog.serviceRating}}</td>
-            <td>{{companylog.softwareUserRating}}</td>
+           <!-- <td>{{companylog.softwareUserRating}}</td>-->
         </tr>
     </ng-template>
 </p-table>

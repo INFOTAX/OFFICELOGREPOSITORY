@@ -19,10 +19,7 @@ export class CompanyLogListComponent implements OnInit {
   ngOnInit() {
     this.companylogs=this._companylogService.getCompanylog();
   }
-
-
- 
-  companyLog(){
+ companyLog(){
 
     this._router.navigate(['company_log']);
     /* this.compLog=true;

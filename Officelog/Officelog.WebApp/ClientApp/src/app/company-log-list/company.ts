@@ -3,5 +3,5 @@ export interface ICompanylog{
     contact:number;
     typeOfQuery:string;
     serviceRating:string;
-    softwareUserRating:string;
+    visitorType:string;
 }

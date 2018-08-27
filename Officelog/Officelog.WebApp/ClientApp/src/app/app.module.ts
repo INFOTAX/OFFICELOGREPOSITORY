@@ -20,11 +20,16 @@ import {TableModule} from 'primeng/table';
 import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
 import { CompanylogService } from './services/companylog.service';
 import{ICompanylog} from'./company-log-list/company';
+import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
+import { MarketinglogService } from './services/marketinglog.service';
+import { IMarketinglog } from './marketing-log-list/marketing';
+
 
 const appRoutes: Routes =[
   {path:'company_log', component:CompanyLogFormComponent},
   {path:'marketing_log', component:MarketingLogFormComponent},
-  {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'}
+  {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'},
+  {path: 'marketing_log_list', component: MarketingLogListComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -33,7 +38,8 @@ const appRoutes: Routes =[
     CompanyLogFormComponent,
     MarketingLogFormComponent,
     FrontLayoutComponent,
-    CompanyLogListComponent
+    CompanyLogListComponent,
+    MarketingLogListComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +56,7 @@ const appRoutes: Routes =[
     FieldsetModule,
     TableModule
   ],
-  providers: [CompanylogService],
+  providers: [CompanylogService,MarketinglogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
