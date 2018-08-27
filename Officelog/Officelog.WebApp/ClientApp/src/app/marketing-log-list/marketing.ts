@@ -1,7 +1,9 @@
 export interface IMarketinglog{
+    id : number;
     name:string;
     contact:number;
-   serviceIntrested:string;
-    softwareIntrested:string;
+   serviceInterested:string;
+    softwareInterested:string;
     Conversion:string;
+    
 }

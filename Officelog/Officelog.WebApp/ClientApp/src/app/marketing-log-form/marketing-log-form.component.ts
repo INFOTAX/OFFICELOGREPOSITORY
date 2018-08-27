@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { MarketinglogService } from '../services/marketinglog.service';
+import { IMarketinglog } from '../marketing-log-list/marketing';
 
 export interface MarketingLog {
   name: string;
@@ -34,19 +36,27 @@ currentScenario: SelectItem[];
   interested_No=false;
   ifOther=false;
   items ;
-  
+  id : number;
+marketingLog : IMarketinglog;  
 
   public userForm: FormGroup;
 
  
 
-  constructor(  private fb: FormBuilder,private _router: Router  ) { 
+  constructor(  private fb: FormBuilder,private _router: Router, private route: ActivatedRoute,
+                private marketingLogService : MarketinglogService ) { 
     
     
    }
     
 
   ngOnInit() {
+
+
+     this.route.params.subscribe(params => {
+        this.id = params['id'];
+        this.getMarketingLog(this.id);
+      });
 
 
     this.userForm = this.fb.group({
@@ -77,6 +87,11 @@ currentScenario: SelectItem[];
       {label: 'SELF',value:'SELF'},
       {label: 'UNREGISTERED',value:'UNREGISTERED'}
     ];
+  }
+
+  private getMarketingLog(id:number){
+    this.marketingLogService.getMarketingLogById(id)
+    .subscribe(res => this.marketingLog = res);
   }
 
   redioYes(){

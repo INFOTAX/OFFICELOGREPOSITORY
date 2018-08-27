@@ -1,28 +1,50 @@
+<div class="container">
+    <div class="ui-g">
+        <div class="ui-g-10 ui-sm-10 ui-md-offset-1">
+            <div class="ui-g">
+                <div class="ui-g-6 ui-sm-6">
 
-<p-button button type="button" label="Add"(onClick)="companyLog()"class="ui-button-rounded ui-button-success"
-icon="fa fa-fw fa-plus" style="margin-bottom:10px;">
-</p-button> 
-<p-table [value]="companylogs">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Name</th>
-            <th>Contact No.</th>
-            <th>Visitor Type</th>
-            <th>Query Rating</th>
-            <th>Service Rating</th>
-            
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-companylog  style="text-align: center;">
-        <tr style="text-align: center;">
-            <td>{{companylog.name}}</td>
-            <td>{{companylog.contact}}</td>
-            <td>{{companylog.visitorType}}</td>
-            <td>{{companylog.typeOfQuery}}</td>
-            <td>{{companylog.serviceRating}}</td>
-           <!-- <td>{{companylog.softwareUserRating}}</td>-->
-        </tr>
-    </ng-template>
-</p-table>
+                    <p-button button type="button" label="Add" (onClick)="onAddc()" class="ui-button-rounded ui-button-success" icon="fa fa-fw fa-plus"
+                        style="margin-bottom:10px;">
+                    </p-button>
+                </div>
+                <div class="ui-g-6 ui-sm-6">
+                    <div style="text-align: right">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dtc.filterGlobal($event.target.value, 'contains')"
+                            style="width:auto">
+                    </div>
+                </div>
+            </div>
 
-<router-outlet></router-outlet>
+               
+                
+
+                <p-table #dtc [value]="companylogs"  (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog" [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Name</th>
+                            <th>Contact No.</th>
+                            <th>Visitor Type</th>
+                            <th>Query Rating</th>
+                            <th>Service Rating</th>
+
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-companylog style="text-align: center;">
+                        <tr  [pSelectableRow]="rowData" style="text-align: center;">
+                            <td>{{companylog.name}}</td>
+                            <td>{{companylog.contact}}</td>
+                            <td>{{companylog.visitorType}}</td>
+                            <td>{{companylog.typeOfQuery}}</td>
+                            <td>{{companylog.serviceRating}}</td>
+                            <!-- <td>{{companylog.softwareUserRating}}</td>-->
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+    <router-outlet></router-outlet>

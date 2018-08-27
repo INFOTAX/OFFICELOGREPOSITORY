@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {DialogModule} from 'primeng/dialog';
 import { AppComponent } from './app.component';
 import { CompanyLogFormComponent } from './company-log-form/company-log-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -23,11 +23,11 @@ import{ICompanylog} from'./company-log-list/company';
 import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
 import { MarketinglogService } from './services/marketinglog.service';
 import { IMarketinglog } from './marketing-log-list/marketing';
-
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes =[
-  {path:'company_log', component:CompanyLogFormComponent},
-  {path:'marketing_log', component:MarketingLogFormComponent},
+  {path:'company_log/:id', component:CompanyLogFormComponent},
+  {path:'marketing_log/:id', component:MarketingLogFormComponent},
   {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'},
   {path: 'marketing_log_list', component: MarketingLogListComponent, pathMatch: 'full'}
 ];
@@ -42,7 +42,9 @@ const appRoutes: Routes =[
     MarketingLogListComponent
   ],
   imports: [
+    DialogModule,
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     DropdownModule,
     CheckboxModule,
