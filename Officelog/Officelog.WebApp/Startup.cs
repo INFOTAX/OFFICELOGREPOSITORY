@@ -5,10 +5,15 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Officelog.Domain.Companylog;
+using Officelog.Domain.Marketinglog;
+using OfficeLog.Persistence;
+using OfficeLog.Persistence.Repositories;
 
 namespace Officelog
 {
@@ -24,7 +29,17 @@ namespace Officelog
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ICompanyRepository,CompanyRepository>();
+            services.AddScoped<IMarketingRepository,MarketingRepository>();
+            services.AddScoped<IReadModelDatabase,ReadModelDatabase>();
+            services.AddScoped<IUnitOfWork,UnitOfWork>();
+            
+            
             services.AddAutoMapper();
+            services.AddDbContext<ApplicationDbContext>(
+                options =>
+                options.UseSqlServer(Configuration.GetConnectionString("Default"))
+                );
             services.AddMvc();
             services.AddSpaStaticFiles(configuration =>
             {
