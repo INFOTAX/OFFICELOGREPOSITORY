@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { SelectItem } from 'primeng/components/common/selectitem';
+
 
 export interface MarketingLog {
   name: string;
+  tradeName: string;
+  contact: number;
+  usingSoftware: string;
+  interestedUsingService: string;
+  items : ServiceItems[];
+  reasonForNotInterestedInSoftware : string;
 }
-export interface interrestedInSoftware{
-  name: string
+
+export interface ServiceItems{
+  serviceType: string;
+  rate: number;
 }
-export interface currentScenario{
-  name: string
-}
+
 
 @Component({
   selector: 'app-marketing-log-form',
@@ -18,63 +26,57 @@ export interface currentScenario{
 })
 export class MarketingLogFormComponent implements OnInit {
 
-
+interrestedInService: SelectItem[];
+currentScenario: SelectItem[];
   blockPreviewYes=false;
   blockPreviewNo=false;
   interested_Yes=false;
   interested_No=false;
+  ifOther=false;
+  items ;
+  
 
   public userForm: FormGroup;
 
-  visitorType: visitorType[];
-  interrestedInSoftware: interrestedInSoftware[];
-  currentScenario: currentScenario[];
+ 
 
   constructor( private fb: FormBuilder ) { 
-    this.visitorType = [
-      {name: 'First'},
-      {name: 'Second or Third'},
-      {name: 'Client'},
-      {name: 'Franchise'},
-  ];
-
-    this.interrestedInSoftware=[
-      {name: 'Accounting'},
-      {name: 'Income Tax Filing'},
-      {name: 'TDS Filing'},
-      {name: 'GST Filing'},
-      {name: 'Consultancy'},
-      {name: 'Company related'},
-      {name: 'Loan Documentation'}
-    ];
-    this.currentScenario=[
-      {name: 'CA'},
-      {name: 'ADVOCATE'},
-      {name: 'ACCOUNTANT'},
-      {name: 'SELF'},
-      {name: 'UNREGISTERED'}
-    ];
+    
+    
    }
 
 
   ngOnInit() {
 
-    this.userForm= new FormGroup({
-        'moreService': new FormArray([])
-    });
 
     this.userForm = this.fb.group({
-      clientName: null,
       tradeName: null,
       contact: null,
-      email: null,
-      queryHandling: null,
-      serviceProvided: null,
-      visitorType: null,
       usingSoftware:null,
       rateUs: null,
-      interestedUsingService: null
+      interestedUsingService: null,
+      reasonForNotInterestedInSoftware: null,
+      serviceType: null,
+      rate: null,
+      items: this.fb.array([this.createItem()])
       });
+
+    this.interrestedInService=[
+      {label: 'Accounting', value:'Accounting'},
+      {label: 'Income Tax Filing', value:'Income Tax Filing'},
+      {label: 'TDS Filing', value:'TDS Filing'},
+      {label: 'GST Filing', value:'GST Filing'},
+      {label: 'Consultancy', value:'Consultancy'},
+      {label: 'Company related', value:'Company related'},
+      {label: 'Loan Documentation', value:'Loan Documentation'}
+    ];
+    this.currentScenario=[
+      {label: 'CA',value:'CA'},
+      {label: 'ADVOCATE',value:'ADVOCATE'},
+      {label: 'ACCOUNTANT',value:'ACCOUNTANT'},
+      {label: 'SELF',value:'SELF'},
+      {label: 'UNREGISTERED',value:'UNREGISTERED'}
+    ];
   }
 
   redioYes(){
@@ -95,8 +97,26 @@ export class MarketingLogFormComponent implements OnInit {
   }
 
   addNewServiceType(){
-    const control=new FormControl(null);
-    (<FormArray>this.userForm.get('moreService')).push(control);
+    this.items = this.userForm.get('items') as FormArray;
+    this.items.push(this.createItem());
+  }
+  deleteServiceType(index: number) {
+    const control = <FormArray>this.userForm.controls['items'];
+    control.removeAt(index);
+}
+
+  createItem(): FormGroup{
+    return this.fb.group({
+        rate:'',
+        serviceType:''
+    });
+
+  }
+  otherReason(){
+    this.ifOther=true;
+  }
+  closeOtherReason(){
+    this.ifOther=false;
   }
 
 }

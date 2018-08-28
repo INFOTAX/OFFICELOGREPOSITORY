@@ -20,6 +20,7 @@ import {TableModule} from 'primeng/table';
 import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
 import { CompanylogService } from './services/companylog.service';
 import{ICompanylog} from'./company-log-list/company';
+import {DataViewModule} from 'primeng/dataview';
 
 const appRoutes: Routes =[
   {path:'company_log', component:CompanyLogFormComponent},
@@ -48,7 +49,8 @@ const appRoutes: Routes =[
     FormsModule,
     InputTextareaModule,
     FieldsetModule,
-    TableModule
+    TableModule,
+    DataViewModule
   ],
   providers: [CompanylogService],
   bootstrap: [AppComponent]
