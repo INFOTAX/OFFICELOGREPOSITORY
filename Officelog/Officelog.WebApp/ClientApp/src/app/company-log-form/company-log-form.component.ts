@@ -1,8 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '../../../node_modules/@angular/forms';
 import { Router } from '@angular/router';
-interface visitorType{
-  name: string;
+import { SelectItem } from 'primeng/components/common/selectitem';
+interface CompanyLog{
+  tradeName: string,
+   contact: string,
+   queryHandling: string,
+   serviceProvided: string,
+   visitorType: string,
+   usingSoftware:string,
+   rateUs: string,
+   reasonForNotInterestedInSoftware: string
 }
 
 @Component({
@@ -14,18 +22,14 @@ export class CompanyLogFormComponent implements OnInit {
 
   blockPreviewYes=false;
   blockPreviewNo=false;
+  ifOther=false;
+  visitorType: SelectItem[];
 
   public userForm: FormGroup;
 
-  visitorType: visitorType[];
 
   constructor( private fb: FormBuilder,private _router: Router ) { 
-    this.visitorType = [
-      {name: 'First'},
-      {name: 'Second or Third'},
-      {name: 'Client'},
-      {name: 'Franchise'},
-  ];
+    
    }
    companyLogList(){
 
@@ -36,16 +40,22 @@ export class CompanyLogFormComponent implements OnInit {
 
    ngOnInit() {
 
+    this.visitorType = [
+      {label: 'First', value:'First'},
+      {label: 'Second or Third', value: 'Second or Third'},
+      {label: 'Client', value:'Client'},
+      {label: 'Franchise', value:'Franchise'}
+  ];
+
     this.userForm = this.fb.group({
-   clientName: null,
    tradeName: null,
    contact: null,
-   email: null,
    queryHandling: null,
    serviceProvided: null,
    visitorType: null,
    usingSoftware:null,
-   rateUs: null
+   rateUs: null,
+   reasonForNotInterestedInSoftware: null
    });
  }
 ;
@@ -57,6 +67,12 @@ redioYes(){
 redioNo(){
  this.blockPreviewYes=false;
  this.blockPreviewNo=true;
+}
+otherReason(){
+  this.ifOther=true;
+}
+closeOtherReason(){
+  this.ifOther=false;
 }
 
 }
