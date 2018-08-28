@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {DialogModule} from 'primeng/dialog';
 import { AppComponent } from './app.component';
 import { CompanyLogFormComponent } from './company-log-form/company-log-form.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,12 +20,20 @@ import {TableModule} from 'primeng/table';
 import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
 import { CompanylogService } from './services/companylog.service';
 import{ICompanylog} from'./company-log-list/company';
+<<<<<<< HEAD
 import {DataViewModule} from 'primeng/dataview';
+=======
+import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
+import { MarketinglogService } from './services/marketinglog.service';
+import { IMarketinglog } from './marketing-log-list/marketing';
+import { HttpClientModule } from '@angular/common/http';
+>>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
 const appRoutes: Routes =[
-  {path:'company_log', component:CompanyLogFormComponent},
-  {path:'marketing_log', component:MarketingLogFormComponent},
-  {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'}
+  {path:'company_log/:id', component:CompanyLogFormComponent},
+  {path:'marketing_log/:id', component:MarketingLogFormComponent},
+  {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'},
+  {path: 'marketing_log_list', component: MarketingLogListComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -34,10 +42,13 @@ const appRoutes: Routes =[
     CompanyLogFormComponent,
     MarketingLogFormComponent,
     FrontLayoutComponent,
-    CompanyLogListComponent
+    CompanyLogListComponent,
+    MarketingLogListComponent
   ],
   imports: [
+    DialogModule,
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     DropdownModule,
     CheckboxModule,
@@ -52,7 +63,7 @@ const appRoutes: Routes =[
     TableModule,
     DataViewModule
   ],
-  providers: [CompanylogService],
+  providers: [CompanylogService,MarketinglogService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
