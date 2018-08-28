@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/components/common/selectitem';
-<<<<<<< HEAD
-
-=======
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MarketinglogService } from '../services/marketinglog.service';
 import { IMarketinglog } from '../marketing-log-list/marketing';
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
 export interface MarketingLog {
   name: string;
@@ -15,11 +11,11 @@ export interface MarketingLog {
   contact: number;
   usingSoftware: string;
   interestedUsingService: string;
-  items : ServiceItems[];
-  reasonForNotInterestedInSoftware : string;
+  items: ServiceItems[];
+  reasonForNotInterestedInSoftware: string;
 }
 
-export interface ServiceItems{
+export interface ServiceItems {
   serviceType: string;
   rate: number;
 }
@@ -32,139 +28,118 @@ export interface ServiceItems{
 })
 export class MarketingLogFormComponent implements OnInit {
 
-interrestedInService: SelectItem[];
-currentScenario: SelectItem[];
-  blockPreviewYes=false;
-  blockPreviewNo=false;
-  interested_Yes=false;
-  interested_No=false;
-  ifOther=false;
-  items ;
-<<<<<<< HEAD
-  
-=======
-  id : number;
-marketingLog : IMarketinglog;  
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
+
+  interrestedInService: SelectItem[];
+  currentScenario: SelectItem[];
+  blockPreviewYes = false;
+  blockPreviewNo = false;
+  interested_Yes = false;
+  interested_No = false;
+  ifOther = false;
+  items;
+  id: number;
+  marketingLog: IMarketinglog;
 
   public userForm: FormGroup;
 
- 
-<<<<<<< HEAD
 
-  constructor( private fb: FormBuilder ) { 
-    
-    
-   }
-=======
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
-  constructor(  private fb: FormBuilder,private _router: Router, private route: ActivatedRoute,
-                private marketingLogService : MarketinglogService ) { 
-    
-    
-   }
-    
+
+
+  constructor(private fb: FormBuilder, private _router: Router, private route: ActivatedRoute,
+    private marketingLogService: MarketinglogService) {
+
+
+  }
+
 
   ngOnInit() {
-
-<<<<<<< HEAD
-=======
-
-     this.route.params.subscribe(params => {
-        this.id = params['id'];
-        this.getMarketingLog(this.id);
-      });
-
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
+    this.route.paramMap.subscribe(params => {
+      this.id = params['id'];
+      this.getMarketingLog(this.id);
+    });
 
     this.userForm = this.fb.group({
       tradeName: null,
       contact: null,
-      usingSoftware:null,
+      usingSoftware: null,
       rateUs: null,
       interestedUsingService: null,
       reasonForNotInterestedInSoftware: null,
       serviceType: null,
       rate: null,
       items: this.fb.array([this.createItem()])
-      });
+    });
 
-    this.interrestedInService=[
-      {label: 'Accounting', value:'Accounting'},
-      {label: 'Income Tax Filing', value:'Income Tax Filing'},
-      {label: 'TDS Filing', value:'TDS Filing'},
-      {label: 'GST Filing', value:'GST Filing'},
-      {label: 'Consultancy', value:'Consultancy'},
-      {label: 'Company related', value:'Company related'},
-      {label: 'Loan Documentation', value:'Loan Documentation'}
+    this.interrestedInService = [
+      { label: 'Accounting', value: 'Accounting' },
+      { label: 'Income Tax Filing', value: 'Income Tax Filing' },
+      { label: 'TDS Filing', value: 'TDS Filing' },
+      { label: 'GST Filing', value: 'GST Filing' },
+      { label: 'Consultancy', value: 'Consultancy' },
+      { label: 'Company related', value: 'Company related' },
+      { label: 'Loan Documentation', value: 'Loan Documentation' }
     ];
-    this.currentScenario=[
-      {label: 'CA',value:'CA'},
-      {label: 'ADVOCATE',value:'ADVOCATE'},
-      {label: 'ACCOUNTANT',value:'ACCOUNTANT'},
-      {label: 'SELF',value:'SELF'},
-      {label: 'UNREGISTERED',value:'UNREGISTERED'}
+    this.currentScenario = [
+      { label: 'CA', value: 'CA' },
+      { label: 'ADVOCATE', value: 'ADVOCATE' },
+      { label: 'ACCOUNTANT', value: 'ACCOUNTANT' },
+      { label: 'SELF', value: 'SELF' },
+      { label: 'UNREGISTERED', value: 'UNREGISTERED' }
     ];
-<<<<<<< HEAD
-=======
+
+
   }
 
-  private getMarketingLog(id:number){
+  private getMarketingLog(id: number) {
     this.marketingLogService.getMarketingLogById(id)
-    .subscribe(res => this.marketingLog = res);
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
+      .subscribe(res => this.marketingLog = res);
   }
 
-  redioYes(){
-    this.blockPreviewYes=true;
-    this.blockPreviewNo=false;
+  redioYes() {
+    this.blockPreviewYes = true;
+    this.blockPreviewNo = false;
   }
-  redioNo(){
-    this.blockPreviewYes=false;
-    this.blockPreviewNo=true;
+  redioNo() {
+    this.blockPreviewYes = false;
+    this.blockPreviewNo = true;
   }
-  interestedYes(){
-    this.interested_Yes=true;
-    this.interested_No=false;
+  interestedYes() {
+    this.interested_Yes = true;
+    this.interested_No = false;
   }
-  interestedNo(){
-    this.interested_No=true;
-    this.interested_Yes=false;
+  interestedNo() {
+    this.interested_No = true;
+    this.interested_Yes = false;
   }
 
-  addNewServiceType(){
+  addNewServiceType() {
     this.items = this.userForm.get('items') as FormArray;
     this.items.push(this.createItem());
   }
   deleteServiceType(index: number) {
     const control = <FormArray>this.userForm.controls['items'];
     control.removeAt(index);
-}
+  }
 
-  createItem(): FormGroup{
+  createItem(): FormGroup {
     return this.fb.group({
-        rate:'',
-        serviceType:''
+      rate: '',
+      serviceType: ''
     });
 
   }
-  otherReason(){
-    this.ifOther=true;
+  otherReason() {
+    this.ifOther = true;
   }
-  closeOtherReason(){
-    this.ifOther=false;
-<<<<<<< HEAD
-=======
+  closeOtherReason() {
+    this.ifOther = false;
   }
-
-  marketingLogList()
-	{
+  marketingLogList() {
 
     this._router.navigate(['marketing_log_list']);
     // this.compLog=true;
     // this.markLog=false;
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
   }
 
 }
