@@ -20,5 +20,58 @@ namespace Officelog.Domain.Companylog
 
         public string SuggestionForYes { get; set; }
         public string SuggestionForNo { get; set; }
+
+        public bool IsActive { get; set; }
+
+        
+        public Company()
+        {
+            
+        }
+
+        public Company(string name, int contactNumber, string queryHandling,
+                        string serviceProvided, string visitorType,
+                        bool softwareInterested, string rateUs, string suggestionForYes,
+                        string suggestionForNo )
+        {
+            Name = name;
+            ContactNumber = contactNumber;
+            QueryHandling = queryHandling;
+            ServiceProvided = serviceProvided;
+            VisitorType = visitorType;
+            SoftwareInterested = softwareInterested;
+            RateUs = rateUs;
+            SuggestionForYes = suggestionForYes;
+            SuggestionForNo = suggestionForNo;
+            IsActive = true;
+        }
+
+            public void Modify(string name, int contactNumber, string queryHandling,
+                        string serviceProvided, string visitorType,
+                        bool softwareInterested, string rateUs, string suggestionForYes,
+                        string suggestionForNo )
+        {
+            Name = name;
+            ContactNumber = contactNumber;
+            QueryHandling = queryHandling;
+            ServiceProvided = serviceProvided;
+            VisitorType = visitorType;
+            SoftwareInterested = softwareInterested;
+            RateUs = rateUs;
+            SuggestionForYes = suggestionForYes;
+            SuggestionForNo = suggestionForNo;
+            IsActive = true;
+        }
+
+           public void Delete()
+        {
+            IsActive = false;
+        }
     }
+
+     
+    
+
+
+
 }
