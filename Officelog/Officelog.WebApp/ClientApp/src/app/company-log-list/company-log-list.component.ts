@@ -1,6 +1,6 @@
 
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { CompanylogService } from '../services/companylog.service';
 import{ICompanylog} from'../company-log-list/company';
 
@@ -11,18 +11,21 @@ import{ICompanylog} from'../company-log-list/company';
   providers:[CompanylogService]
 })
 export class CompanyLogListComponent implements OnInit {
-  companylogs: ICompanylog[];
-  selectedCompanyLog:ICompanylog;
+  @Input() companylogs: ICompanylog[];
+  @Input() selectedCompanyLog:ICompanylog;
   id :number;
 
 
-  constructor( private _companylogService:CompanylogService , private _router: Router ) {
+  constructor( private _companylogService:CompanylogService ,
+               private _router: Router ) {
     
   }
 
   ngOnInit() {
-    this.companylogs=this._companylogService.getCompanylog();
+    this._companylogService.getCompanylog().subscribe((logdata) =>this.companylogs = logdata);
   }
+
+  
  companyLog(){
 
     this._router.navigate(['company_log']);

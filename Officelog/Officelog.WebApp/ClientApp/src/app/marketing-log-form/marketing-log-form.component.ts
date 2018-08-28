@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/components/common/selectitem';
-<<<<<<< HEAD
-
-=======
 import { Router, ActivatedRoute } from '@angular/router';
 import { MarketinglogService } from '../services/marketinglog.service';
 import { IMarketinglog } from '../marketing-log-list/marketing';
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
 export interface MarketingLog {
   name: string;
@@ -40,24 +36,12 @@ currentScenario: SelectItem[];
   interested_No=false;
   ifOther=false;
   items ;
-<<<<<<< HEAD
-  
-=======
   id : number;
 marketingLog : IMarketinglog;  
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
   public userForm: FormGroup;
 
  
-<<<<<<< HEAD
-
-  constructor( private fb: FormBuilder ) { 
-    
-    
-   }
-=======
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
   constructor(  private fb: FormBuilder,private _router: Router, private route: ActivatedRoute,
                 private marketingLogService : MarketinglogService ) { 
@@ -68,15 +52,12 @@ marketingLog : IMarketinglog;
 
   ngOnInit() {
 
-<<<<<<< HEAD
-=======
 
      this.route.params.subscribe(params => {
         this.id = params['id'];
         this.getMarketingLog(this.id);
       });
 
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
     this.userForm = this.fb.group({
       tradeName: null,
@@ -106,14 +87,11 @@ marketingLog : IMarketinglog;
       {label: 'SELF',value:'SELF'},
       {label: 'UNREGISTERED',value:'UNREGISTERED'}
     ];
-<<<<<<< HEAD
-=======
   }
 
   private getMarketingLog(id:number){
     this.marketingLogService.getMarketingLogById(id)
     .subscribe(res => this.marketingLog = res);
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
   }
 
   redioYes(){
@@ -154,8 +132,6 @@ marketingLog : IMarketinglog;
   }
   closeOtherReason(){
     this.ifOther=false;
-<<<<<<< HEAD
-=======
   }
 
   marketingLogList()
@@ -164,7 +140,6 @@ marketingLog : IMarketinglog;
     this._router.navigate(['marketing_log_list']);
     // this.compLog=true;
     // this.markLog=false;
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
   }
 
 }

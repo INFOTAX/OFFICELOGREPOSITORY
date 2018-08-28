@@ -20,14 +20,11 @@ import {TableModule} from 'primeng/table';
 import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
 import { CompanylogService } from './services/companylog.service';
 import{ICompanylog} from'./company-log-list/company';
-<<<<<<< HEAD
 import {DataViewModule} from 'primeng/dataview';
-=======
 import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
 import { MarketinglogService } from './services/marketinglog.service';
 import { IMarketinglog } from './marketing-log-list/marketing';
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> 221bb97f5219e8b7c94490dc7d38976a73769c6c
 
 const appRoutes: Routes =[
   {path:'company_log/:id', component:CompanyLogFormComponent},

@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import{ICompanylog} from'../company-log-list/company';
+import { Observable } from "../../../node_modules/rxjs";
+import { HttpClient } from "../../../node_modules/@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanylogService {
 
-  constructor() { 
+  baseurl: string='assets/Data/company-log-list-data.json';
+  private logList: ICompanylog[];
+
+  constructor( private http: HttpClient) { 
     
   }
 
-  getCompanylog(): ICompanylog[]{
 
-    return[
-      {"id":1,"name":"Ankita", "contact": 12344456, "typeOfQuery":"good","serviceRating":"good","visitorType":"First"},
-      { "id":2,"name":"Vishal", "contact": 9123654, "typeOfQuery":" very good","serviceRating":" very good","visitorType":"Second or Third"},
-      {"id":3,"name":"Trishan", "contact": 8123654, "typeOfQuery":"bad","serviceRating":" very good","visitorType":"Client"},
-      {"id":4,"name":"Ajeet", "contact": 7123654, "typeOfQuery":"excellent","serviceRating":"good","visitorType":"Client"},
-      {"id":5,"name":"Avinash", "contact": 6123654, "typeOfQuery":"good","serviceRating":"bad","visitorType":"Franchise"},
-      {"id":6,"name":"Rakesh", "contact": 5123654, "typeOfQuery":"very good","serviceRating":"excellent","visitorType":"First"},
-    
-    ];
+    getCompanylog(): Observable<ICompanylog[]>{
+      return this.http.get<ICompanylog[]>(this.baseurl);
+    }
+
+    getLogById(id: number): ICompanylog{
+      return this.logList.find(user=> user.id === id);
   }
   }
     
