@@ -22,9 +22,8 @@ import { CompanylogService } from './services/companylog.service';
 import{ICompanylog} from'./company-log-list/company';
 import {DataViewModule} from 'primeng/dataview';
 import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
-import { MarketinglogService } from './services/marketinglog.service';
-import { IMarketinglog } from './marketing-log-list/marketing';
 import { HttpClientModule } from '@angular/common/http';
+import { MarketinglogService } from './services/marketinglog.service';
 
 const appRoutes: Routes =[
   {path:'company_log/:id', component:CompanyLogFormComponent},

@@ -5,20 +5,21 @@
                 <div class="ui-g-6 ui-sm-6">
                     <p-button button type="button" label="Add" (onClick)="onAddm()" class="ui-button-rounded ui-button-success" icon="fa fa-fw fa-plus"
                         style="margin-bottom:10px;">
-                       
+
                     </p-button>
                 </div>
                 <div class="ui-g-6 ui-sm-6">
                     <div style="text-align: right">
                         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                        <input type="text" pInputText size="50" placeholder="Global Filter" (input)="dt.filterGlobal($event.target.value, 'contains')"
-                            style="width:auto">
+                        <input type="text" pInputText size="50" placeholder="Marketing list Search" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                            style="width:fit-content">
                     </div>
                 </div>
 
 
             </div>
-            <p-table #dt [value]="marketinglogs"  (onRowSelect)="onRowSelect($event)" selectionMode="single" [(selection)]="selectedMarketingLog" [globalFilterFields]="['Conversion','name','serviceInterested','softwareInterested','contact']">
+            <p-table #dt [value]="marketinglogs" (onRowSelect)="onRowSelect($event)" selectionMode="single" [(selection)]="selectedMarketingLog"
+                [globalFilterFields]="['Conversion','name','serviceInterested','softwareInterested','contact']">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Name</th>
@@ -41,8 +42,8 @@
 
 
 
-    
-            
+
+
         </div>
     </div>
 </div>

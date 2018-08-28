@@ -31,7 +31,7 @@ onAddm(){
   this.id=0;
   this._router.navigate(['/marketing_log',this.id])
 }
-  onRowSelect(event) {
+  onRowSelect(event) { 
     this.id = event.data.id;
     console.log(this.id)
     this._router.navigate(['/marketing_log',this.id])
