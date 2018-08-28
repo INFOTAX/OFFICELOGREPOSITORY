@@ -4,7 +4,7 @@ import { SelectItem } from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketinglogService } from '../services/marketinglog.service';
 import { IMarketinglog } from '../marketing-log-list/marketing';
-import 'rxjs/add/operator';
+
 export interface MarketingLog {
   name: string;
   tradeName: string;
