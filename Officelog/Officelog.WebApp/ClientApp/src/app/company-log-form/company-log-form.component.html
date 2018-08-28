@@ -1,4 +1,4 @@
-<form [formGroup]="userForm" style="margin-left: 220px; margin-right: 220px; margin-top: 5px">
+<form [formGroup]="userForm" style="margin-left: 220px; margin-right: 220px; margin-top:05px">
     <p-button label="Back"   button type="button" (onClick)="companyLogList()" icon="fa fa-fw fa-arrow-left" class="ui-button-rounded ui-button-success"></p-button>
     <p>&nbsp;</p>
   <p-panel>
@@ -10,10 +10,10 @@
     </p-header>
     <div class="ui-g">
       <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
-        <label for="name">Client Name:</label>
+        <label for="name">Trade Name:</label>
       </div>
       <div class="ui-sm-8  ui-g-8">
-        <input id="name" formControlName="clientName" type="text" pInputText>
+        <input id="name" formControlName="tradeName" type="text" pInputText>
       </div>
     
       
@@ -67,7 +67,8 @@
         <label for="visitorType">Visitor Type:</label>
       </div>
       <div class="ui-sm-8  ui-g-8">
-        <p-dropdown [style]="{'width': '175px'}" [options]="visitorType" placeholder="Select a Type" optionLabel="name" [showClear]="true"></p-dropdown>
+        <p-dropdown [style]="{'width': '175px'}" [options]="visitorType" 
+        placeholder="Select a Type" filter="true"></p-dropdown>
       </div>
     
       <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
@@ -119,9 +120,6 @@
               </div>
             
           </div>
-          <p-footer>
-            <button pButton type="button" label="Save" class="ui-button-info"></button>
-          </p-footer>
         </p-panel>
       </div>
     </div>
@@ -135,20 +133,29 @@
           </div>
         </p-header>
         <div class="ui-g">
-          <div class="ui-sm-12 ui-g-12">
-            <textarea id="anySuggestion" rows="5" cols="68" 
-            pInputTextarea autoResize="autoResize"></textarea>
+            <div class="ui-sm-3 ui-g-3 nopad">
+                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                 value="alreadyHave" label="Already have" (onClick)="closeOtherReason();"></p-radioButton>
+              </div>
+              <div class="ui-sm-3 ui-g-3 nopad">
+                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                 value="notFriendly" label="Not Friendly" (onClick)="closeOtherReason();"></p-radioButton>
+              </div>
+              <div class="ui-sm-3 ui-g-3 nopad">
+                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                 value="others" label="others" (onClick)="otherReason();"></p-radioButton>
+              </div>
+          <div class="ui-sm-12 ui-g-12" *ngIf="ifOther">
+            <span>Please give reasons and suggestion, so that we can improve.</span><br>
+            <textarea id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize"></textarea>
           </div>
         </div>
-        <p-footer>
-          <button pButton type="button" label="Save" class="ui-button-info"></button>
-        </p-footer>
       </p-panel>
     </div>
   </div>
 </div>
     <p-footer>
-      <button pButton type="button" label="Submit" class="ui-button-info"></button>
+      <button pButton type="button" label="Submit" class="ui-button-success"></button>
     </p-footer>
   </p-panel>
 </form>
