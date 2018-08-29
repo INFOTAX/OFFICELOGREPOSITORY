@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '../../../node_modules/@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/components/common/selectitem';
+import { CompanylogService } from '../services/companylog.service';
+import{ICompanylog} from'../company-log-list/company';
+
 interface CompanyLog{
   tradeName: string,
    contact: string,
@@ -24,11 +27,15 @@ export class CompanyLogFormComponent implements OnInit {
   blockPreviewNo=false;
   ifOther=false;
   visitorType: SelectItem[];
+  companylogs: ICompanylog;
 
   public userForm: FormGroup;
 
 
-  constructor( private fb: FormBuilder,private _router: Router ) { 
+  constructor( private fb: FormBuilder,
+               private _router: Router,
+               private _activatedRoute: ActivatedRoute,
+               private _companylogService:CompanylogService ) { 
     
    }
    companyLogList(){
@@ -39,6 +46,12 @@ export class CompanyLogFormComponent implements OnInit {
   }
 
    ngOnInit() {
+    
+    this._activatedRoute.paramMap.subscribe( parameterMap =>{
+      const id = + parameterMap.get('id');
+     this.getLogList(id);
+
+    });
 
     this.visitorType = [
       {label: 'First', value:'First'},
@@ -58,7 +71,23 @@ export class CompanyLogFormComponent implements OnInit {
    reasonForNotInterestedInSoftware: null
    });
  }
-;
+
+ private getLogList(id: number){
+  if (id==0){
+    this.companylogs={
+      id : null,
+      name:null,
+      contact: null,
+      typeOfQuery: null,
+      serviceRating: null,
+      visitorType: null
+    };
+  }
+  else{
+    this.companylogs = this._companylogService.getLogById(id);
+    console.log(this.companylogs.name)
+  }
+}
 
 redioYes(){
  this.blockPreviewYes=true;
@@ -74,5 +103,4 @@ otherReason(){
 closeOtherReason(){
   this.ifOther=false;
 }
-
 }
