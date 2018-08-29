@@ -17,6 +17,9 @@ namespace Officelog.WebApp.MarketingApi
         public string SuggestionForNo { get; set; }
         public string  Area { get; set; }
         public DateTime Date { get; set; }
+        public double Price { get; set; }
+        public string CurrentScenario { get; set; }
+        public string RateUsForNo { get; set; }
         public List<SaveServiceItemResource> ServiceItems {get; set;}
       
     }
