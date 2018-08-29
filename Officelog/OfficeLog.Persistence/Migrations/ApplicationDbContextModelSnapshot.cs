@@ -28,6 +28,8 @@ namespace OfficeLog.Persistence.Migrations
 
                     b.Property<int>("ContactNumber");
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<bool>("IsActive");
 
                     b.Property<string>("Name");
@@ -62,17 +64,15 @@ namespace OfficeLog.Persistence.Migrations
 
                     b.Property<int>("ConversionStatus");
 
+                    b.Property<DateTime>("Date");
+
                     b.Property<bool>("IsActive");
 
                     b.Property<string>("Name");
 
-                    b.Property<double>("Rate");
-
                     b.Property<string>("RateUs");
 
                     b.Property<bool>("ServiceInterested");
-
-                    b.Property<string>("ServiceType");
 
                     b.Property<bool>("SoftwareInterested");
 
@@ -83,6 +83,31 @@ namespace OfficeLog.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Marketings");
+                });
+
+            modelBuilder.Entity("Officelog.Domain.Marketinglog.ServiceItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int?>("MarketingId");
+
+                    b.Property<double>("Rate");
+
+                    b.Property<string>("ServiceType");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MarketingId");
+
+                    b.ToTable("ServiceItems");
+                });
+
+            modelBuilder.Entity("Officelog.Domain.Marketinglog.ServiceItem", b =>
+                {
+                    b.HasOne("Officelog.Domain.Marketinglog.Marketing", "Marketing")
+                        .WithMany("ServiceItems")
+                        .HasForeignKey("MarketingId");
                 });
 #pragma warning restore 612, 618
         }
