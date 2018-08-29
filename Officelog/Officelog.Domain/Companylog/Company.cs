@@ -9,7 +9,7 @@ namespace Officelog.Domain.Companylog
         public int Id { get; set; }
         
         public string Name { get; set; }
-        public int ContactNumber { get; set; }
+        public string ContactNumber { get; set; }
         public string QueryHandling { get; set; }
         public string ServiceProvided { get; set; }
 
@@ -30,7 +30,7 @@ namespace Officelog.Domain.Companylog
             
         }
 
-        public Company(string name, int contactNumber, string queryHandling,
+        public Company(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
                         bool softwareInterested, string rateUs, string suggestionForYes,
                         string suggestionForNo,DateTime date )
@@ -48,7 +48,7 @@ namespace Officelog.Domain.Companylog
             IsActive = true;
         }
 
-            public void Modify(string name, int contactNumber, string queryHandling,
+            public void Modify(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
                         bool softwareInterested, string rateUs, string suggestionForYes,
                         string suggestionForNo )

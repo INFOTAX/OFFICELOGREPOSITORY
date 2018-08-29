@@ -36,6 +36,12 @@ export class FrontLayoutComponent implements OnInit {
     // this.compLog=true;
     // this.markLog=false;
   }
+  dashboardLog(){
+
+    this._router.navigate(['dashboard_log']);
+    // this.compLog=true;
+    // this.markLog=false;
+  }
 
 
   ngOnInit() {

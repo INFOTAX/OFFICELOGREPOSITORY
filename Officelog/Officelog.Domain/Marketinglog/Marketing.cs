@@ -8,7 +8,7 @@ namespace Officelog.Domain.Marketinglog
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int ContactNumber { get; set; }
+        public string ContactNumber { get; set; }
         public bool ServiceInterested { get; set; }
         public bool SoftwareInterested { get; set; }
         public ConversionStatus ConversionStatus { get; set; }
@@ -24,7 +24,7 @@ namespace Officelog.Domain.Marketinglog
             ServiceItems = new List<ServiceItem>();
             
         }
-        public Marketing(string name,int contactNumber,bool serviceInterested,bool softwareInterested,
+        public Marketing(string name,string contactNumber,bool serviceInterested,bool softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
                         string area,DateTime date,List<ServiceItem> serviceItems)
         {
@@ -43,7 +43,7 @@ namespace Officelog.Domain.Marketinglog
 
         }
 
-        public void Modify(string name,int contactNumber,bool serviceInterested,bool softwareInterested,
+        public void Modify(string name,string contactNumber,bool serviceInterested,bool softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
                         string area,List<ServiceItem> serviceItems)
          {
@@ -63,6 +63,11 @@ namespace Officelog.Domain.Marketinglog
          public void Delete()
          {
              IsActive = false;
+         }
+
+         public void Converted()
+         {
+             ConversionStatus = ConversionStatus.Achieved;
          }
     }
     public enum ConversionStatus{

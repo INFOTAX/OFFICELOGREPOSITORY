@@ -54,10 +54,10 @@ export class MarketingLogFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+   /* this.route.paramMap.subscribe(params => {
       this.id = params['id'];
       this.getMarketingLog(this.id);
-    });
+    });*/
 
     this.userForm = this.fb.group({
       tradeName: null,

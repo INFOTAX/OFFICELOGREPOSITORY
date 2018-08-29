@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl } from '../../../node_modules/@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/components/common/selectitem';
@@ -22,7 +22,7 @@ interface CompanyLog{
   styleUrls: ['./company-log-form.component.css']
 })
 export class CompanyLogFormComponent implements OnInit {
-
+  _id: number;
   blockPreviewYes=false;
   blockPreviewNo=false;
   ifOther=false;
@@ -47,11 +47,11 @@ export class CompanyLogFormComponent implements OnInit {
 
    ngOnInit() {
     
-    this._activatedRoute.paramMap.subscribe( parameterMap =>{
+    /*this._activatedRoute.paramMap.subscribe( parameterMap =>{
       const id = + parameterMap.get('id');
      this.getLogList(id);
 
-    });
+    });*/
 
     this.visitorType = [
       {label: 'First', value:'First'},
@@ -72,22 +72,7 @@ export class CompanyLogFormComponent implements OnInit {
    });
  }
 
- private getLogList(id: number){
-  if (id==0){
-    this.companylogs={
-      id : null,
-      name:null,
-      contact: null,
-      typeOfQuery: null,
-      serviceRating: null,
-      visitorType: null
-    };
-  }
-  else{
-    this.companylogs = this._companylogService.getLogById(id);
-    console.log(this.companylogs.name)
-  }
-}
+
 
 redioYes(){
  this.blockPreviewYes=true;

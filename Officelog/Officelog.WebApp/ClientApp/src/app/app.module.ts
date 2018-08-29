@@ -24,12 +24,23 @@ import {DataViewModule} from 'primeng/dataview';
 import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import {MenubarModule} from 'primeng/menubar';
+import {MenuItem} from 'primeng/api';
+import {CardModule} from 'primeng/card';
+
+
+
+
 
 const appRoutes: Routes =[
   {path:'company_log/:id', component:CompanyLogFormComponent},
   {path:'marketing_log/:id', component:MarketingLogFormComponent},
-  {path: 'company_log_list', component:CompanyLogListComponent, pathMatch: 'full'},
-  {path: 'marketing_log_list', component: MarketingLogListComponent, pathMatch: 'full'}
+  {path: 'company_log_list', component:CompanyLogListComponent},
+  {path: 'marketing_log_list', component: MarketingLogListComponent},
+  {path:'dashboard_log', component: DashboardComponent},
+  {path:'', redirectTo: '/dashboard_log',pathMatch:'full'},
 ];
 
 @NgModule({
@@ -39,9 +50,13 @@ const appRoutes: Routes =[
     MarketingLogFormComponent,
     FrontLayoutComponent,
     CompanyLogListComponent,
-    MarketingLogListComponent
+    MarketingLogListComponent,
+    NavigationBarComponent,
+    DashboardComponent
   ],
   imports: [
+    CardModule,
+    MenubarModule,
     DialogModule,
     BrowserModule,
     HttpClientModule,
@@ -62,4 +77,6 @@ const appRoutes: Routes =[
   providers: [CompanylogService,MarketinglogService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  
+}
