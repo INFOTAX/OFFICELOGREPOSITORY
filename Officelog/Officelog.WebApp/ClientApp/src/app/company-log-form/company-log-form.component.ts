@@ -61,14 +61,17 @@ export class CompanyLogFormComponent implements OnInit {
   ];
 
     this.userForm = this.fb.group({
-   tradeName: null,
-   contact: null,
+   name: null,
+   date: null,
+   contactNumber: null,
    queryHandling: null,
    serviceProvided: null,
    visitorType: null,
-   usingSoftware:null,
+   rateUsForNo: null,
+   softwareInterested:null,
    rateUs: null,
-   reasonForNotInterestedInSoftware: null
+   suggestionForYes: null,
+   suggestionForNo: null
    });
  }
 

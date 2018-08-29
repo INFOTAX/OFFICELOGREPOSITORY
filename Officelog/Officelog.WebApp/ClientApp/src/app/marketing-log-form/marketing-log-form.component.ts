@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 
-export interface MarketingLog {
-  name: string;
-  tradeName: string;
-  contact: number;
-  usingSoftware: string;
-  interestedUsingService: string;
-  items: ServiceItems[];
-  reasonForNotInterestedInSoftware: string;
-}
+// export interface MarketingLog {
+//   name: string;
+//   tradeName: string;
+//   contact: number;
+//   usingSoftware: string;
+//   interestedUsingService: string;
+//   serviceItems: ServiceItems[];
+//   reasonForNotInterestedInSoftware: string;
+// }
 
 export interface ServiceItems {
   serviceType: string;
@@ -60,16 +60,19 @@ export class MarketingLogFormComponent implements OnInit {
     });*/
 
     this.userForm = this.fb.group({
-      tradeName: null,
-      contact: null,
-      usingSoftware: null,
+      name: null,
+      contactNumber: null,
+      softwareInterested: null,
       rateUs: null,
-      interestedUsingService: null,
-      reasonForNotInterestedInSoftware: null,
-      serviceType: null,
-      rate: null,
+      serviceInterested: null,
+      rateUsForNo: null,
+      currentScenario: null,
+      price: null,
+      suggestionForNo: null,
+      suggestionForYes: null,
       area: null,
-      items: this.fb.array([this.createItem()])
+      date:null,
+      serviceItems: this.fb.array([this.createItem()])
     });
 
     this.interrestedInService = [
