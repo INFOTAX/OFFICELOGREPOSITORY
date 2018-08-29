@@ -1,3 +1,5 @@
+using System;
+
 namespace Officelog.WebApp.CompanyApi
 {
     public class SaveCompanyResource
@@ -16,5 +18,6 @@ namespace Officelog.WebApp.CompanyApi
 
         public string SuggestionForYes { get; set; }
         public string SuggestionForNo { get; set; }
+        public DateTime Date { get; set; }
     }
 }

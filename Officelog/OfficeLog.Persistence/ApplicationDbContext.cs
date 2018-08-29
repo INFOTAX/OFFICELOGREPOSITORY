@@ -12,5 +12,6 @@ namespace OfficeLog.Persistence
 
      public DbSet<Company> Companies {get; set;}
      public DbSet<Marketing> Marketings {get; set;}
+     public DbSet<ServiceItem> ServiceItems {get; set;}
     }
 }

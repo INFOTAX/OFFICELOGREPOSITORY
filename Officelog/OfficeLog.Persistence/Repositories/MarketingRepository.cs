@@ -19,7 +19,7 @@ namespace OfficeLog.Persistence.Repositories
 
         public override Task<Marketing> GetAsync(object id)
         {
-            return _context.Marketings.SingleOrDefaultAsync(m => m.Id == (int)id);
+            return _context.Marketings.Include(si => si.ServiceItems).SingleOrDefaultAsync(m => m.Id == (int)id);
         }
     }
 }

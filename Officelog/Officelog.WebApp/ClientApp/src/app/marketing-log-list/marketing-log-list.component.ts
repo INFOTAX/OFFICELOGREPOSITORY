@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MarketinglogService } from '../services/marketinglog.service';
+import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 @Component({
   selector: 'app-marketing-log-list',
@@ -17,10 +17,17 @@ export class MarketingLogListComponent implements OnInit {
 
     
 
-  constructor( private _marketinglogService:MarketinglogService , private _router: Router) { }
+  constructor( private _marketinglogService:MarketinglogService ,
+               private _router: Router) { }
 
   ngOnInit() {
-    this._marketinglogService.getMarketingLog().subscribe(res => this.marketinglogs = res);
+    this.getMarketingLogList();
+  }
+
+  getMarketingLogList(){
+        this._marketinglogService.getAll().subscribe(marketingLogList=>{
+          
+        }) 
   }
   marketingLog(){
     this._router.navigate(['marketing_log']);

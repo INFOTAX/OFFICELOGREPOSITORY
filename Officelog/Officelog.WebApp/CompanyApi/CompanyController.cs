@@ -54,7 +54,7 @@ namespace Officelog.WebApp.CompanyApi
         var company = new Company ( model.Name, model.ContactNumber,  model.QueryHandling,
                          model.ServiceProvided,  model.VisitorType,
                         model.SoftwareInterested,  model.RateUs, 
-                         model.SuggestionForYes, model.SuggestionForNo
+                         model.SuggestionForYes, model.SuggestionForNo,model.Date
 );
       _companyRepository.Add(company);
 

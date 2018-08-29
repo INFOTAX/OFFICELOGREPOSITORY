@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Officelog.Domain.Marketinglog;
 
 namespace Officelog.WebApp.MarketingApi
@@ -13,9 +15,15 @@ namespace Officelog.WebApp.MarketingApi
         public string RateUs { get; set; }
         public string SuggestionForYes { get; set; }
         public string SuggestionForNo { get; set; }
+        public string  Area { get; set; }
+        public DateTime Date { get; set; }
+        public List<SaveServiceItemResource> ServiceItems {get; set;}
+      
+    }
+
+    public class SaveServiceItemResource
+    {
         public string ServiceType { get; set; }
         public double Rate { get; set; }
-        public string  Area { get; set; }
-      
     }
 }

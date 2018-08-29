@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MarketinglogService } from '../services/marketinglog.service';
+import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 
 export interface MarketingLog {
