@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MarketinglogService } from '../services/marketinglog.service';
+import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 
 export interface MarketingLog {
@@ -54,10 +54,10 @@ export class MarketingLogFormComponent implements OnInit {
 
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+   /* this.route.paramMap.subscribe(params => {
       this.id = params['id'];
       this.getMarketingLog(this.id);
-    });
+    });*/
 
     this.userForm = this.fb.group({
       tradeName: null,
@@ -91,10 +91,10 @@ export class MarketingLogFormComponent implements OnInit {
 
   }
 
-  private getMarketingLog(id: number) {
+  /*private getMarketingLog(id: number) {
     this.marketingLogService.getMarketingLogById(id)
       .subscribe(res => this.marketingLog = res);
-  }
+  }*/
 
   redioYes() {
     this.blockPreviewYes = true;

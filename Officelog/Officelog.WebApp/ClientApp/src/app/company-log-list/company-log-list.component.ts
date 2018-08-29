@@ -22,10 +22,14 @@ export class CompanyLogListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._companylogService.getCompanylog().subscribe((logdata) =>this.companylogs = logdata);
+    this.getCompanyLogList();
   }
 
-  
+  getCompanyLogList(){
+    this._companylogService.getAll().subscribe(companyLogList=>{
+      this.companylogs=companyLogList;
+    });
+  }
  companyLog(){
 
     this._router.navigate(['company_log']);
