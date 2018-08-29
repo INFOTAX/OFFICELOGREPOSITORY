@@ -21,6 +21,7 @@ namespace Officelog.Domain.Companylog
         public string SuggestionForYes { get; set; }
         public string SuggestionForNo { get; set; }
         public DateTime Date { get; set; }
+        public string RateUsForNo { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -33,7 +34,7 @@ namespace Officelog.Domain.Companylog
         public Company(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
                         bool softwareInterested, string rateUs, string suggestionForYes,
-                        string suggestionForNo,DateTime date )
+                        string suggestionForNo,DateTime date,string rateUsForNo )
         {
             Name = name;
             ContactNumber = contactNumber;
@@ -45,13 +46,14 @@ namespace Officelog.Domain.Companylog
             SuggestionForYes = suggestionForYes;
             SuggestionForNo = suggestionForNo;
             Date = date;
+            RateUsForNo = rateUsForNo;
             IsActive = true;
         }
 
             public void Modify(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
                         bool softwareInterested, string rateUs, string suggestionForYes,
-                        string suggestionForNo )
+                        string suggestionForNo,string rateUsForNo )
         {
             Name = name;
             ContactNumber = contactNumber;
@@ -62,6 +64,7 @@ namespace Officelog.Domain.Companylog
             RateUs = rateUs;
             SuggestionForYes = suggestionForYes;
             SuggestionForNo = suggestionForNo;
+            RateUsForNo = rateUsForNo;
             IsActive = true;
         }
 

@@ -57,7 +57,8 @@ namespace Officelog.WebApp.MarketingApi
             
             var marketing = new Marketing(model.Name, model.ContactNumber, model.ServiceInterested,
                              model.SoftwareInterested, model.ConversionStatus,
-                              model.RateUs, model.SuggestionForYes, model.SuggestionForNo, model.Area,model.Date,ServiceItems(model));
+                              model.RateUs, model.SuggestionForYes, model.SuggestionForNo, model.Area,model.Date,
+                              model.Price,model.CurrentScenario,model.RateUsForNo,ServiceItems(model));
 
             _marketingRepository.Add(marketing);
 
@@ -87,7 +88,8 @@ namespace Officelog.WebApp.MarketingApi
 
             marketingFromDb.Modify(model.Name, model.ContactNumber, model.ServiceInterested,
                                   model.SoftwareInterested, model.ConversionStatus,
-                                   model.RateUs, model.SuggestionForYes, model.SuggestionForNo,model.Area,ServiceItems(model));
+                                   model.RateUs, model.SuggestionForYes, model.SuggestionForNo,model.Area,
+                                   model.Price,model.CurrentScenario,model.RateUsForNo,ServiceItems(model));
 
             await _unitOfWork.CompleteAsync();
             return Ok(_mapper.Map<Marketing, MarketingResource>(marketingFromDb));

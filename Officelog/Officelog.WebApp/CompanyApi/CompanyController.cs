@@ -54,7 +54,7 @@ namespace Officelog.WebApp.CompanyApi
         var company = new Company ( model.Name, model.ContactNumber,  model.QueryHandling,
                          model.ServiceProvided,  model.VisitorType,
                         model.SoftwareInterested,  model.RateUs, 
-                         model.SuggestionForYes, model.SuggestionForNo,model.Date
+                         model.SuggestionForYes, model.SuggestionForNo,model.Date,model.RateUsForNo
 );
       _companyRepository.Add(company);
 
@@ -78,7 +78,7 @@ namespace Officelog.WebApp.CompanyApi
    companyFromDb.Modify( model.Name, model.ContactNumber,  model.QueryHandling,
                          model.ServiceProvided,  model.VisitorType,
                         model.SoftwareInterested,  model.RateUs, 
-                         model.SuggestionForYes, model.SuggestionForNo);
+                         model.SuggestionForYes, model.SuggestionForNo,model.RateUsForNo);
 
             await _unitOfWork.CompleteAsync();
             return Ok(_mapper.Map<Company,CompanyResource>(companyFromDb));
