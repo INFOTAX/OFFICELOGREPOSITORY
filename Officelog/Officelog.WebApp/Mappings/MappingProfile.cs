@@ -15,6 +15,8 @@ namespace Officelog.WebApp.Mappings
             CreateMap<Marketing, MarketingResource>();
             CreateMap<Marketing, SaveMarketingResource>();
             CreateMap<ServiceItem, SaveServiceItemResource>();
+            CreateMap<Marketing, ConvertedResource>();
+            CreateMap<Marketing, SaveConvertedResource>();
         }    
     }
 }
