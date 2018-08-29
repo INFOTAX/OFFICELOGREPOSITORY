@@ -68,6 +68,7 @@ export class MarketingLogFormComponent implements OnInit {
       reasonForNotInterestedInSoftware: null,
       serviceType: null,
       rate: null,
+      area: null,
       items: this.fb.array([this.createItem()])
     });
 
@@ -92,8 +93,8 @@ export class MarketingLogFormComponent implements OnInit {
   }
 
   private getMarketingLog(id: number) {
-    this.marketingLogService.getMarketingLogById(id)
-      .subscribe(res => this.marketingLog = res);
+    // this.marketingLogService.getMarketingLogById(id)
+    //   .subscribe(res => this.marketingLog = res);
   }
 
   redioYes() {
