@@ -1,8 +1,13 @@
 export interface ICompanylog{
-    id : number;
+    id  : number;
     name:string;
-    contact:number;
-    typeOfQuery:string;
-    serviceRating:string;
+    contactNumber:string;
+    queryHandling:string;
+    serviceProvided :string;
     visitorType:string;
+    softwareInterested:boolean;
+    rateUs:string;
+    suggestionForYes:string;
+    suggestionForNo:string;
+    date:Date;
 }

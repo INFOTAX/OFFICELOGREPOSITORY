@@ -34,10 +34,10 @@
                     <ng-template pTemplate="body" let-rowData let-companylog style="text-align: center;">
                         <tr  [pSelectableRow]="rowData" style="text-align: center;">
                             <td>{{companylog.name}}</td>
-                            <td>{{companylog.contact}}</td>
+                            <td>{{companylog.contactNumber}}</td>
                             <td>{{companylog.visitorType}}</td>
-                            <td>{{companylog.typeOfQuery}}</td>
-                            <td>{{companylog.serviceRating}}</td>
+                            <td>{{companylog.queryHandling}}</td>
+                            <td>{{companylog.serviceProvided}}</td>
                             <!-- <td>{{companylog.softwareUserRating}}</td>-->
                         </tr>
                     </ng-template>

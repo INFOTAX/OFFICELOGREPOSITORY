@@ -13,7 +13,7 @@
         <label for="name">Trade Name:</label>
       </div>
       <div class="ui-sm-8  ui-g-8">
-        <input id="name" formControlName="tradeName" type="text" pInputText>
+        <input id="name" formControlName="name" type="text" pInputText>
       </div>
     
       
@@ -22,13 +22,13 @@
         <label for="contact" >Contact Number:</label>
       </div>
       <div class="ui-sm-8  ui-g-8">
-        <input id="contact" formControlName="contact" type="number" pInputText>
+        <input id="contact" formControlName="contactNumber" type="number" pInputText>
       </div>
     
       
     
       <div class="ui-sm-4  ui-g-4" style="margin-top: 15px">
-        <label for="tradeName">Query Handling:</label>
+        <label for="queryHandling">Query Handling:</label>
       </div>
       <div class="ui-sm-8  ui-g-8 nopad" style="width: 500px;">
         <div class="ui-sm-3  ui-g-3 nopad">
@@ -59,7 +59,7 @@
           <p-radioButton name="group2" formControlName="serviceProvided" value="Very Good" label="Very Good"></p-radioButton>
         </div>
         <div class="ui-sm-3   ui-g-3 nopad">
-          <p-radioButton name="group2" formControlName="serviceProvided" value="Excellent" label="Excellent"></p-radioButton>
+          <p-radioButton name="group2" formControlName=" serviceProvided" value="Excellent" label="Excellent"></p-radioButton>
         </div>
       </div>
     
@@ -76,11 +76,11 @@
       </div>
       <div class="ui-sm-8  ui-g-8">
         <div class="ui-sm-4  ui-g-4 nopad">
-          <p-radioButton name="group3" formControlName="usingSoftware" value="Yes" label="Yes" (onClick)="redioYes();"></p-radioButton>
+          <p-radioButton name="group3" formControlName="softwareInterested" value="true" label="Yes" (onClick)="redioYes();"></p-radioButton>
 
         </div>
         <div class="ui-sm-4  ui-g-4 nopad">
-          <p-radioButton name="group3" formControlName="usingSoftware" value="No" label="No" (onClick)="redioNo();"></p-radioButton>
+          <p-radioButton name="group3" formControlName="softwareInterested" value="false" label="No" (onClick)="redioNo();"></p-radioButton>
 
           
         </div>
@@ -134,15 +134,15 @@
         </p-header>
         <div class="ui-g">
             <div class="ui-sm-3 ui-g-3 nopad">
-                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                <p-radioButton name="group6" formControlName="suggestionForNo"
                  value="alreadyHave" label="Already have" (onClick)="closeOtherReason();"></p-radioButton>
               </div>
               <div class="ui-sm-3 ui-g-3 nopad">
-                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                <p-radioButton name="group6" formControlName="suggestionForNo"
                  value="notFriendly" label="Not Friendly" (onClick)="closeOtherReason();"></p-radioButton>
               </div>
               <div class="ui-sm-3 ui-g-3 nopad">
-                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware"
+                <p-radioButton name="group6" formControlName="suggestionForNo"
                  value="others" label="others" (onClick)="otherReason();"></p-radioButton>
               </div>
           <div class="ui-sm-12 ui-g-12" *ngIf="ifOther">

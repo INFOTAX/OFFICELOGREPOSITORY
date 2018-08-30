@@ -21,15 +21,18 @@ export class CompanylogService extends ServiceBase<ICompanylog>{
 
   initializeObject(): ICompanylog{
     return{
-     
-        id : 0,
-        name:"",
-        contact:0,
-        typeOfQuery:"",
-        serviceRating:"",
-        visitorType:"",
-    }
-    }
+      id  :0, 
+      name:"",
+      contactNumber:"",
+      queryHandling:"",
+      serviceProvided :"",
+      visitorType:"",
+      softwareInterested:true,
+      rateUs:"",
+      suggestionForYes:"",
+      suggestionForNo:"",
+      date: new Date()
+    } }
   
   }
     
