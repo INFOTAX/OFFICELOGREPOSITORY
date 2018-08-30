@@ -7,6 +7,7 @@ export interface ICompanylog{
     visitorType:string;
     softwareInterested:boolean;
     rateUs:string;
+    rateUsForNo:string;
     suggestionForYes:string;
     suggestionForNo:string;
     date:Date;
