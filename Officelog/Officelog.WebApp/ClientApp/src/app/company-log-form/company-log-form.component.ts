@@ -38,7 +38,7 @@ export class CompanyLogFormComponent implements OnInit {
 
   ngOnInit() {
 
-    this._activatedRoute.paramMap.subscribe(params => {
+    this._activatedRoute.params.subscribe(params => {
       this.id = params['id'];
       this.getCompany(this.id);
 
