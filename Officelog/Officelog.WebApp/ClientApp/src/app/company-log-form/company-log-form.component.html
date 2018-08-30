@@ -9,6 +9,14 @@
       </div>
     </p-header>
     <div class="ui-g">
+
+        <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
+            <label for="date">Date:</label>
+          </div>
+          <div class="ui-sm-8  ui-g-8">
+            <input id="date" formControlName="date" type="date" pInputdate>
+          </div>
+
       <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
         <label for="name">Trade Name:</label>
       </div>
@@ -68,7 +76,7 @@
       </div>
       <div class="ui-sm-8  ui-g-8">
         <p-dropdown [style]="{'width': '175px'}" [options]="visitorType" 
-        placeholder="Select a Type" filter="true"></p-dropdown>
+        placeholder="Select a Type" formControlName="visitorType" filter="true"></p-dropdown>
       </div>
     
       <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
@@ -116,7 +124,7 @@
               <label for="anySuggestion">Any suggestion?</label></div>
               <div class="ui-sm-12 ui-g-12">
                   <textarea id="anySuggestion" rows="5" cols="68" 
-                  pInputTextarea autoResize="autoResize"></textarea>
+                  pInputTextarea formControlName="suggestionForYes" autoResize="autoResize"></textarea>
               </div>
             
           </div>
@@ -147,7 +155,7 @@
               </div>
           <div class="ui-sm-12 ui-g-12" *ngIf="ifOther">
             <span>Please give reasons and suggestion, so that we can improve.</span><br>
-            <textarea id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize"></textarea>
+            <textarea id="anySuggestion" rows="5" cols="68" formControlName="suggestionForNo" pInputTextarea autoResize="autoResize"></textarea>
           </div>
         </div>
       </p-panel>
@@ -159,7 +167,7 @@
     </p-footer>
   </p-panel>
 </form>
-
+{{userForm.value |json}}
 <br><br><br><br><br><br>
 <router-outlet></router-outlet>
-{{userForm.value | json}}
+

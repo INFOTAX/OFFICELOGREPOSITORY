@@ -19,5 +19,7 @@ namespace Officelog.WebApp.CompanyApi
         public string SuggestionForYes { get; set; }
         public string SuggestionForNo { get; set; }
         public DateTime Date { get; set; }
+        public string RateUsForNo { get; set; }
+
     }
 }

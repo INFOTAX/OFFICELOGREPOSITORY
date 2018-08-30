@@ -10,18 +10,32 @@
     </p-header>
     <div class="ui-g">
 
+        <div class="ui-g-4 ui-sm-4">
+            <label for="date">Date:</label>
+          </div>
+          <div class="ui-g-8 ui-sm-8">
+            <input id="date" formControlName="date" type="date" pInputText>
+          </div>
+
+      <div class="ui-g-4 ui-sm-4">
+        <label for="area">Area:</label>
+      </div>
+      <div class="ui-g-8 ui-sm-8">
+        <input id="area" formControlName="area" type="text" pInputText>
+      </div>
+
       <div class="ui-g-4  ui-sm-4">
         <label for="tradeName">Trade Name:</label>
       </div>
       <div class="ui-sm-8 ui-g-8">
-        <input id="tradeName" formControlName="tradeName" type="text" pInputText>
+        <input id="tradeName" formControlName="name" type="text" pInputText>
       </div>
 
       <div class="ui-sm-4  ui-g-4">
         <label for="contact">Contact Number:</label>
       </div>
       <div class="ui-sm-8 ui-g-8">
-        <input id="contact" formControlName="contact" type="number" pInputText>
+        <input id="contact" formControlName="contactNumber" type="number" pInputText>
       </div>
 
       <div class="ui-sm-4 ui-g-4">
@@ -29,10 +43,10 @@
       </div>
       <div class="ui-sm-8 ui-g-8">
         <div class="ui-sm-4 ui-g-4 nopad">
-          <p-radioButton name="group5" formControlName="interestedUsingService" value="Yes" label="Yes" (onClick)="interestedYes();"></p-radioButton>
+          <p-radioButton name="group5" formControlName="serviceInterested" value="true" label="Yes" (onClick)="interestedYes();"></p-radioButton>
         </div>
         <div class="ui-sm-4 ui-g-4 nopad">
-          <p-radioButton name="group5" formControlName="interestedUsingService" value="No" label="No" (onClick)="interestedNo();"></p-radioButton>
+          <p-radioButton name="group5" formControlName="serviceInterested" value="false" label="No" (onClick)="interestedNo();"></p-radioButton>
         </div>
       </div>
 
@@ -57,7 +71,7 @@
                   </p-dropdown>
                 </td>
                 <td>
-                  <input type="number" pInputText style="height: 35px" formControlName="rate" />
+                  <input type="number" pInputText style="height: 35px" formControlName="price" />
                 </td>
                 <td>
                   <button pButton type="button" icon="pi pi-plus" (click)="addNewServiceType();"></button>
@@ -82,7 +96,7 @@
           <ng-template pTemplate="footer">
             <tr>
               <td>
-                <p-dropdown [style]="{'width': '175px'}" [options]="currentScenario" placeholder="Select a Type" filter="true">
+                <p-dropdown [style]="{'width': '175px'}" [options]="currentScenario" formControlName="currentScenario" placeholder="Select a Type" filter="true">
                   <ng-template let-option pTemplate="item">
                     <div translate> {{option.label}}</div>
                   </ng-template>
@@ -99,10 +113,10 @@
       </div>
       <div class="ui-sm-8 ui-g-8">
         <div class="ui-sm-4 ui-g-4 nopad">
-          <p-radioButton name="group3" formControlName="usingSoftware" value="Yes" label="Yes" (onClick)="redioYes();"></p-radioButton>
+          <p-radioButton name="group3" formControlName="softwareInterested" value="true" label="Yes" (onClick)="redioYes();"></p-radioButton>
         </div>
         <div class="ui-sm-4 ui-g-4 nopad">
-          <p-radioButton name="group3" formControlName="usingSoftware" value="No" label="No" (onClick)="redioNo();"></p-radioButton>
+          <p-radioButton name="group3" formControlName="softwareInterested" value="false" label="No" (onClick)="redioNo();"></p-radioButton>
         </div>
       </div>
 
@@ -135,7 +149,7 @@
                 <label for="anySuggestion">Any suggestion?</label>
               </div>
               <div class="ui-sm-12 ui-g-12">
-                <textarea id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize"></textarea>
+                <textarea id="anySuggestion" rows="5" cols="68" formControlName="suggestionForYes" pInputTextarea autoResize="autoResize"></textarea>
               </div>
             </div>
             <div class="ui-g">
@@ -143,7 +157,7 @@
                 <label for="anySuggestion">Fee:</label>
               </div>
               <div class="ui-sm-12 ui-g-12">
-                <input id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize">
+                <input id="anySuggestion" rows="5" formControlName="price" cols="68" pInputTextarea autoResize="autoResize">
               </div>
             </div>
           </p-panel>
@@ -160,20 +174,20 @@
             </p-header>
             <div class="ui-g">
               <div class="ui-sm-3 ui-g-3 nopad">
-                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware" value="alreadyHave" label="Already have"
+                <p-radioButton name="group6" formControlName="rateUsForNo" value="alreadyHave" label="Already have"
                   (onClick)="closeOtherReason();"></p-radioButton>
               </div>
               <div class="ui-sm-3 ui-g-3 nopad">
-                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware" value="notFriendly" label="Not Friendly"
+                <p-radioButton name="group6" formControlName="rateUsForNo" value="notFriendly" label="Not Friendly"
                   (onClick)="closeOtherReason();"></p-radioButton>
               </div>
               <div class="ui-sm-3 ui-g-3 nopad">
-                <p-radioButton name="group6" formControlName="reasonForNotInterestedInSoftware" value="others" label="others" (onClick)="otherReason();"></p-radioButton>
+                <p-radioButton name="group6" formControlName="rateUsForNo" value="others" label="others" (onClick)="otherReason();"></p-radioButton>
               </div>
               <div class="ui-sm-12 ui-g-12" *ngIf="ifOther">
                 <span>Please give reasons and suggestion, so that we can improve.</span>
                 <br>
-                <textarea id="anySuggestion" rows="5" cols="68" pInputTextarea autoResize="autoResize"></textarea>
+                <textarea id="anySuggestion" rows="5" cols="68" formControlName="suggestionForNo" pInputTextarea autoResize="autoResize"></textarea>
               </div>
             </div>
           </p-panel>

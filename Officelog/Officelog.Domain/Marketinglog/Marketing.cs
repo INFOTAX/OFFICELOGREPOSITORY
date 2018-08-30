@@ -18,6 +18,9 @@ namespace Officelog.Domain.Marketinglog
         public string  Area { get; set; }
         public bool IsActive { get; set; }
         public DateTime Date { get; set; }
+        public double Price { get; set; }
+        public string CurrentScenario { get; set; }
+        public string RateUsForNo { get; set; }
         public ICollection<ServiceItem> ServiceItems { get; set; }
         public Marketing()
         {
@@ -26,7 +29,7 @@ namespace Officelog.Domain.Marketinglog
         }
         public Marketing(string name,string contactNumber,bool serviceInterested,bool softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
-                        string area,DateTime date,List<ServiceItem> serviceItems)
+                        string area,DateTime date,double price,string currentScenario,string rateUsForNo,List<ServiceItem> serviceItems)
         {
             Name = name;
             ContactNumber = contactNumber;
@@ -38,6 +41,9 @@ namespace Officelog.Domain.Marketinglog
             SuggestionForNo = suggestionForNo;
             Area = area;
             Date = date;
+            Price = price;
+            CurrentScenario = currentScenario;
+            RateUsForNo = rateUsForNo;
             ServiceItems = serviceItems;
             IsActive = true;
 
@@ -45,7 +51,7 @@ namespace Officelog.Domain.Marketinglog
 
         public void Modify(string name,string contactNumber,bool serviceInterested,bool softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
-                        string area,List<ServiceItem> serviceItems)
+                        string area,double price,string currentScenario,string rateUsForNo,List<ServiceItem> serviceItems)
          {
              Name = name;
             ContactNumber = contactNumber;
@@ -56,6 +62,9 @@ namespace Officelog.Domain.Marketinglog
             SuggestionForYes = suggestionForYes;
             SuggestionForNo = suggestionForNo;
             Area = area;
+            Price = price;
+            CurrentScenario = currentScenario;
+            RateUsForNo = rateUsForNo;
             ServiceItems = serviceItems;
             IsActive = true;
          }

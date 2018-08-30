@@ -26,8 +26,8 @@ export class MarketingLogListComponent implements OnInit {
 
   getMarketingLogList(){
         this._marketinglogService.getAll().subscribe(marketingLogList=>{
-          
-        }) 
+          this.marketinglogs=marketingLogList;
+        });
   }
   marketingLog(){
     this._router.navigate(['marketing_log']);
