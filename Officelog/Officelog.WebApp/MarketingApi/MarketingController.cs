@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -28,13 +29,16 @@ namespace Officelog.WebApp.MarketingApi
         }
 
         [HttpGet]
-        public async Task<IEnumerable<MarketingResource>> GetMarketingLogs()
+        public async Task<IEnumerable<MarketingResource>> GetMarketingLogs(DateTime fromDate,DateTime toDate)
         {
             var marketings = await _database.
                                     Marketings
+                                    .Where(mk => mk.Date.Date == fromDate.Date && mk.Date.Date == toDate.Date)
                                     .ToListAsync();
             return _mapper.Map<List<Marketing>, List<MarketingResource>>(marketings);
         }
+
+        
 
         [HttpGet("{id}")]
 
