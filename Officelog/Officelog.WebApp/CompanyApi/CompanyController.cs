@@ -36,7 +36,7 @@ namespace Officelog.WebApp.CompanyApi
                                     .Where(co => co.Date.Date >= fromDate.Date && co.Date.Date <= toDate.Date)
                                     .ToListAsync();
             
-            return _mapper.Map<List<Company>, List<CompanyResource>>(companies).ToList();
+            return _mapper.Map<List<Company>, List<CompanyResource>>(companies.Where(co => co.IsActive).ToList());
         }
 
         [HttpGet("{id}")]
