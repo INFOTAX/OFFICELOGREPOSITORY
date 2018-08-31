@@ -26,6 +26,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import {CalendarModule} from 'primeng/calendar';
+
+
+import {ToastModule} from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { CardModule } from 'primeng/card';
@@ -77,7 +81,9 @@ const appRoutes: Routes = [
     InputTextareaModule,
     FieldsetModule,
     TableModule,
-    DataViewModule
+    DataViewModule,
+    ToastModule,
+    CalendarModule
   ],
   providers: [CompanylogService, MarketinglogService, ConfirmationService],
   bootstrap: [AppComponent]
