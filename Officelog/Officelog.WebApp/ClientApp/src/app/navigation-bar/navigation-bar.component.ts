@@ -12,7 +12,7 @@ export class NavigationBarComponent implements OnInit {
   [x: string]: any;
   items: MenuItem[];
 
-  constructor() { }
+  constructor(private _router : Router) { }
 
   ngOnInit() {
     this.items = [ 
@@ -33,5 +33,10 @@ export class NavigationBarComponent implements OnInit {
     this._router.navigate(['company_log_list']);
     // this.compLog=true;
     // this.markLog=false;
+  }
+  userLog(){
+
+    this._router.navigate(['user_log']);
+    
   }
 }
