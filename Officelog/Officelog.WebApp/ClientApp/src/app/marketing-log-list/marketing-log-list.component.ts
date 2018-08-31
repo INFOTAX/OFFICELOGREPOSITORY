@@ -30,14 +30,13 @@ export class MarketingLogListComponent implements OnInit {
                private messageService: MessageService) { }
 
   ngOnInit() {
-    this.getMarketingLogList();
   }
 
-  getMarketingLogList(){
-        this._marketinglogService.getAll().subscribe(marketingLogList=>{
-          this.marketinglogs=marketingLogList;
-        });
-  }
+  // getMarketingLogList(){
+  //       this._marketinglogService.getAll().subscribe(marketingLogList=>{
+  //         this.marketinglogs=marketingLogList;
+  //       });
+  // }
   marketingLog(){
     this._router.navigate(['marketing_log']);
     // this.compLog=false;
@@ -54,7 +53,7 @@ onAddm(){
   }
 
   showConfirm(rowData) {
-    this.rowIndex=rowData;
+    this.selectedMarketingLog=rowData;
     this.messageService.clear();
     this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to proceed'});
 }
@@ -63,18 +62,19 @@ clear() {
  } 
 
 onConfirm() {
-   this.messageService.clear('c');
-  this.selectedMarketingLog=this.rowIndex;
+   
   this._marketinglogService.delete(this.selectedMarketingLog.id).subscribe(() =>{
-    this.getMarketingLogList();
+    this.searchByDate(this.startDate,this.lastDate);
+    
   //this.messageService.clear();
 });
+this.messageService.clear('c');
 }
 
 onReject() {
   this.messageService.clear('c');
 }
-searchByDate(){
+searchByDate(fromDate : Date,toDate : Date){
   this._marketinglogService.getMarketingListByDate(this.startDate,this.lastDate).subscribe(marketingLogList=>{
     this.marketinglogs=marketingLogList;
   })
