@@ -4,7 +4,7 @@
 <div class="container">
     <div class="ui-g">
         <div class="ui-g-10 ui-sm-10 ui-md-offset-1">
-             <div class="ui-g">
+            <div class="ui-g  ui-fluid">
                 <div class="ui-g-6 ui-sm-6">
 
                     <p-button button type="button" label="Add" (onClick)="onAddc()" class="ui-button-rounded ui-button-success" icon="fa fa-fw fa-plus"
@@ -20,25 +20,27 @@
                     </div>
                 </div>
             </div>
- <div class="ui-g">
-                <div class="ui-g-8 ui-sm-8">
+            <div class="ui-g  ui-fluid">
+                <div class="ui-g-10 ui-sm-10">
                     <div class="ui-g">
                         <div class="ui-g-8 ui-sm-8 ui-md-8">
                             <div class="ui-g">
                                 <div class="ui-sm-6 ui-md-6 ui-g-6">
                                     <label for="toDate">From:</label>
-                                    <p-calendar [(ngModel)]="fromDate" dateFormat="dd.mm.yy"> </p-calendar>
+                                    <br>
+                                    <p-calendar [(ngModel)]="fromDate" dateFormat="dd.mm.yy" [showIcon]="true"></p-calendar>
                                 </div>
                                 <div class="ui-sm-6 ui-md-6 ui-g-6">
                                     <label for="fromDate">To:</label>
-                                    <p-calendar [(ngModel)]="toDate" dateFormat="dd.mm.yy"> </p-calendar>
+                                    <br>
+                                    <p-calendar [(ngModel)]="toDate" dateFormat="dd.mm.yy" [showIcon]="true"> </p-calendar>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="ui-g-4 ui-sm-4 ui-md-4 ui-fluid ui-inputgroup">
-                            <p-button (click)="searchByDate()" type="button" label="Search by Date" class="ui-button-rounded ui-button-danger" icon="fa fa-fw fa-search"
-                                style="margin-bottom:10px;margin-top:20px;">
+                        <div class="ui-g-2 ui-sm-2 ui-md-2 ui-fluid ui-inputgroup">
+                            <br>
+                            <p-button (click)="searchByDate()" type="button" label="&nbsp;" class="ui-button-rounded" icon="fa fa-fw fa-search" style="margin-left:10px;margin-top:25px;">
                             </p-button>
 
                         </div>

@@ -35,6 +35,14 @@ export class MarketinglogService extends ServiceBase<IMarketinglog> {
   getMarketingListByDate(startDate : Date,lastDate : Date):Observable<IMarketinglog[]>{
     return this.http.get<IMarketinglog[]>(`${this.baseUrl}?fromDate=${startDate.toDateString()}&toDate=${lastDate.toDateString()}`);
   }
+
+  conversion(marketingLog : IMarketinglog,id: number) : Observable<IMarketinglog>{
+    return this.http.patch<IMarketinglog>(`${this.baseUrl}/converted?id=${id}`,marketingLog);
+  }
+
+  getConversions(){
+    return this.http.get(`${this.baseUrl}/converted`);
+  }
  
 }
 
