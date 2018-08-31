@@ -44,7 +44,7 @@ const appRoutes: Routes = [
   { path: 'company_log_list', component: CompanyLogListComponent },
   { path: 'marketing_log_list', component: MarketingLogListComponent },
   { path: 'dashboard_log', component: DashboardComponent },
-  { path: 'conversion_List', component: ConversionListComponent },
+  { path: 'conversion_list', component: ConversionListComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
 ];
 
