@@ -11,7 +11,7 @@ import {Message, LazyLoadEvent} from 'primeng/components/common/api';
   selector: 'app-company-log-list',
   templateUrl: './company-log-list.component.html',
   styleUrls: ['./company-log-list.component.css'],
-  providers: [CompanylogService]
+ 
 })
 export class CompanyLogListComponent implements OnInit {
    companylogs: ICompanylog[];
@@ -19,6 +19,8 @@ export class CompanyLogListComponent implements OnInit {
   id: number = null;
   msgs: Message[] = [];
   displayDialogDelete : boolean;
+  toDate:Date;
+  fromDate:Date;
 
   constructor(private _companylogService: CompanylogService,
     private _router: Router,
@@ -45,6 +47,9 @@ export class CompanyLogListComponent implements OnInit {
     console.log(this.id)
     this._router.navigate(['/company_log', this.id])
   }
+  searchByDate(){
+   
+   }
 
  /* deleteFromList(id:number){
     this.files = this.files.splice(index, 1);
