@@ -60,22 +60,17 @@ export abstract class ServiceBase<T>{
       );
   }
 
-  delete(id: number): Observable<Response> {
-
+  delete(id: number): Observable<any> {
+ 
     const url = `${this.baseUrl}/${id}`;
 
-    return this._http.delete<any>(url)
-      .pipe(
-        tap(data => console.log('deleted: ' + JSON.stringify(data))),
-        tap(data => {
-          const foundIndex = this.entities.findIndex(item => item['id'] === id);
-          if (foundIndex > -1) {
-            this.entities.splice(foundIndex, 1);
-          }
-        }),
-        catchError(this.handleError)
-      );
-
+    return this.http.delete<T>(url)
+    .pipe(
+    tap(data => {
+      console.log('deleted' + JSON.stringify(data));
+  }),
+    catchError(this.handleError)
+    );
   }
 
 
