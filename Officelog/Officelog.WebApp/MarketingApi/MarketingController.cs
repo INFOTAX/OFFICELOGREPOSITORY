@@ -33,7 +33,7 @@ namespace Officelog.WebApp.MarketingApi
         {
             var marketings = await _database.
                                     Marketings
-                                    .Where(mk => mk.Date.Date == fromDate.Date && mk.Date.Date == toDate.Date)
+                                    .Where(mk => mk.Date.Date >= fromDate.Date && mk.Date.Date <= toDate.Date)
                                     .ToListAsync();
             return _mapper.Map<List<Marketing>, List<MarketingResource>>(marketings);
         }
