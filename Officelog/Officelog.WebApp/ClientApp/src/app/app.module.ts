@@ -33,7 +33,7 @@ import {ConfirmationService} from 'primeng/api';
 import {Message, LazyLoadEvent} from 'primeng/components/common/api';
 import {  GrowlModule } from 'primeng/growl';
 import {ConfirmDialogModule} from 'primeng/primeng';
-
+import {CalendarModule} from 'primeng/calendar';
 
 
 const appRoutes: Routes = [
@@ -57,6 +57,7 @@ const appRoutes: Routes = [
     DashboardComponent
   ],
   imports: [
+    CalendarModule,
     GrowlModule,
     ConfirmDialogModule,
     CardModule,

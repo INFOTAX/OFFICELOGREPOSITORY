@@ -4,8 +4,7 @@
 <div class="container">
     <div class="ui-g">
         <div class="ui-g-10 ui-sm-10 ui-md-offset-1">
-            <!--add and filter conetnt start-->
-            <div class="ui-g">
+             <div class="ui-g">
                 <div class="ui-g-6 ui-sm-6">
 
                     <p-button button type="button" label="Add" (onClick)="onAddc()" class="ui-button-rounded ui-button-success" icon="fa fa-fw fa-plus"
@@ -21,21 +20,18 @@
                     </div>
                 </div>
             </div>
-            <!--ad and global filter content ends-->
-            <!--date conetent with serach start-->
-
-            <div class="ui-g">
+ <div class="ui-g">
                 <div class="ui-g-8 ui-sm-8">
                     <div class="ui-g">
                         <div class="ui-g-8 ui-sm-8 ui-md-8">
                             <div class="ui-g">
                                 <div class="ui-sm-6 ui-md-6 ui-g-6">
                                     <label for="toDate">From:</label>
-                                    <input id="toDate" [(ngModel)]="fromDate" type="date" pInputdate>
+                                    <p-calendar [(ngModel)]="fromDate"></p-calendar>
                                 </div>
                                 <div class="ui-sm-6 ui-md-6 ui-g-6">
                                     <label for="fromDate">To:</label>
-                                    <input id="fromDate" [(ngModel)]="toDate" type="date" pInputdate>
+                                    <p-calendar [(ngModel)]="toDate"></p-calendar>
                                 </div>
                             </div>
                         </div>
@@ -54,7 +50,6 @@
             </div>
 
 
-            <!--date content with serach ends-->
 
 
 
