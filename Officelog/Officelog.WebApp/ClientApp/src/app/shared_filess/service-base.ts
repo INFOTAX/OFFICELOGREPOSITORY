@@ -23,24 +23,12 @@ export abstract class ServiceBase<T>{
 
   getOne(id: number): Observable<T> {
 
-    if (id == 0) {
+    if(id == 0) {
       return of(this.intializeObject());
     }
-
-    if (this.entities) {
-
-      const foundItem = this.entities.find(item => item['id'] === id);
-      if (foundItem) {
-        return of(foundItem);
-      }
+    else{
+    return this._http.get<T>(`${this.baseUrl}/${id}`);
     }
-
-
-    return this._http.get<T>(`${this.baseUrl}/${id}`).pipe(
-      tap(data => console.log('Data : ' + JSON.stringify(data))),
-      catchError(this.handleError)
-    );
-
   }
 
   save(entity: T, id: number): Observable<T> {
@@ -54,11 +42,11 @@ export abstract class ServiceBase<T>{
   private create(entity: T): Observable<T> {
     return this._http.post<T>(this.baseUrl, entity)
       .pipe(
-      tap(data => console.log('created: ' + JSON.stringify(data))),
-      tap(data => {
-        this.entities.push(data);
-      }),
-      catchError(this.handleError)
+        tap(data => console.log('created: ' + JSON.stringify(data))),
+        tap(data => {
+          this.entities.push(data);
+        }),
+        catchError(this.handleError)
       );
   }
 
@@ -67,27 +55,22 @@ export abstract class ServiceBase<T>{
 
     return this._http.put<T>(url, entity)
       .pipe(
-      tap(data => console.log('updated: ' + JSON.stringify(data))),
-      catchError(this.handleError)
+        tap(data => console.log('updated: ' + JSON.stringify(data))),
+        catchError(this.handleError)
       );
   }
 
-  delete(id: number): Observable<Response> {
-
+  delete(id: number): Observable<any> {
+ 
     const url = `${this.baseUrl}/${id}`;
 
-    return this._http.delete<any>(url)
-      .pipe(
-      tap(data => console.log('deleted: ' + JSON.stringify(data))),
-      tap(data => {
-        const foundIndex = this.entities.findIndex(item => item['id'] === id);
-        if (foundIndex > -1) {
-          this.entities.splice(foundIndex, 1);
-        }
-      }),
-      catchError(this.handleError)
-      );
-
+    return this._http.delete<T>(url)
+    .pipe(
+    tap(data => {
+      console.log('deleted' + JSON.stringify(data));
+  }),
+    catchError(this.handleError)
+    );
   }
 
 

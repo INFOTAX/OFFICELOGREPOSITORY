@@ -2,48 +2,82 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { CompanylogService } from '../services/companylog.service';
-import{ICompanylog} from'../company-log-list/company';
+import { ICompanylog } from '../company-log-list/company';
+import {ConfirmationService} from 'primeng/api';
+import {Message, LazyLoadEvent} from 'primeng/components/common/api';
+
 
 @Component({
   selector: 'app-company-log-list',
   templateUrl: './company-log-list.component.html',
   styleUrls: ['./company-log-list.component.css'],
-  providers:[CompanylogService]
+ 
 })
 export class CompanyLogListComponent implements OnInit {
-  @Input() companylogs: ICompanylog[];
-  @Input() selectedCompanyLog:ICompanylog;
-  id :number;
+   companylogs: ICompanylog[];
+   selectedCompanyLog: ICompanylog;
+  id: number = null;
+  msgs: Message[] = [];
+  displayDialogDelete : boolean;
+  toDate:Date;
+  fromDate:Date;
 
+  constructor(private _companylogService: CompanylogService,
+    private _router: Router,
+    private confirmationService:ConfirmationService) {
 
-  constructor( private _companylogService:CompanylogService ,
-               private _router: Router ) {
-    
   }
 
   ngOnInit() {
-    this.getCompanyLogList();
+    
   }
 
-  getCompanyLogList(){
-    this._companylogService.getAll().subscribe(companyLogList=>{
-      this.companylogs=companyLogList;
-    });
-  }
- companyLog(){
-
-    this._router.navigate(['company_log']);
-    /* this.compLog=true;
-     this.markLog=false;*/
-  }
-  onAddc(){
+  // getCompanyLogList() {
+  //   this._companylogService.getAll().subscribe(companyLogList => {
+  //     this.companylogs = companyLogList;
+  //   });
+  // }
+  
+  onAddc() {
     this.id=0;
-    this._router.navigate(['/company_log',this.id])
+    this._router.navigate(['/company_log', this.id])
   }
-  onXYSelect(event){
+  onXYSelect(event) {
     this.id = event.data.id;
     console.log(this.id)
-    this._router.navigate(['/company_log',this.id])
+    this._router.navigate(['/company_log', this.id])
   }
-}  
+  searchByDate(){
+    this._companylogService.getCompaniesByDate(this.fromDate,this.toDate).subscribe(companyLogList => {
+      this.companylogs = companyLogList;
+    });
+   }
+
+ /* deleteFromList(id:number){
+    this.files = this.files.splice(index, 1);
+
+  }*/
+  
+  showDialogToDelete(Rowdata){
+    this.selectedCompanyLog = Rowdata;
+    console.log(Rowdata);
+    this.displayDialogDelete = true;
+    
+    this.confirmationService.confirm({
+      message : 'Do you want to delete this record?',
+      header: 'Delete Confirmation',
+          icon: 'fa fa fa-fw fa-trash', 
+          accept: () => {
+            this._companylogService.delete(this.selectedCompanyLog.id).subscribe(() =>{
+              this.searchByDate();
+            this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
+          });         
+          },
+        reject: () => {
+            // this.msgs = [{severity:'info', summary:'Rejected', detail:'You have rejected'}];
+        }
+     
+    });
+  } 
+}
 

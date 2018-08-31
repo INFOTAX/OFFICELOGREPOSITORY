@@ -1,20 +1,11 @@
-import { Component, OnInit, Input,EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl } from '../../../node_modules/@angular/forms';
+import { Component, OnInit, Input, EventEmitter } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl, Validators } from '../../../node_modules/@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/components/common/selectitem';
 import { CompanylogService } from '../services/companylog.service';
-import{ICompanylog} from'../company-log-list/company';
+import { ICompanylog } from '../company-log-list/company';
+import { Message } from 'primeng/components/common/api';
 
-interface CompanyLog{
-  tradeName: string,
-   contact: string,
-   queryHandling: string,
-   serviceProvided: string,
-   visitorType: string,
-   usingSoftware:string,
-   rateUs: string,
-   reasonForNotInterestedInSoftware: string
-}
 
 @Component({
   selector: 'app-company-log-form',
@@ -22,73 +13,158 @@ interface CompanyLog{
   styleUrls: ['./company-log-form.component.css']
 })
 export class CompanyLogFormComponent implements OnInit {
-  _id: number;
-  blockPreviewYes=false;
-  blockPreviewNo=false;
-  ifOther=false;
+  id: number;
+  blockPreviewYes: boolean = false;
+  blockPreviewNo: boolean = false;
+  ifOther: boolean = false;
   visitorType: SelectItem[];
   companylogs: ICompanylog;
+  userForm: FormGroup;
+  displayDialog: boolean = false;
+  pageTitle;
 
-  public userForm: FormGroup;
+  constructor(private fb: FormBuilder,
+    private _router: Router,
+    private _activatedRoute: ActivatedRoute,
+    private _companylogService: CompanylogService) {
 
-
-  constructor( private fb: FormBuilder,
-               private _router: Router,
-               private _activatedRoute: ActivatedRoute,
-               private _companylogService:CompanylogService ) { 
-    
-   }
-   companyLogList(){
+  }
+  companyLogList() {
 
     this._router.navigate(['company_log_list']);
     // this.compLog=true;
     // this.markLog=false;
   }
 
-   ngOnInit() {
-    
-    /*this._activatedRoute.paramMap.subscribe( parameterMap =>{
-      const id = + parameterMap.get('id');
-     this.getLogList(id);
+  ngOnInit() {
 
-    });*/
+    this._activatedRoute.params.subscribe(params => {
+      this.id = params['id'];
+      this.getCompany(this.id);
+
+    });
 
     this.visitorType = [
-      {label: 'First', value:'First'},
-      {label: 'Second or Third', value: 'Second or Third'},
-      {label: 'Client', value:'Client'},
-      {label: 'Franchise', value:'Franchise'}
-  ];
+      { label: 'First', value: 'First' },
+      { label: 'Second or Third', value: 'Second or Third' },
+      { label: 'Client', value: 'Client' },
+      { label: 'Franchise', value: 'Franchise' }
+    ];
+    this.userForm = this.newForm();
+    /*this.userForm = this.fb.group({
+      tradeName: null,
+      contact: null,
+      queryHandling: null,
+      serviceProvided: null,
+      visitorType: null,
+      usingSoftware:null,
+      rateUs: null,
+      reasonForNotInterestedInSoftware: null
+      });*/
+  }
+  newForm(): FormGroup {
+    return this.fb.group({
+      id: 0,
+      name: [''],
+      contactNumber: [''],
+      queryHandling: [''],
+      serviceProvided: [''],
+      visitorType: [''],
+      softwareInterested: [''],
+      rateUs: [''],
+      suggestionForYes: [''],
+      suggestionForNo: [''],
+      date: [''],
+      rateUsForNo: ['']
+    });
+  }
 
-    this.userForm = this.fb.group({
-   name: null,
-   date: null,
-   contactNumber: null,
-   queryHandling: null,
-   serviceProvided: null,
-   visitorType: null,
-   rateUsForNo: null,
-   softwareInterested:null,
-   rateUs: null,
-   suggestionForYes: null,
-   suggestionForNo: null
-   });
- }
+  private getCompany(id: number) {
+    this._companylogService.getOne(id).subscribe(
+      (companylogs: ICompanylog) => this.onCompanyLogRetrieved(
+        companylogs));
+
+  }
+
+  private onCompanyLogRetrieved(companylogs: ICompanylog): void {
+
+    this.companylogs = companylogs;
+
+    if (this.companylogs.id == 0) {
+      this.userForm = this.newForm();
+      this.pageTitle = 'Add in Companylog';
+      console.log("add");
+    }
+
+    else {
+      this.pageTitle = `Edit  in Company Log: ${this.companylogs.name}`;
+      //  let opDate = new Date(this.customer.customerOpeningDate);
+      // Update the data on the form
+      this.userForm.patchValue({
+        id:this.companylogs.id,
+        name:this.companylogs.name,
+        contactNumber:this.companylogs.contactNumber,
+        queryHandling:this.companylogs.queryHandling,
+        serviceProvided:this.companylogs.serviceProvided,
+        visitorType:this.companylogs.visitorType,
+        softwareInterested:this.companylogs.softwareInterested,
+        rateUs:this.companylogs.rateUs,
+        rateUsForNo:this.companylogs.rateUsForNo,
+        suggestionForYes:this.companylogs.suggestionForYes,
+        suggestionForNo:this.companylogs.suggestionForNo,
+        date:this.companylogs.date
+
+      })
+    }
+  }
+  saveCompanyLog(): void {
+
+    if (this.userForm.valid) {
+
+      let companylogsToSave = Object.assign({}, this.companylogs, this.userForm.value);
+
+      this._companylogService.save(companylogsToSave, this.id).subscribe(() => this.onSaveComplete());
+    }
+
+
+    else if (!this.userForm.dirty) {
+      this.onSaveComplete();
+    }
+  }
+
+  private onSaveComplete(): void {
+    const displayMsg = this.id == 0 ? 'Saved' : 'Updated';
+    // this.msgs = [];
+    // this.msgs.push({
+    //   severity : 'success',
+    //   summary : 'Success Message',
+    //   detail : 'Customer Sucessfully' + displayMsg
+    // });
+    this._router.navigate(['/company_log_list']);
+
+
+  }
+
+  redioYes() {
+    this.blockPreviewYes = true;
+    this.blockPreviewNo = false;
+  }
+  redioNo() {
+    this.blockPreviewYes = false;
+    this.blockPreviewNo = true;
+  }
+  otherReason() {
+    this.ifOther = true;
+  }
+  closeOtherReason() {
+    this.ifOther = false;
+  }
 
 
 
-redioYes(){
- this.blockPreviewYes=true;
- this.blockPreviewNo=false;
 }
-redioNo(){
- this.blockPreviewYes=false;
- this.blockPreviewNo=true;
-}
-otherReason(){
-  this.ifOther=true;
-}
-closeOtherReason(){
-  this.ifOther=false;
-}
-}
+
+
+
+
+

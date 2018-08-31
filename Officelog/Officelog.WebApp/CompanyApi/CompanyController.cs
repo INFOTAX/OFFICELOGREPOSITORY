@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -27,10 +29,11 @@ namespace Officelog.WebApp.CompanyApi
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CompanyResource>> GetCompanies()
+        public async Task<IEnumerable<CompanyResource>> GetCompanies(DateTime fromDate,DateTime toDate)
         {
             var companies = await _database.
                                     Companies
+                                    .Where(co => co.Date.Date == fromDate.Date && co.Date.Date == toDate.Date)
                                     .ToListAsync();
             return _mapper.Map<List<Company>, List<CompanyResource>>(companies);
         }

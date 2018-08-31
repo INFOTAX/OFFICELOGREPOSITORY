@@ -1,6 +1,10 @@
+<p-growl [value]="msgs">
+</p-growl>
+<p-confirmDialog [(visible)]="displayDialogDelete"></p-confirmDialog>
 <div class="container">
     <div class="ui-g">
         <div class="ui-g-10 ui-sm-10 ui-md-offset-1">
+            <!--add and filter conetnt start-->
             <div class="ui-g">
                 <div class="ui-g-6 ui-sm-6">
 
@@ -8,43 +12,85 @@
                         style="margin-bottom:10px;">
                     </p-button>
                 </div>
+
                 <div class="ui-g-6 ui-sm-6">
                     <div style="text-align: right">
                         <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
                         <input type="text" pInputText size="50" placeholder="Company Log List" (input)="dtc.filterGlobal($event.target.value, 'contains')"
-                            style="width:auto">
+                            style="width:240px">
+                    </div>
+                </div>
+            </div>
+            <!--ad and global filter content ends-->
+            <!--date conetent with serach start-->
+
+            <div class="ui-g">
+                <div class="ui-g-8 ui-sm-8">
+                    <div class="ui-g">
+                        <div class="ui-g-8 ui-sm-8 ui-md-8">
+                            <div class="ui-g">
+                                <div class="ui-sm-6 ui-md-6 ui-g-6">
+                                    <label for="toDate">From:</label>
+                                    <input id="toDate" [(ngModel)]="fromDate" type="date" pInputdate>
+                                </div>
+                                <div class="ui-sm-6 ui-md-6 ui-g-6">
+                                    <label for="fromDate">To:</label>
+                                    <input id="fromDate" [(ngModel)]="toDate" type="date" pInputdate>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ui-g-4 ui-sm-4 ui-md-4 ui-fluid ui-inputgroup">
+                            <p-button (click)="searchByDate()" type="button" label="Search by Date" class="ui-button-rounded ui-button-danger" icon="fa fa-fw fa-search"
+                                style="margin-bottom:10px;margin-top:20px;">
+                            </p-button>
+
+                        </div>
+
+
+
                     </div>
                 </div>
             </div>
 
-               
-                
 
-                <p-table #dtc [value]="companylogs"  (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog" [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']">
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Name</th>
-                            <th>Contact No.</th>
-                            <th>Visitor Type</th>
-                            <th>Query Rating</th>
-                            <th>Service Rating</th>
+            <!--date content with serach ends-->
 
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-rowData let-companylog style="text-align: center;">
-                        <tr  [pSelectableRow]="rowData" style="text-align: center;">
-                            <td>{{companylog.name}}</td>
-                            <td>{{companylog.contact}}</td>
-                            <td>{{companylog.visitorType}}</td>
-                            <td>{{companylog.typeOfQuery}}</td>
-                            <td>{{companylog.serviceRating}}</td>
-                            <!-- <td>{{companylog.softwareUserRating}}</td>-->
-                        </tr>
-                    </ng-template>
-                </p-table>
 
-                <router-outlet></router-outlet>
-            </div>
+
+
+            <!--table list content start-->
+            <p-table #dtc [value]="companylogs" (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog"
+                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact No.</th>
+                        <th>Visitor Type</th>
+                        <th>Query Rating</th>
+                        <th>Service Rating</th>
+                        <th>Delete</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-companylog style="text-align: center;">
+                    <tr [pSelectableRow]="rowData" style="text-align: center;">
+                        <td>{{companylog.name}}</td>
+                        <td>{{companylog.contactNumber}}</td>
+                        <td>{{companylog.visitorType}}</td>
+                        <td>{{companylog.queryHandling}}</td>
+                        <td>{{companylog.serviceProvided}}</td>
+                        <td>
+                            <p-button type="button" label="Delete" class="ui-button-rounded ui-button-danger" icon="fa fa-fw fa-close" style="margin-bottom:10px;"
+                                (click)="showDialogToDelete(companylog)">
+                            </p-button>
+
+                        </td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
         </div>
     </div>
-    <router-outlet></router-outlet>
+</div>
