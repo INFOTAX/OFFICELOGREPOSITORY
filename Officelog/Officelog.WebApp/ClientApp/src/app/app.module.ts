@@ -26,9 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {CalendarModule} from 'primeng/calendar';
-
-
 import {ToastModule} from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
@@ -38,6 +35,7 @@ import {Message, LazyLoadEvent} from 'primeng/components/common/api';
 import {  GrowlModule } from 'primeng/growl';
 import {ConfirmDialogModule} from 'primeng/primeng';
 import {CalendarModule} from 'primeng/calendar';
+import { ConversionListComponent } from './conversion-list/conversion-list.component';
 
 
 const appRoutes: Routes = [
@@ -46,6 +44,7 @@ const appRoutes: Routes = [
   { path: 'company_log_list', component: CompanyLogListComponent },
   { path: 'marketing_log_list', component: MarketingLogListComponent },
   { path: 'dashboard_log', component: DashboardComponent },
+  { path: 'conversion_List', component: ConversionListComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
 ];
 
@@ -58,7 +57,8 @@ const appRoutes: Routes = [
     CompanyLogListComponent,
     MarketingLogListComponent,
     NavigationBarComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConversionListComponent
   ],
   imports: [
     CalendarModule,
