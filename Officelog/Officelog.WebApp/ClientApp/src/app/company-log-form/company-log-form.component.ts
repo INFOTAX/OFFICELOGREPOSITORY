@@ -160,7 +160,7 @@ export class CompanyLogFormComponent implements OnInit {
     this.ifOther = false;
   }
 
-
+  
 
 }
 

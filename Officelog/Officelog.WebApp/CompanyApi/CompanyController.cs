@@ -33,9 +33,10 @@ namespace Officelog.WebApp.CompanyApi
         {
             var companies = await _database.
                                     Companies
-                                    .Where(co => co.Date.Date == fromDate.Date && co.Date.Date == toDate.Date)
+                                    .Where(co => co.Date.Date >= fromDate.Date && co.Date.Date <= toDate.Date)
                                     .ToListAsync();
-            return _mapper.Map<List<Company>, List<CompanyResource>>(companies);
+            
+            return _mapper.Map<List<Company>, List<CompanyResource>>(companies).ToList();
         }
 
         [HttpGet("{id}")]
