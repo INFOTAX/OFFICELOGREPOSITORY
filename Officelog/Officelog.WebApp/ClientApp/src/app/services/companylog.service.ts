@@ -35,6 +35,10 @@ export class CompanylogService extends ServiceBase<ICompanylog>{
     }
   }
 
+  getCompaniesByDate(fromDate : Date,toDate : Date):Observable<ICompanylog[]>{
+    return this.http.get<ICompanylog[]>(`${this.baseUrl}?fromDate=${fromDate.toDateString()}&toDate=${toDate.toDateString()}`);
+  }
+
 }
 
 

@@ -29,14 +29,14 @@ export class CompanyLogListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCompanyLogList();
+    
   }
 
-  getCompanyLogList() {
-    this._companylogService.getAll().subscribe(companyLogList => {
-      this.companylogs = companyLogList;
-    });
-  }
+  // getCompanyLogList() {
+  //   this._companylogService.getAll().subscribe(companyLogList => {
+  //     this.companylogs = companyLogList;
+  //   });
+  // }
   
   onAddc() {
     this.id=0;
@@ -48,7 +48,9 @@ export class CompanyLogListComponent implements OnInit {
     this._router.navigate(['/company_log', this.id])
   }
   searchByDate(){
-   
+    this._companylogService.getCompaniesByDate(this.fromDate,this.toDate).subscribe(companyLogList => {
+      this.companylogs = companyLogList;
+    });
    }
 
  /* deleteFromList(id:number){
@@ -67,7 +69,7 @@ export class CompanyLogListComponent implements OnInit {
           icon: 'fa fa fa-fw fa-trash', 
           accept: () => {
             this._companylogService.delete(this.selectedCompanyLog.id).subscribe(() =>{
-              this.getCompanyLogList();
+              this.searchByDate();
             this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
           });         
           },
