@@ -29,6 +29,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {MenubarModule} from 'primeng/menubar';
 import {MenuItem} from 'primeng/api';
 import {CardModule} from 'primeng/card';
+import {ToastModule} from 'primeng/toast';
 
 
 
@@ -72,7 +73,8 @@ const appRoutes: Routes =[
     InputTextareaModule,
     FieldsetModule,
     TableModule,
-    DataViewModule
+    DataViewModule,
+    ToastModule
   ],
   providers: [CompanylogService,MarketinglogService],
   bootstrap: [AppComponent]

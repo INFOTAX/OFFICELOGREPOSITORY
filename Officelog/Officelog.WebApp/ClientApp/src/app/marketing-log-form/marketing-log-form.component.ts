@@ -1,23 +1,16 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { SelectItem } from 'primeng/components/common/selectitem';
+import { SelectItem} from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
+//import { MessageService } from 'primeng/api';
 
-// export interface MarketingLog {
-//   name: string;
-//   tradeName: string;
-//   contact: number;
-//   usingSoftware: string;
-//   interestedUsingService: string;
-//   serviceItems: ServiceItems[];
-//   reasonForNotInterestedInSoftware: string;
-// }
+
 
 export interface ServiceItems {
   serviceType: string;
-  rate: number;
+  price: number;
 }
 
 
@@ -28,7 +21,6 @@ export interface ServiceItems {
 })
 export class MarketingLogFormComponent implements OnInit {
 
-
   interrestedInService: SelectItem[];
   currentScenario: SelectItem[];
   blockPreviewYes = false;
@@ -36,7 +28,7 @@ export class MarketingLogFormComponent implements OnInit {
   interested_Yes = false;
   interested_No = false;
   ifOther = false;
-  items;
+  //items;
   id: number;
   marketingLog: IMarketinglog;
 
@@ -46,34 +38,20 @@ export class MarketingLogFormComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private _router: Router, private route: ActivatedRoute,
-    private marketingLogService: MarketinglogService) {
-
-
-  }
+  constructor(private fb: FormBuilder, private router: Router, 
+              private route: ActivatedRoute,
+              private marketingLogService: MarketinglogService,
+              //private messageService: MessageService
+             ) {}
 
 
   ngOnInit() {
-   /* this.route.paramMap.subscribe(params => {
+    this.route.params.subscribe(params => {
       this.id = params['id'];
-      this.getMarketingLog(this.id);
-    });*/
-
-    this.userForm = this.fb.group({
-      name: null,
-      contactNumber: null,
-      softwareInterested: null,
-      rateUs: null,
-      serviceInterested: null,
-      rateUsForNo: null,
-      currentScenario: null,
-      price: null,
-      suggestionForNo: null,
-      suggestionForYes: null,
-      area: null,
-      date:null,
-      serviceItems: this.fb.array([this.createItem()])
+    this.getMarketingLog(this.id);
     });
+
+    this.userForm = this.newForm();
 
     this.interrestedInService = [
       { label: 'Accounting', value: 'Accounting' },
@@ -95,9 +73,54 @@ export class MarketingLogFormComponent implements OnInit {
 
   }
 
-  private getMarketingLog(id: number) {
-    // this.marketingLogService.getMarketingLogById(id)
-    //   .subscribe(res => this.marketingLog = res);
+  private getMarketingLog(id):void{
+    this.marketingLogService.getOne(id)
+    .subscribe((marketingLog:IMarketinglog)=> this.onMarketingLogRetrieved(marketingLog)
+    );
+  }
+
+  newForm():FormGroup{
+    return this.fb.group({
+      id: 0,
+      name: [''],
+      contactNumber: 0,
+      softwareInterested: [],
+      rateUs: [''],
+      serviceInterested: [],
+      rateUsForNo: [''],
+      currentScenario: [''],
+      suggestionForNo: [''],
+      suggestionForYes: [''],
+      area: [''],
+      date:new Date(),
+      serviceItems : this.fb.array([])
+    });
+  }
+
+  saveMarketingLog():void {
+
+    if (this.userForm.valid) {
+  
+        let p = Object.assign({}, this.marketingLog, this.userForm.value);
+  
+         this.marketingLogService.save(p, this.id)
+            .subscribe(si => this.onSaveComplete());
+    }
+  
+  
+    else if (!this.userForm.dirty) {
+        this.onSaveComplete();
+    }
+  }
+  private onSaveComplete(){
+    const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
+    // this.messageService.add({
+    //   key : 'tr',
+    //   severity : 'success',
+    //   summary : 'Success Message',
+    //   detail : 'Order ' + displayMsg
+    // })
+    this.router.navigate(['marketing_log_list']);
   }
 
   redioYes() {
@@ -117,22 +140,35 @@ export class MarketingLogFormComponent implements OnInit {
     this.interested_Yes = false;
   }
 
-  addNewServiceType() {
-    this.items = this.userForm.get('items') as FormArray;
-    this.items.push(this.createItem());
+  
+  get serviceTypeItems(): FormArray {
+    return <FormArray>this.userForm.get('serviceItems');
   }
+
+  addNewServiceType(type : HTMLInputElement,price : HTMLInputElement){
+    var serviceItem : ServiceItems = {
+      serviceType : String(type.value),
+      price : Number(price.value)
+    }
+    this.addServiceLine(serviceItem)
+  }
+
   deleteServiceType(index: number) {
-    const control = <FormArray>this.userForm.controls['items'];
-    control.removeAt(index);
+    this.serviceTypeItems.removeAt(index);
   }
 
-  createItem(): FormGroup {
+  addServiceLine(serviceItem : ServiceItems):void{
+    this.serviceTypeItems.push(this.buildServiceType(serviceItem));
+  }
+  private buildServiceType(serviceItem: ServiceItems): FormGroup {
     return this.fb.group({
-      rate: '',
-      serviceType: ''
-    });
-
+        serviceType: [serviceItem.serviceType],
+        price : [serviceItem.price]
+      
+    })
   }
+
+  
   otherReason() {
     this.ifOther = true;
   }
@@ -141,9 +177,41 @@ export class MarketingLogFormComponent implements OnInit {
   }
   marketingLogList() {
 
-    this._router.navigate(['marketing_log_list']);
+    this.router.navigate(['/marketing_log_list']);
     // this.compLog=true;
     // this.markLog=false;
+  }
+ 
+  private onMarketingLogRetrieved(marketingLog : IMarketinglog) :void{
+    this.marketingLog = marketingLog;
+
+    if (this.marketingLog.id == 0) {
+      this.userForm = this.newForm();
+    
+  }
+  
+    else{
+      this.userForm.patchValue({
+
+      id: this.marketingLog.id,
+      name: this.marketingLog.name,
+      contactNumber: this.marketingLog.contactNumber,
+      softwareInterested: this.marketingLog.softwareInterested,
+      rateUs: this.marketingLog.rateUs,
+      serviceInterested: this.marketingLog.serviceInterested,
+      rateUsForNo: this.marketingLog.rateUsForNo,
+      currentScenario: this.marketingLog.currentScenario,
+      suggestionForNo: this.marketingLog.suggestionForNo,
+      suggestionForYes: this.marketingLog.suggestionForYes,
+      area: this.marketingLog.area,
+      date: this.marketingLog.date
+
+      });
+      for (let i = 0; i < this.marketingLog.serviceItems.length; i++) {
+        this.serviceTypeItems.push(this.buildServiceType(this.marketingLog.serviceItems[i]));
+
+    }
+    }
   }
 
 }

@@ -14,12 +14,20 @@ export class MarketinglogService extends ServiceBase<IMarketinglog> {
 
   intializeObject(): IMarketinglog {
     return{
+      name: "",
+      contactNumber: 0,
+      softwareInterested: true,
+      rateUs: "",
+      serviceInterested: true,
+      rateUsForNo: "",
+      currentScenario: "",
+      suggestionForNo: "",
+      suggestionForYes: "",
+      area: "",
+      date:new Date,
+      Conversion:"",
       id : 0,
-      name : "" ,
-      contact : 0,
-      serviceInterested : "",
-      softwareInterested : "",
-      Conversion : ""
+      serviceItems:[]
 
     }
   }
