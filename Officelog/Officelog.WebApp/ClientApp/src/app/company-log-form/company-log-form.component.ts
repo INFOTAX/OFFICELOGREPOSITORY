@@ -74,7 +74,7 @@ export class CompanyLogFormComponent implements OnInit {
       rateUs: [''],
       suggestionForYes: [''],
       suggestionForNo: [''],
-      date: [''],
+      date:new Date(),
       rateUsForNo: ['']
     });
   }
