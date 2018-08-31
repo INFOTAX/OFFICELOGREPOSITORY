@@ -35,7 +35,7 @@ namespace Officelog.WebApp.MarketingApi
                                     Marketings
                                     .Where(mk => mk.Date.Date >= fromDate.Date && mk.Date.Date <= toDate.Date)
                                     .ToListAsync();
-            return _mapper.Map<List<Marketing>, List<MarketingResource>>(marketings);
+            return _mapper.Map<List<Marketing>, List<MarketingResource>>(marketings.Where(mk => mk.IsActive).ToList());
         }
 
         
