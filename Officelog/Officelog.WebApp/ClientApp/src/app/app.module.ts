@@ -29,8 +29,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
 import { CardModule } from 'primeng/card';
-import { Message } from 'primeng/components/common/api';
-
+import {ConfirmationService} from 'primeng/api';
+import {Message, LazyLoadEvent} from 'primeng/components/common/api';
+import {  GrowlModule } from 'primeng/growl';
+import {ConfirmDialogModule} from 'primeng/primeng';
 
 
 
@@ -55,6 +57,8 @@ const appRoutes: Routes = [
     DashboardComponent
   ],
   imports: [
+    GrowlModule,
+    ConfirmDialogModule,
     CardModule,
     MenubarModule,
     DialogModule,
@@ -74,7 +78,7 @@ const appRoutes: Routes = [
     TableModule,
     DataViewModule
   ],
-  providers: [CompanylogService, MarketinglogService],
+  providers: [CompanylogService, MarketinglogService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
