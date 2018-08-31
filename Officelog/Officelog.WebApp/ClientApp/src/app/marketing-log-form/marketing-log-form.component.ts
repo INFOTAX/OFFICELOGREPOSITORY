@@ -31,6 +31,8 @@ export class MarketingLogFormComponent implements OnInit {
   //today: number = Date.now();
   //items;
   id: number;
+  val1: boolean=true;
+  val2: boolean=false;
   marketingLog: IMarketinglog;
 
   public userForm: FormGroup;
@@ -85,9 +87,9 @@ export class MarketingLogFormComponent implements OnInit {
       id: 0,
       name: [''],
       contactNumber: 0,
-      softwareInterested: [],
+      softwareInterested: true,
       rateUs: [''],
-      serviceInterested: [],
+      serviceInterested: true,
       rateUsForNo: [''],
       currentScenario: [''],
       suggestionForNo: [''],
@@ -114,13 +116,7 @@ export class MarketingLogFormComponent implements OnInit {
     }
   }
    onSaveComplete(){
-    const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
-    // this.messageService.add({
-    //   key : 'tr',
-    //   severity : 'success',
-    //   summary : 'Success Message',
-    //   detail : 'Order ' + displayMsg
-    // })
+    //const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
     this.router.navigate(['/marketing_log_list']);
   }
 

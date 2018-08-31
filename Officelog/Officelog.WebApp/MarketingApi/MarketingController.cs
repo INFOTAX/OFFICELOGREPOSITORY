@@ -34,6 +34,7 @@ namespace Officelog.WebApp.MarketingApi
             var marketings = await _database.
                                     Marketings
                                     .Where(mk => mk.Date.Date >= fromDate.Date && mk.Date.Date <= toDate.Date)
+                                    .Where(mk => mk.ConversionStatus == ConversionStatus.Created)
                                     .ToListAsync();
             return _mapper.Map<List<Marketing>, List<MarketingResource>>(marketings.Where(mk => mk.IsActive).ToList());
         }
@@ -124,7 +125,7 @@ namespace Officelog.WebApp.MarketingApi
                return _mapper.Map<List<Marketing>,List<ConvertedResource>>(convertedLogs);                                             
         }
 
-         [HttpGet("converted")]
+         [HttpGet("convertedById")]
         public async Task<SaveConvertedResource> GetConvertedLogsById(int id)
         {
             var convertedLogsById = await _database.Marketings.Include(co => co.ServiceItems).Where(co => co.ConversionStatus == ConversionStatus.Achieved)

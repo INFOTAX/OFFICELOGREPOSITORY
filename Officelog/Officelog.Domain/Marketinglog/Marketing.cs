@@ -35,7 +35,7 @@ namespace Officelog.Domain.Marketinglog
             ContactNumber = contactNumber;
             ServiceInterested = serviceInterested;
             SoftwareInterested = softwareInterested;
-            ConversionStatus = conversionStatus;
+            ConversionStatus = ConversionStatus.Created;
             RateUs = rateUs;
             SuggestionForYes = suggestionForYes;
             SuggestionForNo = suggestionForNo;
@@ -80,8 +80,9 @@ namespace Officelog.Domain.Marketinglog
          }
     }
     public enum ConversionStatus{
-        Achieved = 1,
-        NotAchieved = 2
+        Created = 1,
+        Achieved = 2
+        
 
     }
 }

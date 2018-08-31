@@ -17,8 +17,9 @@ export class NavigationBarComponent implements OnInit {
   ngOnInit() {
     this.items = [ 
       {label: 'Home', icon: 'fa fa-fw fa-home' ,routerLink: ['/dashboard_log']},
-    {label: 'Company list', icon: 'fa fa-fw fa-book' ,routerLink: ['/company_log_list']},
-  {label: 'Marketing list', icon: 'fa fa-fw fa-book',routerLink: ['/marketing_log_list']}
+      {label: 'Company list', icon: 'fa fa-fw fa-book' ,routerLink: ['/company_log_list']},
+      {label: 'Marketing list', icon: 'fa fa-fw fa-book',routerLink: ['/marketing_log_list']},
+    {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']}
 ]
 
   }
