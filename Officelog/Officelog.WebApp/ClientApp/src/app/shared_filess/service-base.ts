@@ -64,7 +64,7 @@ export abstract class ServiceBase<T>{
  
     const url = `${this.baseUrl}/${id}`;
 
-    return this.http.delete<T>(url)
+    return this._http.delete<T>(url)
     .pipe(
     tap(data => {
       console.log('deleted' + JSON.stringify(data));
