@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { IMarketinglog } from '../marketing-log-list/marketing';
 import { HttpClient } from '@angular/common/http';
 import { ServiceBase } from '../shared_filess/service-base';
+import { Observable } from "../../../node_modules/rxjs";
 @Injectable({
   providedIn: 'root'
 })
@@ -30,6 +31,9 @@ export class MarketinglogService extends ServiceBase<IMarketinglog> {
       serviceItems:[]
 
     }
+  }
+  getMarketingListByDate(startDate : Date,lastDate : Date):Observable<IMarketinglog[]>{
+    return this.http.get<IMarketinglog[]>(`${this.baseUrl}?fromDate=${startDate.toDateString()}&toDate=${lastDate.toDateString()}`);
   }
  
 }

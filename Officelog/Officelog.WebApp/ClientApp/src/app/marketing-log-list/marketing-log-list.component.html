@@ -34,9 +34,26 @@
                             style="width:fit-content">
                     </div>
                 </div>
-
-
             </div>
+            <div class="ui-g-7 ui-sm-7">
+                <div class="ui-g-5 ui-sm-5">
+                    <label for="startDate">From:</label>
+                </div>
+                <div class="ui-g-5 ui-sm-5">
+                        <label for="lastDate">To:</label>
+                </div>
+                <div class="ui-g-5 ui-sm-5">
+                        <p-calendar id="startDate" [(ngModel)]="startDate" [showIcon]="true"></p-calendar>
+                </div>
+                <div class="ui-g-5 ui-sm-5">
+                        <p-calendar id="lastDate" [(ngModel)]="lastDate" [showIcon]="true"></p-calendar>
+                </div>
+                <div class="ui-g-1">
+                        <p-button type="button" icon="fa fa-fw fa-search" iconPos="left" 
+                        (click)="searchByDate();" style="height:40px"
+                        ></p-button>
+                </div>
+            </div><br><br><br><br>
             <p-table #dt [value]="marketinglogs" (onRowSelect)="onRowSelect($event)" selectionMode="single" [(selection)]="selectedMarketingLog"
                 [globalFilterFields]="['Conversion','name','serviceInterested','softwareInterested','contact']">
                 <ng-template pTemplate="header">

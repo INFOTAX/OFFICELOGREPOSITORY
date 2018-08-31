@@ -26,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import {CalendarModule} from 'primeng/calendar';
 
 
 import {ToastModule} from 'primeng/toast';
@@ -81,7 +81,8 @@ const appRoutes: Routes = [
     FieldsetModule,
     TableModule,
     DataViewModule,
-    ToastModule
+    ToastModule,
+    CalendarModule
   ],
   providers: [CompanylogService, MarketinglogService, ConfirmationService],
   bootstrap: [AppComponent]

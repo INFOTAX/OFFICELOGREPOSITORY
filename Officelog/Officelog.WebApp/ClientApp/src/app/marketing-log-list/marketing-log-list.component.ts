@@ -3,18 +3,23 @@ import { Router } from '@angular/router';
 import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 import { MessageService } from 'primeng/components/common/api';
+
+
 @Component({
   selector: 'app-marketing-log-list',
   templateUrl: './marketing-log-list.component.html',
   styleUrls: ['./marketing-log-list.component.css'],
   providers: [MarketinglogService,MessageService]
 })
+
 export class MarketingLogListComponent implements OnInit {
   marketinglogs: IMarketinglog[];
   selectedMarketingLog : IMarketinglog;
   id : number;
   //dataSource: IMarketinglog[];
   rowIndex;
+  startDate:Date;
+  lastDate:Date;
   
    
 
@@ -69,5 +74,9 @@ onConfirm() {
 onReject() {
   this.messageService.clear('c');
 }
- 
+searchByDate(){
+  this._marketinglogService.getMarketingListByDate(this.startDate,this.lastDate).subscribe(marketingLogList=>{
+    this.marketinglogs=marketingLogList;
+  })
+}
 }

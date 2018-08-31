@@ -28,6 +28,7 @@ export class MarketingLogFormComponent implements OnInit {
   interested_Yes = false;
   interested_No = false;
   ifOther = false;
+  //today: number = Date.now();
   //items;
   id: number;
   marketingLog: IMarketinglog;
@@ -112,7 +113,7 @@ export class MarketingLogFormComponent implements OnInit {
         this.onSaveComplete();
     }
   }
-  private onSaveComplete(){
+   onSaveComplete(){
     const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
     // this.messageService.add({
     //   key : 'tr',
@@ -120,7 +121,7 @@ export class MarketingLogFormComponent implements OnInit {
     //   summary : 'Success Message',
     //   detail : 'Order ' + displayMsg
     // })
-    this.router.navigate(['marketing_log_list']);
+    this.router.navigate(['/marketing_log_list']);
   }
 
   redioYes() {
