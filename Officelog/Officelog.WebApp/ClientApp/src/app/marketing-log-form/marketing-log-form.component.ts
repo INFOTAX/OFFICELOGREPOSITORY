@@ -114,13 +114,7 @@ export class MarketingLogFormComponent implements OnInit {
     }
   }
    onSaveComplete(){
-    const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
-    // this.messageService.add({
-    //   key : 'tr',
-    //   severity : 'success',
-    //   summary : 'Success Message',
-    //   detail : 'Order ' + displayMsg
-    // })
+    //const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
     this.router.navigate(['/marketing_log_list']);
   }
 
