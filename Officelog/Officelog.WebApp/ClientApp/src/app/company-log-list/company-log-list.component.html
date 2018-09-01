@@ -58,7 +58,7 @@
 
             <!--table list content start-->
             <p-table #dtc [value]="companylogs" (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog"
-                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']" [paginator]="true" [rows]="5" [scrollable]="true">
+                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Name</th>
