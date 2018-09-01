@@ -15,7 +15,7 @@ namespace Officelog.Domain.Companylog
 
         public string VisitorType {get; set;}
 
-        public bool SoftwareInterested { get; set; }
+        public string SoftwareInterested { get; set; }
         public string RateUs { get; set; }
 
         public string SuggestionForYes { get; set; }
@@ -33,7 +33,7 @@ namespace Officelog.Domain.Companylog
 
         public Company(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
-                        bool softwareInterested, string rateUs, string suggestionForYes,
+                        string softwareInterested, string rateUs, string suggestionForYes,
                         string suggestionForNo,DateTime date,string rateUsForNo )
         {
             Name = name;
@@ -52,7 +52,7 @@ namespace Officelog.Domain.Companylog
 
             public void Modify(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
-                        bool softwareInterested, string rateUs, string suggestionForYes,
+                        string softwareInterested, string rateUs, string suggestionForYes,
                         string suggestionForNo,string rateUsForNo )
         {
             Name = name;
