@@ -43,10 +43,10 @@
                         <label for="lastDate">To:</label>
                 </div>
                 <div class="ui-g-5 ui-sm-5">
-                        <p-calendar id="startDate" [(ngModel)]="startDate" [showIcon]="true"></p-calendar>
+                        <p-calendar id="startDate" dateFormat="dd.mm.yy" [(ngModel)]="startDate" [showIcon]="true"></p-calendar>
                 </div>
                 <div class="ui-g-5 ui-sm-5">
-                        <p-calendar id="lastDate" [(ngModel)]="lastDate" [showIcon]="true"></p-calendar>
+                        <p-calendar id="lastDate" dateFormat="dd.mm.yy" [(ngModel)]="lastDate" [showIcon]="true"></p-calendar>
                 </div>
                 <div class="ui-g-1">
                         <p-button type="button" icon="fa fa-fw fa-search" iconPos="left" 
