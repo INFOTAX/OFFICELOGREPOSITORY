@@ -50,8 +50,7 @@
                 </div>
                 <div class="ui-g-1">
                         <p-button type="button" icon="fa fa-fw fa-search" iconPos="left" 
-                        (click)="searchByDate();" style="height:40px"
-                        ></p-button>
+                        (click)="searchByDate();" style="height:40px"></p-button>
                 </div>
             </div><br><br><br><br>
             <p-table #dt [value]="marketinglogs" (onRowSelect)="onRowSelect($event)" selectionMode="single" [(selection)]="selectedMarketingLog"
@@ -80,12 +79,29 @@
                     </tr>
                 </ng-template>
             </p-table>
+            <br><br>
+            <p-table>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th rowspan="2">summary:</th>
+                        <th>Total visits</th>
+                        <th>Queary Handled</th>
+                        <th>Software Interested</th>
+                    </tr>
+                    <tr >
+                        <th style="background-color:white">{{TotalVisits}}</th>
+                        <th style="background-color:white">{{QuearyHandled}}</th>
+                        <th style="background-color:white">{{SoftwareInterested}}</th>
+                    </tr>
+                </ng-template>
+            </p-table>
 
 
 
 
 
         </div>
+        
     </div>
 </div>
 <router-outlet></router-outlet>

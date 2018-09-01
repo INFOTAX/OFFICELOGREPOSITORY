@@ -123,7 +123,8 @@ export class CompanyLogFormComponent implements OnInit {
 
       let companylogsToSave = Object.assign({}, this.companylogs, this.userForm.value);
 
-      this._companylogService.save(companylogsToSave, this.id).subscribe(() => this.onSaveComplete());
+      this._companylogService.save(companylogsToSave, this.id).subscribe(() => {});
+      this.onSaveComplete();
     }
 
 

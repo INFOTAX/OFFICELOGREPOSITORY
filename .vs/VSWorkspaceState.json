@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Officelog",
+    "\\Officelog\\OfficeLog.Persistence",
+    "\\Officelog\\Officelog.WebApp"
   ],
+  "SelectedNode": "\\Officelog\\Officelog.WebApp\\appsettings.Development.json",
   "PreviewInSolutionExplorer": false
 }
