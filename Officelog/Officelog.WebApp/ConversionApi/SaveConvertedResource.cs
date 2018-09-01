@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Officelog.WebApp.MarketingApi;
 
-namespace Officelog.WebApp.MarketingApi
+namespace Officelog.WebApp.ConversionApi
 {
     public class SaveConvertedResource
     {
