@@ -9,8 +9,8 @@ namespace Officelog.Domain.Marketinglog
         public int Id { get; set; }
         public string Name { get; set; }
         public string ContactNumber { get; set; }
-        public bool ServiceInterested { get; set; }
-        public bool SoftwareInterested { get; set; }
+        public string ServiceInterested { get; set; }
+        public string SoftwareInterested { get; set; }
         public ConversionStatus ConversionStatus { get; set; }
         public string RateUs { get; set; }
         public string SuggestionForYes { get; set; }
@@ -21,15 +21,16 @@ namespace Officelog.Domain.Marketinglog
         public double Price { get; set; }
         public string CurrentScenario { get; set; }
         public string RateUsForNo { get; set; }
+        public double Fee { get; set; }
         public ICollection<ServiceItem> ServiceItems { get; set; }
         public Marketing()
         {
             ServiceItems = new List<ServiceItem>();
             
         }
-        public Marketing(string name,string contactNumber,bool serviceInterested,bool softwareInterested,
+        public Marketing(string name,string contactNumber,string serviceInterested,string softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
-                        string area,DateTime date,double price,string currentScenario,string rateUsForNo,List<ServiceItem> serviceItems)
+                        string area,DateTime date,double price,string currentScenario,string rateUsForNo,double fee,List<ServiceItem> serviceItems)
         {
             Name = name;
             ContactNumber = contactNumber;
@@ -44,14 +45,15 @@ namespace Officelog.Domain.Marketinglog
             Price = price;
             CurrentScenario = currentScenario;
             RateUsForNo = rateUsForNo;
+            Fee = fee;
             ServiceItems = serviceItems;
             IsActive = true;
 
         }
 
-        public void Modify(string name,string contactNumber,bool serviceInterested,bool softwareInterested,
+        public void Modify(string name,string contactNumber,string serviceInterested,string softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
-                        string area,double price,string currentScenario,string rateUsForNo,List<ServiceItem> serviceItems)
+                        string area,double price,string currentScenario,string rateUsForNo,double fee,List<ServiceItem> serviceItems)
          {
              Name = name;
             ContactNumber = contactNumber;
@@ -65,6 +67,7 @@ namespace Officelog.Domain.Marketinglog
             Price = price;
             CurrentScenario = currentScenario;
             RateUsForNo = rateUsForNo;
+            Fee = fee;
             ServiceItems = serviceItems;
             IsActive = true;
          }
