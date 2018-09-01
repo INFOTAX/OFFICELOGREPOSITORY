@@ -31,8 +31,6 @@ export class MarketingLogFormComponent implements OnInit {
   //today: number = Date.now();
   //items;
   id: number;
-  val1: boolean=true;
-  val2: boolean=false;
   marketingLog: IMarketinglog;
 
   public userForm: FormGroup;
@@ -41,7 +39,8 @@ export class MarketingLogFormComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private router: Router, 
+  constructor(private fb: FormBuilder,
+              private router: Router, 
               private route: ActivatedRoute,
               private marketingLogService: MarketinglogService,
               //private messageService: MessageService
@@ -86,10 +85,10 @@ export class MarketingLogFormComponent implements OnInit {
     return this.fb.group({
       id: 0,
       name: [''],
-      contactNumber: 0,
-      softwareInterested: true,
+      contactNumber: [],
+      softwareInterested: [],
       rateUs: [''],
-      serviceInterested: true,
+      serviceInterested: [],
       rateUsForNo: [''],
       currentScenario: [''],
       suggestionForNo: [''],
@@ -107,7 +106,9 @@ export class MarketingLogFormComponent implements OnInit {
         let p = Object.assign({}, this.marketingLog, this.userForm.value);
   
          this.marketingLogService.save(p, this.id)
-            .subscribe(si => this.onSaveComplete());
+            .subscribe(si=>{});
+          this.onSaveComplete()
+          
     }
   
   
@@ -116,7 +117,6 @@ export class MarketingLogFormComponent implements OnInit {
     }
   }
    onSaveComplete(){
-    //const displayMsg = this.id == 0 ? 'Submitted' : 'Updated';
     this.router.navigate(['/marketing_log_list']);
   }
 
