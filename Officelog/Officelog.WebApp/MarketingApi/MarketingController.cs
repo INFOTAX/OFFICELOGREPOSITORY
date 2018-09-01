@@ -133,6 +133,11 @@ namespace Officelog.WebApp.MarketingApi
             return Ok();
         }
 
+        // [HttpGet("MarketingDetails")]
+        // public async Task<IActionResult> GetDetails()
+        // {
+            
+        // }
 
 
     }
