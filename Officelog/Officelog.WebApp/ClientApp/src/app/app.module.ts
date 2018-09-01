@@ -34,7 +34,7 @@ import {ConfirmationService} from 'primeng/api';
 import {Message, LazyLoadEvent} from 'primeng/components/common/api';
 import {  GrowlModule } from 'primeng/growl';
 import {ConfirmDialogModule} from 'primeng/primeng';
-
+import {PaginatorModule} from 'primeng/paginator';
 import { LoginUserFormComponent } from './login-user-form/login-user-form.component';
 import { UserlogService } from './services/userlog.service';
 import {CalendarModule} from 'primeng/calendar';
@@ -66,6 +66,7 @@ const appRoutes: Routes = [
     ConversionListComponent
   ],
   imports: [
+    PaginatorModule,
     CalendarModule,
     GrowlModule,
     ConfirmDialogModule,
