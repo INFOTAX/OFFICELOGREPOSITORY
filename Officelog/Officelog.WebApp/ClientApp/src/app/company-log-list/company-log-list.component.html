@@ -58,7 +58,8 @@
 
             <!--table list content start-->
             <p-table #dtc [value]="companylogs" (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog"
-                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']">
+                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']" [paginator]="true" [rows]="5"
+                [scrollable]="true" scrollHeight="200px">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Name</th>
@@ -86,8 +87,50 @@
                     </tr>
                 </ng-template>
             </p-table>
+<br>
+<br>
+<!--summary content start -->
+<p-table  >
+    <ng-template pTemplate="header">
+        <tr>
+            <th rowspan=2>
+                Summary
+            </th>
+            <th>
+                Total visit
+            </th>
+            <th>
+                    Service Rating
+                </th>
+                <th> 
+                    Query Rating
+                    </th>
+        </tr>
+        <tr style="background:white;"> 
+            <th>
+               {{totalVisit}}
+               
+            </th>
+            <th>
+                 {{serviceIntrested}}
+            </th>
+            <th>
+                {{queryIntrested}}
+            </th>
+           </tr>
+        
+        </ng-template>
+
+       
+
+</p-table>
 
 
+
+
+
+
+<!--summary content end -->
         </div>
     </div>
 </div>

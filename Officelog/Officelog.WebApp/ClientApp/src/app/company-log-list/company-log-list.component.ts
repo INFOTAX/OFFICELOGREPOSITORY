@@ -21,6 +21,10 @@ export class CompanyLogListComponent implements OnInit {
   displayDialogDelete : boolean;
   toDate:Date;
   fromDate:Date;
+  CompanySummary:any[];
+  totalVisit=1200;
+  serviceIntrested=890;
+  queryIntrested=270;
 
   constructor(private _companylogService: CompanylogService,
     private _router: Router,
@@ -29,8 +33,10 @@ export class CompanyLogListComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-  }
+    this.toDate=new Date();
+   this.fromDate=new Date();
+  
+ }
 
   // getCompanyLogList() {
   //   this._companylogService.getAll().subscribe(companyLogList => {

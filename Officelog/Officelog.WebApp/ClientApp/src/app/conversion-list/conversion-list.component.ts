@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MarketinglogService } from '../services/marketinglog.service';
 import { ConversionServiceService } from '../services/conversion-service.service';
+
 
 
 @Component({

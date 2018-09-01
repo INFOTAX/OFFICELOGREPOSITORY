@@ -21,6 +21,11 @@ export class MarketingLogListComponent implements OnInit {
   rowIndex;
   startDate:Date;
   lastDate:Date;
+  currentDate: Date;
+  
+  TotalVisits=100;
+  QuearyHandled=51;
+  SoftwareInterested=60;
   
    
 
@@ -29,10 +34,14 @@ export class MarketingLogListComponent implements OnInit {
   constructor( private _marketinglogService:MarketinglogService ,
                private _router: Router,
                private messageService: MessageService,
-              ) { }
+             ) {}
 
   ngOnInit() {
-  }
+    this.startDate=new Date();
+    this.lastDate=new Date();
+    this.currentDate=new Date();
+    
+}
 
   // getMarketingLogList(){
   //       this._marketinglogService.getAll().subscribe(marketingLogList=>{

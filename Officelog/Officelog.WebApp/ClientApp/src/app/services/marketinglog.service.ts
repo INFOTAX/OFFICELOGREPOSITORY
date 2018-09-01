@@ -40,7 +40,7 @@ export class MarketinglogService extends ServiceBase<IMarketinglog> {
     return this.http.patch<IMarketinglog>(`${this.baseUrl}/converted?id=${id}`,marketingLog);
   }
 
-
+ 
 }
 
 
