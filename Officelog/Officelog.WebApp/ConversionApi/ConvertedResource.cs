@@ -1,4 +1,4 @@
-namespace Officelog.WebApp.MarketingApi
+namespace Officelog.WebApp.ConversionApi
 {
     public class ConvertedResource
     {

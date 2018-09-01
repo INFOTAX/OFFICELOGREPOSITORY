@@ -116,23 +116,7 @@ namespace Officelog.WebApp.MarketingApi
             return Ok();    
         }
 
-        [HttpGet("converted")]
-        public async Task<IEnumerable<ConvertedResource>> GetConvertedLogs()
-        {
-            var convertedLogs = await _database.Marketings.Where(co => co.ConversionStatus == ConversionStatus.Achieved)
-                                                            .ToListAsync();
-
-               return _mapper.Map<List<Marketing>,List<ConvertedResource>>(convertedLogs);                                             
-        }
-
-         [HttpGet("convertedById")]
-        public async Task<SaveConvertedResource> GetConvertedLogsById(int id)
-        {
-            var convertedLogsById = await _database.Marketings.Include(co => co.ServiceItems).Where(co => co.ConversionStatus == ConversionStatus.Achieved)
-                                                            .SingleOrDefaultAsync(co => co.Id == id);
-
-               return _mapper.Map<Marketing,SaveConvertedResource>(convertedLogsById);                                             
-        }
+       
 
         [HttpDelete("{id}")]
 
