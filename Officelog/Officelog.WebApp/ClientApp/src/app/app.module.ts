@@ -75,7 +75,8 @@ const appRoutes: Routes = [
     LoginUserFormComponent,
     ConversionListComponent,
     MarketingDashboardComponent,
-    CompanydashboardComponent
+    CompanydashboardComponent,
+    SignInFormComponent
   ],
   imports: [
     ToggleButtonModule,
