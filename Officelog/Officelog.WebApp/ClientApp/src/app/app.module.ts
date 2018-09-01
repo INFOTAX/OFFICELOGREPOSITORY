@@ -79,6 +79,8 @@ const appRoutes: Routes = [
     SignInFormComponent
   ],
   imports: [
+   TooltipModule,
+    ChartModule,
     ToggleButtonModule,
     ScrollPanelModule,
     PaginatorModule,
