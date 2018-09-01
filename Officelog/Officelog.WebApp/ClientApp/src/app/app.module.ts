@@ -39,7 +39,7 @@ import { LoginUserFormComponent } from './login-user-form/login-user-form.compon
 import { UserlogService } from './services/userlog.service';
 import {CalendarModule} from 'primeng/calendar';
 import { ConversionListComponent } from './conversion-list/conversion-list.component';
-
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 const appRoutes: Routes = [
   { path: 'company_log/:id', component: CompanyLogFormComponent },
@@ -66,6 +66,7 @@ const appRoutes: Routes = [
     ConversionListComponent
   ],
   imports: [
+    ScrollPanelModule,
     PaginatorModule,
     CalendarModule,
     GrowlModule,
