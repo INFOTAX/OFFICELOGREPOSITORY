@@ -35,7 +35,7 @@ export class CompanyLogListComponent implements OnInit {
   ngOnInit() {
     this.toDate=new Date();
    this.fromDate=new Date();
-  
+  this.searchByDate(this.fromDate,this.toDate);
  }
 
   // getCompanyLogList() {
@@ -53,7 +53,7 @@ export class CompanyLogListComponent implements OnInit {
     console.log(this.id)
     this._router.navigate(['/company_log', this.id])
   }
-  searchByDate(){
+  searchByDate(fromDate:Date,toDate:Date){
     this._companylogService.getCompaniesByDate(this.fromDate,this.toDate).subscribe(companyLogList => {
       this.companylogs = companyLogList;
     });
@@ -75,7 +75,7 @@ export class CompanyLogListComponent implements OnInit {
           icon: 'fa fa fa-fw fa-trash', 
           accept: () => {
             this._companylogService.delete(this.selectedCompanyLog.id).subscribe(() =>{
-              this.searchByDate();
+              this.searchByDate(this.fromDate,this.toDate);
             this.msgs = [{severity:'info', summary:'Confirmed', detail:'Record deleted'}];
           });         
           },

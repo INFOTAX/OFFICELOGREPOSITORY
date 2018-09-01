@@ -57,6 +57,7 @@
 
 
             <!--table list content start-->
+            <p-panel  [toggleable]="true"header="Company List Details :-">
             <p-table #dtc [value]="companylogs" (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog"
                 [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']" [paginator]="true" [rows]="5"
                 [scrollable]="true" scrollHeight="200px">
@@ -87,6 +88,7 @@
                     </tr>
                 </ng-template>
             </p-table>
+        </p-panel>
 <br>
 <br>
 <!--summary content start -->
@@ -106,15 +108,15 @@
                     Query Rating
                     </th>
         </tr>
-        <tr style="background:white;"> 
-            <th>
+        <tr> 
+            <th  style="background:white;">
                {{totalVisit}}
                
             </th>
-            <th>
+            <th  style="background:white;">
                  {{serviceIntrested}}
             </th>
-            <th>
+            <th  style="background:white;">
                 {{queryIntrested}}
             </th>
            </tr>

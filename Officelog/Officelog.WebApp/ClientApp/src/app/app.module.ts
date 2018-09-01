@@ -40,8 +40,14 @@ import { UserlogService } from './services/userlog.service';
 import {CalendarModule} from 'primeng/calendar';
 import { ConversionListComponent } from './conversion-list/conversion-list.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
-
+import {ToggleButtonModule} from 'primeng/togglebutton';
+import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
+import { UserSignService } from './services/usersign.service';
+import {TooltipModule} from 'primeng/tooltip';
+import { CompanydashboardComponent } from './companydashboard/companydashboard.component';
+import {ChartModule} from 'primeng/chart';
 const appRoutes: Routes = [
+  { path: 'companydashboard_log', component: CompanydashboardComponent },
   { path: 'company_log/:id', component: CompanyLogFormComponent },
   { path: 'marketing_log/:id', component: MarketingLogFormComponent },
   { path: 'company_log_list', component: CompanyLogListComponent },
@@ -50,6 +56,7 @@ const appRoutes: Routes = [
   { path: 'user_log', component:LoginUserFormComponent},
   { path: 'conversion_list', component: ConversionListComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
+  { path: 'user_sign', component: SignInFormComponent},
 ];
 
 @NgModule({
@@ -63,9 +70,12 @@ const appRoutes: Routes = [
     NavigationBarComponent,
     DashboardComponent,
     LoginUserFormComponent,
-    ConversionListComponent
+    ConversionListComponent,
+    SignInFormComponent,
+    CompanydashboardComponent
   ],
   imports: [
+    ToggleButtonModule,
     ScrollPanelModule,
     PaginatorModule,
     CalendarModule,
@@ -92,7 +102,7 @@ const appRoutes: Routes = [
     ToastModule,
     CalendarModule
   ],
-  providers: [CompanylogService,UserlogService,MarketinglogService, ConfirmationService],
+  providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
