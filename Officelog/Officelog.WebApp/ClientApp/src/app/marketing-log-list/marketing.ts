@@ -4,15 +4,15 @@ export interface IMarketinglog{
       id: number;
       name: string;
       contactNumber: number;
-      softwareInterested: boolean;
+      softwareInterested: string;
       rateUs: string;
-      serviceInterested: boolean;
+      serviceInterested: string;
       rateUsForNo: string;
       currentScenario: string;
       suggestionForNo: string;
       suggestionForYes: string;
       area: string;
-      //fee: number;
+      fee: number;
       date:Date;
       Conversion:string;
       serviceItems : ServiceItems[];

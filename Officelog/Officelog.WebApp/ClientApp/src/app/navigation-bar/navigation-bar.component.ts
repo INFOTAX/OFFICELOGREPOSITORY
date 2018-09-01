@@ -18,7 +18,12 @@ export class NavigationBarComponent implements OnInit {
     this.items = [ 
       {label: 'Home', icon: 'fa fa-fw fa-home' ,routerLink: ['/dashboard_log']},
       {label: 'Company list', icon: 'fa fa-fw fa-book' ,routerLink: ['/company_log_list']},
-      {label: 'Marketing list', icon: 'fa fa-fw fa-book',routerLink: ['/marketing_log_list']},
+      {label: 'Market', 
+      items:[
+        {label: 'Marketing Log', icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']},
+        {label: 'Marketing list', icon: 'fa fa-fw fa-book',routerLink: ['/marketing_log_list']},
+      ],
+      icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']},
     {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']}
 ]
 

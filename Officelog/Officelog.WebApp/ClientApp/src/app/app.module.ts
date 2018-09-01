@@ -40,6 +40,7 @@ import { UserlogService } from './services/userlog.service';
 import {CalendarModule} from 'primeng/calendar';
 import { ConversionListComponent } from './conversion-list/conversion-list.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import { MarketingDashboardComponent } from './marketing-dashboard/marketing-dashboard.component';
 
 const appRoutes: Routes = [
   { path: 'company_log/:id', component: CompanyLogFormComponent },
@@ -49,7 +50,8 @@ const appRoutes: Routes = [
   { path: 'dashboard_log', component: DashboardComponent },
   { path: 'user_log', component:LoginUserFormComponent},
   { path: 'conversion_list', component: ConversionListComponent },
-  { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
+  { path: 'marketing-dashBoard', component: MarketingDashboardComponent },
+  { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -63,7 +65,8 @@ const appRoutes: Routes = [
     NavigationBarComponent,
     DashboardComponent,
     LoginUserFormComponent,
-    ConversionListComponent
+    ConversionListComponent,
+    MarketingDashboardComponent
   ],
   imports: [
     ScrollPanelModule,

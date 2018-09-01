@@ -28,6 +28,8 @@ export class MarketingLogFormComponent implements OnInit {
   interested_Yes = false;
   interested_No = false;
   ifOther = false;
+  startDate: Date;
+  lastDate: Date;
   //today: number = Date.now();
   //items;
   id: number;
@@ -88,6 +90,7 @@ export class MarketingLogFormComponent implements OnInit {
       contactNumber: [],
       softwareInterested: [],
       rateUs: [''],
+      fee:[],
       serviceInterested: [],
       rateUsForNo: [''],
       currentScenario: [''],
@@ -117,7 +120,7 @@ export class MarketingLogFormComponent implements OnInit {
     }
   }
    onSaveComplete(){
-    this.router.navigate(['/marketing_log_list']);
+    this.router.navigate(['/marketing_log_list'])
   }
 
   redioYes() {
@@ -201,7 +204,8 @@ export class MarketingLogFormComponent implements OnInit {
       suggestionForNo: this.marketingLog.suggestionForNo,
       suggestionForYes: this.marketingLog.suggestionForYes,
       area: this.marketingLog.area,
-      date: this.marketingLog.date
+      date: this.marketingLog.date,
+      fee: this.marketingLog.fee
 
       });
       for (let i = 0; i < this.marketingLog.serviceItems.length; i++) {

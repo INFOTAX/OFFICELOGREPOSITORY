@@ -21,11 +21,8 @@ export class MarketingLogListComponent implements OnInit {
   rowIndex;
   startDate:Date;
   lastDate:Date;
-  currentDate: Date;
   
-  TotalVisits=100;
-  QuearyHandled=51;
-  SoftwareInterested=60;
+  
   
    
 
@@ -39,7 +36,9 @@ export class MarketingLogListComponent implements OnInit {
   ngOnInit() {
     this.startDate=new Date();
     this.lastDate=new Date();
-    this.currentDate=new Date();
+    this.searchByDate(this.startDate,this.lastDate);
+    
+    
     
 }
 
@@ -85,7 +84,7 @@ this.messageService.clear('c');
 onReject() {
   this.messageService.clear('c');
 }
-searchByDate(fromDate : Date,toDate : Date){
+searchByDate(startDate:Date,lastDate: Date){
   this._marketinglogService.getMarketingListByDate(this.startDate,this.lastDate).subscribe(marketingLogList=>{
     this.marketinglogs=marketingLogList;
   })
