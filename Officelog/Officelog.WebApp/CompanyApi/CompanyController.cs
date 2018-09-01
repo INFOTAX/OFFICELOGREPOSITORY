@@ -6,25 +6,33 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Officelog.Domain.Companylog;
+using Officelog.Domain.UserProfileLog;
+using Officelog.WebApp.UserProfileApi;
 using OfficeLog.Persistence;
 
 namespace Officelog.WebApp.CompanyApi
 {
     [Produces("application/json")]
     [Route("api/Companies")]
-    public class CompanyController : Controller
+    public class CompanyController : UserProfileController
     {
         private readonly ICompanyRepository _companyRepository;
         private readonly IMapper _mapper;
         private readonly IReadModelDatabase _database;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IUserProfileRepository _userProfileRepository;
         public CompanyController(ICompanyRepository companyRepository, IMapper mapper, 
-                                IReadModelDatabase database, IUnitOfWork unitOfWork)
+                                IReadModelDatabase database, IUnitOfWork unitOfWork, 
+                                IUserProfileRepository userProfileRepository):
+                                 base( mapper, database,
+                                      userProfileRepository, 
+                                      unitOfWork)
         {
             _database = database;
             _mapper = mapper;
             _companyRepository = companyRepository;
             _unitOfWork = unitOfWork;
+            _userProfileRepository = userProfileRepository;
 
         }
 
@@ -43,7 +51,7 @@ namespace Officelog.WebApp.CompanyApi
 
         public async Task<SaveCompanyResource> GetById(int id)
         {
-             var company = await _companyRepository.GetAsync(id);
+             var company = await _companyRepository.GetAsync(id, UserProfileId);
 
              return _mapper.Map<Company, SaveCompanyResource>(company);
         }
@@ -57,8 +65,8 @@ namespace Officelog.WebApp.CompanyApi
 
         var company = new Company ( model.Name, model.ContactNumber,  model.QueryHandling,
                          model.ServiceProvided,  model.VisitorType,
-                        model.SoftwareInterested,  model.RateUs, 
-                         model.SuggestionForYes, model.SuggestionForNo,model.Date,model.RateUsForNo
+                         model.SoftwareInterested,  model.RateUs, 
+                         model.SuggestionForYes, model.SuggestionForNo,model.Date,model.RateUsForNo, UserProfileId
 );
       _companyRepository.Add(company);
 
@@ -73,7 +81,7 @@ namespace Officelog.WebApp.CompanyApi
               if(!ModelState.IsValid)
         return BadRequest(ModelState);    
 
-         var companyFromDb = await _companyRepository.GetAsync(id);
+         var companyFromDb = await _companyRepository.GetAsync(id, UserProfileId);
          if(companyFromDb == null)
          {
              return NotFound();
@@ -95,7 +103,7 @@ namespace Officelog.WebApp.CompanyApi
     public async Task<IActionResult> Delete (int id)
 
     {
-        var companyFromDb = await _companyRepository.GetAsync(id);
+        var companyFromDb = await _companyRepository.GetAsync(id, UserProfileId);
           if(companyFromDb == null)
          {
              return NotFound();

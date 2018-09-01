@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Officelog.Domain.UserProfileLog;
 
 namespace Officelog.Domain.Companylog
 {
@@ -23,6 +24,10 @@ namespace Officelog.Domain.Companylog
         public DateTime Date { get; set; }
         public string RateUsForNo { get; set; }
 
+        public UserProfile UserProfile {get; set;}
+
+        public string UserProfileId { get; set; }
+
         public bool IsActive { get; set; }
 
         
@@ -34,7 +39,7 @@ namespace Officelog.Domain.Companylog
         public Company(string name, string contactNumber, string queryHandling,
                         string serviceProvided, string visitorType,
                         string softwareInterested, string rateUs, string suggestionForYes,
-                        string suggestionForNo,DateTime date,string rateUsForNo )
+                        string suggestionForNo,DateTime date,string rateUsForNo, string userProfileId )
         {
             Name = name;
             ContactNumber = contactNumber;
@@ -48,6 +53,7 @@ namespace Officelog.Domain.Companylog
             Date = date;
             RateUsForNo = rateUsForNo;
             IsActive = true;
+            UserProfileId = userProfileId;
         }
 
             public void Modify(string name, string contactNumber, string queryHandling,

@@ -12,9 +12,10 @@ using System;
 namespace OfficeLog.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180901122219_AddTableUserProfile")]
+    partial class AddTableUserProfile
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,13 +49,9 @@ namespace OfficeLog.Persistence.Migrations
 
                     b.Property<string>("SuggestionForYes");
 
-                    b.Property<string>("UserProfileId");
-
                     b.Property<string>("VisitorType");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserProfileId");
 
                     b.ToTable("Companies");
                 });
@@ -94,11 +91,7 @@ namespace OfficeLog.Persistence.Migrations
 
                     b.Property<string>("SuggestionForYes");
 
-                    b.Property<string>("UserProfileId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("UserProfileId");
 
                     b.ToTable("Marketings");
                 });
@@ -121,7 +114,7 @@ namespace OfficeLog.Persistence.Migrations
                     b.ToTable("ServiceItems");
                 });
 
-            modelBuilder.Entity("Officelog.Domain.UserProfileLog.UserProfile", b =>
+            modelBuilder.Entity("Officelog.Domain.UserProfile.UserProfile", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -139,20 +132,6 @@ namespace OfficeLog.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserProfiles");
-                });
-
-            modelBuilder.Entity("Officelog.Domain.Companylog.Company", b =>
-                {
-                    b.HasOne("Officelog.Domain.UserProfileLog.UserProfile", "UserProfile")
-                        .WithMany()
-                        .HasForeignKey("UserProfileId");
-                });
-
-            modelBuilder.Entity("Officelog.Domain.Marketinglog.Marketing", b =>
-                {
-                    b.HasOne("Officelog.Domain.UserProfileLog.UserProfile", "UserProfile")
-                        .WithMany()
-                        .HasForeignKey("UserProfileId");
                 });
 
             modelBuilder.Entity("Officelog.Domain.Marketinglog.ServiceItem", b =>

@@ -23,10 +23,9 @@ namespace OfficeLog.Persistence
            _dbSet.AddRange(entities);        }
 
         public abstract Task<T> GetAllAsync(object id);
-        
 
-        public abstract Task<T> GetAsync(object id);
-        
+        public abstract Task<T> GetAsync(object id, string userProfileId);
+
         public void Remove(T entity)
         {
            _dbSet.Remove(entity);

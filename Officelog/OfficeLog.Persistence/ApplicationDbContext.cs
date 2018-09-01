@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Officelog.Domain.Companylog;
 using Officelog.Domain.Marketinglog;
+using Officelog.Domain.UserProfileLog;
 
 namespace OfficeLog.Persistence
 {
@@ -13,5 +14,7 @@ namespace OfficeLog.Persistence
      public DbSet<Company> Companies {get; set;}
      public DbSet<Marketing> Marketings {get; set;}
      public DbSet<ServiceItem> ServiceItems {get; set;}
+     public DbSet<UserProfile> UserProfiles {get; set;}
+     
     }
 }

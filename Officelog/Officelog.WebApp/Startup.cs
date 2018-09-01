@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Officelog.Domain.Companylog;
 using Officelog.Domain.Marketinglog;
+using Officelog.Domain.UserProfileLog;
 using OfficeLog.Persistence;
 using OfficeLog.Persistence.Repositories;
 
@@ -31,6 +32,7 @@ namespace Officelog
         {
             services.AddScoped<ICompanyRepository,CompanyRepository>();
             services.AddScoped<IMarketingRepository,MarketingRepository>();
+            services.AddScoped<IUserProfileRepository,UserProfileRepository>();
             services.AddScoped<IReadModelDatabase,ReadModelDatabase>();
             services.AddScoped<IUnitOfWork,UnitOfWork>();
             

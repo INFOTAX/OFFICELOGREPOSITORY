@@ -17,9 +17,9 @@ namespace OfficeLog.Persistence.Repositories
             throw new System.NotImplementedException();
         }
 
-        public override Task<Marketing> GetAsync(object id)
+        public override Task<Marketing> GetAsync(object id, string userProfileId)
         {
-            return _context.Marketings.Include(si => si.ServiceItems).SingleOrDefaultAsync(m => m.Id == (int)id);
+            return _context.Marketings.Include(si => si.ServiceItems).SingleOrDefaultAsync(m => m.Id == (int)id &&  m.UserProfileId == userProfileId);
         }
     }
 }

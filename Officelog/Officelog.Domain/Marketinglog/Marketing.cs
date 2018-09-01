@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Officelog.Domain.UserProfileLog;
 
 namespace Officelog.Domain.Marketinglog
 {
@@ -23,6 +24,9 @@ namespace Officelog.Domain.Marketinglog
         public string RateUsForNo { get; set; }
         public double Fee { get; set; }
         public ICollection<ServiceItem> ServiceItems { get; set; }
+
+        public UserProfile UserProfile { get; set; }
+        public string UserProfileId { get; set; }
         public Marketing()
         {
             ServiceItems = new List<ServiceItem>();
@@ -30,7 +34,9 @@ namespace Officelog.Domain.Marketinglog
         }
         public Marketing(string name,string contactNumber,string serviceInterested,string softwareInterested,
                         ConversionStatus conversionStatus,string rateUs,string suggestionForYes,string suggestionForNo,
-                        string area,DateTime date,double price,string currentScenario,string rateUsForNo,double fee,List<ServiceItem> serviceItems)
+                        string area,DateTime date,double price,string currentScenario,string rateUsForNo,double fee,
+                        string userProfileId,
+                        List<ServiceItem> serviceItems)
         {
             Name = name;
             ContactNumber = contactNumber;
@@ -46,6 +52,7 @@ namespace Officelog.Domain.Marketinglog
             CurrentScenario = currentScenario;
             RateUsForNo = rateUsForNo;
             Fee = fee;
+            UserProfileId = userProfileId;
             ServiceItems = serviceItems;
             IsActive = true;
 

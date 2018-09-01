@@ -1,12 +1,10 @@
-namespace Officelog.Domain.User
+namespace Officelog.WebApp.UserProfileApi
 {
-    public class User
+    public class UserProfileResource
     {
         public string Id { get; set; }
         public string Name { get; set; }
         public string ContactNumber { get; set; }
         public string Designation { get; set; }
-        public string Password { get; set; }
-        public string Subject { get; set; }
     }
 }

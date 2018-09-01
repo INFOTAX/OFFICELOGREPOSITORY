@@ -6,20 +6,28 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Officelog.Domain.Marketinglog;
+using Officelog.Domain.UserProfileLog;
+using Officelog.WebApp.UserProfileApi;
 using OfficeLog.Persistence;
+using OfficeLog.Persistence.Repositories;
 
 namespace Officelog.WebApp.MarketingApi
 {
     [Produces("application/json")]
     [Route("api/Marketings")]
-    public class MarketingController : Controller
+    public class MarketingController : UserProfileController
     {
         private readonly IMarketingRepository _marketingRepository;
         private readonly IMapper _mapper;
         private readonly IReadModelDatabase _database;
         private readonly IUnitOfWork _unitOfWork;
         public MarketingController(IMarketingRepository marketingRepository, IMapper mapper,
-                                IReadModelDatabase database, IUnitOfWork unitOfWork)
+                                IReadModelDatabase database, IUnitOfWork unitOfWork, 
+                                IUserProfileRepository userProfileRepository):
+
+                                 base( mapper, database,
+                                      userProfileRepository, 
+                                      unitOfWork)
         {
             _database = database;
             _mapper = mapper;
@@ -45,7 +53,7 @@ namespace Officelog.WebApp.MarketingApi
 
         public async Task<SaveMarketingResource> GetById(int id)
         {
-            var marketing = await _marketingRepository.GetAsync(id);
+            var marketing = await _marketingRepository.GetAsync(id, UserProfileId);
 
             return _mapper.Map<Marketing, SaveMarketingResource>(marketing);
         }
@@ -63,7 +71,7 @@ namespace Officelog.WebApp.MarketingApi
             var marketing = new Marketing(model.Name, model.ContactNumber, model.ServiceInterested,
                              model.SoftwareInterested, model.ConversionStatus,
                               model.RateUs, model.SuggestionForYes, model.SuggestionForNo, model.Area,model.Date,
-                              model.Price,model.CurrentScenario,model.RateUsForNo,model.Fee,ServiceItems(model));
+                              model.Price,model.CurrentScenario,model.RateUsForNo,model.Fee, UserProfileId, ServiceItems(model));
 
             _marketingRepository.Add(marketing);
 
@@ -85,7 +93,7 @@ namespace Officelog.WebApp.MarketingApi
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var marketingFromDb = await _marketingRepository.GetAsync(id);
+            var marketingFromDb = await _marketingRepository.GetAsync(id, UserProfileId);
             if (marketingFromDb == null)
             {
                 return NotFound();
@@ -105,7 +113,7 @@ namespace Officelog.WebApp.MarketingApi
         [HttpPatch("converted")]
         public async Task<IActionResult> Conversion(int id)
         {
-            var marketing = await _marketingRepository.GetAsync(id);
+            var marketing = await _marketingRepository.GetAsync(id, UserProfileId);
             
             if(marketing == null)
                 return NotFound();
@@ -123,7 +131,7 @@ namespace Officelog.WebApp.MarketingApi
         public async Task<IActionResult> Delete(int id)
 
         {
-            var marketingFromDb = await _marketingRepository.GetAsync(id);
+            var marketingFromDb = await _marketingRepository.GetAsync(id,UserProfileId);
             if (marketingFromDb == null)
             {
                 return NotFound();
