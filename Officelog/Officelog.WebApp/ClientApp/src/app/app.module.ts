@@ -47,7 +47,9 @@ import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { UserSignService } from './services/usersign.service';
 import {TooltipModule} from 'primeng/tooltip';
 import { CompanydashboardComponent } from './companydashboard/companydashboard.component';
-import {ChartModule} from 'primeng/chart';
+
+import { CompanyReportService } from './services/company-report.service';
+import { MarketingConversionReportService } from './services/marketing-conversion-report.service';
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
   { path: 'company_log/:id', component: CompanyLogFormComponent },
@@ -80,7 +82,7 @@ const appRoutes: Routes = [
   ],
   imports: [
    TooltipModule,
-    ChartModule,
+
     ToggleButtonModule,
     ScrollPanelModule,
     PaginatorModule,
@@ -108,7 +110,8 @@ const appRoutes: Routes = [
     ToastModule,
     CalendarModule
   ],
-  providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,ConfirmationService],
+  providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,ConfirmationService,
+              CompanyReportService,MarketingConversionReportService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
