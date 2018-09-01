@@ -33,12 +33,10 @@ export class CompanyLogListComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-   
+    this.toDate=new Date();
+   this.fromDate=new Date();
   
-
-
-  }
+ }
 
   // getCompanyLogList() {
   //   this._companylogService.getAll().subscribe(companyLogList => {
