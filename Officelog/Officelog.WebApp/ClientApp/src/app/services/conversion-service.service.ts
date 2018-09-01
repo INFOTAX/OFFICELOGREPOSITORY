@@ -13,7 +13,5 @@ export class ConversionServiceService {
   getConversions(){
     return this.http.get(`${this.baseUrl}`);
   }
-  conversion(marketingLog : IMarketinglog,id: number) : Observable<IMarketinglog>{
-    return this.http.patch<IMarketinglog>(`${this.baseUrl}/converted?id=${id}`,marketingLog);
-  }
+ 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MarketinglogService } from '../services/marketinglog.service';
+import { ConversionServiceService } from '../services/conversion-service.service';
 
 
 @Component({
@@ -11,13 +12,13 @@ export class ConversionListComponent implements OnInit {
    
   conversionList;
 
-  constructor(private marketingLogService: MarketinglogService) { }
+  constructor(private conversionService: ConversionServiceService) { }
 
   ngOnInit() {
     this.getConversionList();
   }
 getConversionList(){
-  this.marketingLogService.getConversions().subscribe(response=>{
+  this.conversionService.getConversions().subscribe(response=>{
     this.conversionList=response
   });
 }

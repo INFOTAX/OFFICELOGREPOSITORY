@@ -29,7 +29,7 @@ export class MarketingLogListComponent implements OnInit {
   constructor( private _marketinglogService:MarketinglogService ,
                private _router: Router,
                private messageService: MessageService,
-               private conversionService: ConversionServiceService) { }
+              ) { }
 
   ngOnInit() {
   }
@@ -84,7 +84,7 @@ searchByDate(fromDate : Date,toDate : Date){
 
 patchConversion(rowData){
   this.selectedMarketingLog = rowData;
-  this.conversionService.conversion(this.selectedMarketingLog,this.selectedMarketingLog.id).subscribe(() =>{
+  this._marketinglogService.conversion(this.selectedMarketingLog,this.selectedMarketingLog.id).subscribe(() =>{
     this.searchByDate(this.startDate,this.lastDate);
   })
 }
