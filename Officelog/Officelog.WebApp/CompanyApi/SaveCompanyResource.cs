@@ -13,7 +13,7 @@ namespace Officelog.WebApp.CompanyApi
 
         public string VisitorType {get; set;}
 
-        public bool SoftwareInterested { get; set; }
+        public string SoftwareInterested { get; set; }
         public string RateUs { get; set; }
 
         public string SuggestionForYes { get; set; }

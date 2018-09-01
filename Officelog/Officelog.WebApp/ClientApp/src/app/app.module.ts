@@ -34,6 +34,9 @@ import {ConfirmationService} from 'primeng/api';
 import {Message, LazyLoadEvent} from 'primeng/components/common/api';
 import {  GrowlModule } from 'primeng/growl';
 import {ConfirmDialogModule} from 'primeng/primeng';
+import {PaginatorModule} from 'primeng/paginator';
+import { LoginUserFormComponent } from './login-user-form/login-user-form.component';
+import { UserlogService } from './services/userlog.service';
 import {CalendarModule} from 'primeng/calendar';
 import { ConversionListComponent } from './conversion-list/conversion-list.component';
 
@@ -44,6 +47,7 @@ const appRoutes: Routes = [
   { path: 'company_log_list', component: CompanyLogListComponent },
   { path: 'marketing_log_list', component: MarketingLogListComponent },
   { path: 'dashboard_log', component: DashboardComponent },
+  { path: 'user_log', component:LoginUserFormComponent},
   { path: 'conversion_list', component: ConversionListComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
 ];
@@ -58,9 +62,11 @@ const appRoutes: Routes = [
     MarketingLogListComponent,
     NavigationBarComponent,
     DashboardComponent,
+    LoginUserFormComponent,
     ConversionListComponent
   ],
   imports: [
+    PaginatorModule,
     CalendarModule,
     GrowlModule,
     ConfirmDialogModule,
@@ -85,7 +91,7 @@ const appRoutes: Routes = [
     ToastModule,
     CalendarModule
   ],
-  providers: [CompanylogService, MarketinglogService, ConfirmationService],
+  providers: [CompanylogService,UserlogService,MarketinglogService, ConfirmationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
