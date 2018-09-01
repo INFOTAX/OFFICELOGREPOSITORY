@@ -41,9 +41,6 @@ export class MarketinglogService extends ServiceBase<IMarketinglog> {
     return this.http.patch<IMarketinglog>(`${this.baseUrl}/converted?id=${id}`,marketingLog);
   }
 
-  // getConversions(){
-  //   return this.http.get(`${this.baseUrl}/converted`);
-  // }
  
 }
 
