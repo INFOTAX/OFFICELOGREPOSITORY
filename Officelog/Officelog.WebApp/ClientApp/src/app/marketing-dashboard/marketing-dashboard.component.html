@@ -1,16 +1,48 @@
-<br><br>
+<br /><br />
+<h3>Marketing Report Summary</h3>
 <p-table>
   <ng-template pTemplate="header">
       <tr>
-          <th rowspan="2">summary:</th>
-          <th>Total visits</th>
-          <th>Queary Handled</th>
-          <th>Software Interested</th>
+          
+          <th>Total Software Interested</th>
+          <th>Total Service Interested</th>
+          
       </tr>
-      <tr >
-          <th style="background-color:white">{{TotalVisits}}</th>
-          <th style="background-color:white">{{QuearyHandled}}</th>
-          <th style="background-color:white">{{SoftwareInterested}}</th>
-      </tr>
-  </ng-template>
+</ng-template>
+<ng-template pTemplate="footer">
+    <tr>
+        
+        <td>
+            {{marketingReport?.totalSoftwareInterested}}
+        </td>
+        <td>
+            {{marketingReport?.totalServiceInterested}}
+        </td>
+    </tr>
+</ng-template>
 </p-table>
+
+<br />
+<br />
+
+<h3>Conversion Report Summary</h3>
+<p-table>
+        <ng-template pTemplate="header">
+            <tr>
+                
+                <th style="width: 30%">Total Conversions</th>
+                
+                
+            </tr>
+      </ng-template>
+      <ng-template pTemplate="footer">
+          <tr>
+              
+              <td style="width: 30%">
+                  {{conversionReport?.totalConversions}}
+              </td>
+              
+          </tr>
+      </ng-template>
+      </p-table>
+      

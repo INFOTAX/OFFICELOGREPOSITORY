@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MarketingConversionReportService } from '../services/marketing-conversion-report.service';
 
 @Component({
   selector: 'app-marketing-dashboard',
@@ -7,13 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MarketingDashboardComponent implements OnInit {
 
-  TotalVisits=100;
-  QuearyHandled=51;
-  SoftwareInterested=60;
+  
+  marketingReport;
+  conversionReport;
 
-  constructor() { }
+  constructor(private marketingAndConversionService : MarketingConversionReportService) { }
 
   ngOnInit() {
+    this.getMarketingReport();
+    this.getConversionReport();
+  }
+
+  getMarketingReport(){
+    this.marketingAndConversionService.getMarketingReports().subscribe(res => this.marketingReport = res );
+  }
+
+  getConversionReport(){
+    this.marketingAndConversionService.getConversionReports().subscribe(res => {
+      this.conversionReport = res;
+      (error : any) => {
+        alert('TimeOut')
+      } 
+    })
   }
 
 }

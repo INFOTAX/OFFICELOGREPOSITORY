@@ -1,55 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { DialogModule } from 'primeng/dialog';
+
 import { AppComponent } from './app.component';
 import { CompanyLogFormComponent } from './company-log-form/company-log-form.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DropdownModule } from 'primeng/dropdown';
-import { CheckboxModule } from 'primeng/checkbox';
-import { RadioButtonModule } from 'primeng/radiobutton';
-import { ButtonModule } from 'primeng/button';
-import { PanelModule } from 'primeng/panel';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { FieldsetModule } from 'primeng/fieldset';
+
 import { MarketingLogFormComponent } from './marketing-log-form/marketing-log-form.component';
 import { RouterModule, Routes } from "@angular/router";
 import { FrontLayoutComponent } from './front-layout/front-layout.component';
-import { TableModule } from 'primeng/table';
 import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
 import { CompanylogService } from './services/companylog.service';
-import { ICompanylog } from './company-log-list/company';
-import { DataViewModule } from 'primeng/dataview';
 import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {ToastModule} from 'primeng/toast';
-import { MenubarModule } from 'primeng/menubar';
-import { MenuItem } from 'primeng/api';
-import { CardModule } from 'primeng/card';
-import {ConfirmationService} from 'primeng/api';
-import {Message, LazyLoadEvent} from 'primeng/components/common/api';
-import {  GrowlModule } from 'primeng/growl';
-import {ConfirmDialogModule} from 'primeng/primeng';
-import {PaginatorModule} from 'primeng/paginator';
 import { LoginUserFormComponent } from './login-user-form/login-user-form.component';
 import { UserlogService } from './services/userlog.service';
-import {CalendarModule} from 'primeng/calendar';
 import { ConversionListComponent } from './conversion-list/conversion-list.component';
-import {ScrollPanelModule} from 'primeng/scrollpanel';
 import { MarketingDashboardComponent } from './marketing-dashboard/marketing-dashboard.component';
-
-import {ToggleButtonModule} from 'primeng/togglebutton';
 import { SignInFormComponent } from './sign-in-form/sign-in-form.component';
 import { UserSignService } from './services/usersign.service';
-import {TooltipModule} from 'primeng/tooltip';
 import { CompanydashboardComponent } from './companydashboard/companydashboard.component';
-
 import { CompanyReportService } from './services/company-report.service';
 import { MarketingConversionReportService } from './services/marketing-conversion-report.service';
+import { SharedModule } from './shared/shared.module';
+
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
   { path: 'company_log/:id', component: CompanyLogFormComponent },
@@ -81,36 +59,16 @@ const appRoutes: Routes = [
     SignInFormComponent
   ],
   imports: [
-   TooltipModule,
-
-    ToggleButtonModule,
-    ScrollPanelModule,
-    PaginatorModule,
-    CalendarModule,
-    GrowlModule,
-    ConfirmDialogModule,
-    CardModule,
-    MenubarModule,
-    DialogModule,
+    SharedModule,   
     BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    DropdownModule,
-    CheckboxModule,
-    RadioButtonModule,
-    ButtonModule,
-    PanelModule,
+    
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     FormsModule,
-    InputTextareaModule,
-    FieldsetModule,
-    TableModule,
-    DataViewModule,
-    ToastModule,
-    CalendarModule
+    
   ],
-  providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,ConfirmationService,
+  providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,
               CompanyReportService,MarketingConversionReportService],
   bootstrap: [AppComponent]
 })
