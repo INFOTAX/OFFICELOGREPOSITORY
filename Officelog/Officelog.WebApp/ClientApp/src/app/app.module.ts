@@ -27,7 +27,8 @@ import { CompanydashboardComponent } from './companydashboard/companydashboard.c
 import { CompanyReportService } from './services/company-report.service';
 import { MarketingConversionReportService } from './services/marketing-conversion-report.service';
 import { SharedModule } from './shared/shared.module';
-import {ChartModule} from 'primeng/chart';
+import { ChartModule } from 'primeng/chart';
+import { ConversionFormComponent } from './conversion-form/conversion-form.component';
 
 
 const appRoutes: Routes = [
@@ -42,6 +43,7 @@ const appRoutes: Routes = [
   { path: 'marketing-dashBoard', component: MarketingDashboardComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
   { path: 'user_sign', component: SignInFormComponent},
+  { path: 'conversion-form/:id', component: ConversionFormComponent}
 ];
 
 @NgModule({
@@ -54,12 +56,12 @@ const appRoutes: Routes = [
     MarketingLogListComponent,
     NavigationBarComponent,
     DashboardComponent,
-CompanydashboardComponent ,
     LoginUserFormComponent,
     ConversionListComponent,
     MarketingDashboardComponent,
-    
-    SignInFormComponent
+    CompanydashboardComponent,
+    SignInFormComponent,
+    ConversionFormComponent
   ],
   imports: [
     SharedModule,   
