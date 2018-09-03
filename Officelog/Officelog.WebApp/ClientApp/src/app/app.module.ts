@@ -27,6 +27,7 @@ import { CompanydashboardComponent } from './companydashboard/companydashboard.c
 import { CompanyReportService } from './services/company-report.service';
 import { MarketingConversionReportService } from './services/marketing-conversion-report.service';
 import { SharedModule } from './shared/shared.module';
+import {ChartModule} from 'primeng/chart';
 
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
@@ -52,6 +53,7 @@ const appRoutes: Routes = [
     MarketingLogListComponent,
     NavigationBarComponent,
     DashboardComponent,
+    ChartModule,
     LoginUserFormComponent,
     ConversionListComponent,
     MarketingDashboardComponent,
