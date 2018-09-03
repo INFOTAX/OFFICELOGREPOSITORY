@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Officelog.Domain.AdminLog;
 using Officelog.Domain.UserProfileLog;
 
 namespace Officelog.Domain.Marketinglog
@@ -27,6 +28,10 @@ namespace Officelog.Domain.Marketinglog
 
         public UserProfile UserProfile { get; set; }
         public string UserProfileId { get; set; }
+
+        public Admin Admin { get; set; }
+
+        public int AdminId { get; set; }
         public Marketing()
         {
             ServiceItems = new List<ServiceItem>();

@@ -1,3 +1,5 @@
+using Officelog.Domain.AdminLog;
+
 namespace Officelog.Domain.UserProfileLog
 {
     public class UserProfile
@@ -8,6 +10,10 @@ namespace Officelog.Domain.UserProfileLog
         public string Designation { get; set; }
         public string Password { get; set; }
         public string Subject { get; set; }
+
+        public Admin Admin {get; set;}
+
+        public int AdminId {get; set;}
 
     }
 }
