@@ -30,8 +30,6 @@ export class MarketingLogFormComponent implements OnInit {
   ifOther = false;
   startDate: Date;
   lastDate: Date;
-  //today: number = Date.now();
-  //items;
   id: number;
   marketingLog: IMarketinglog;
 

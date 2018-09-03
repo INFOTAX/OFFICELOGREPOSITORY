@@ -1,6 +1,7 @@
 <div class="container" style="margin-top:5%" >
     <div class="ui-g">        
-            <p-table [value]="conversionList">
+            <p-table [value]="conversionList" (onRowSelect)="onRowSelect($event)" selectionMode="single" 
+            [(selection)]="selectedConversionList">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Name</th>
