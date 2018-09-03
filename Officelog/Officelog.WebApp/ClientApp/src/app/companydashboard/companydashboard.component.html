@@ -59,3 +59,63 @@
     
   </div>
   
+<div class="ui-g card"  style="background-image:linear-gradient(90deg, #31282840, #87d1f3) ;">
+    <div class="ui-g-10 ui-md-offset-1">
+      <!--table content-->
+      <div class="ui-g card">
+        <div class="ui-md-11 ui-sm-11-ui-g-11">
+            <br>
+            <br>
+            <p-table  >
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th rowspan=2> Summary </th>
+                        <th>Total visit </th>
+                        <th> Service Rating </th>
+                       <th>  Query Rating</th>
+                    </tr>
+                    <tr> 
+                        <th  style="background:white;"> {{totalVisit}}</th>
+                        <th  style="background:white;"> {{serviceIntrested}}</th>
+                        <th  style="background:white;">{{queryIntrested}}</th>
+                       </tr>
+                    
+                    </ng-template>
+            
+                   
+            
+            </p-table>
+            
+            
+            
+        </div>
+        </div>
+         <!--table content end-->
+  <!--service Rating chart-->
+         <div class="ui-g">
+            <div class="ui-md-6 ui-sm-11-ui-g-6">
+                <h3 style="text-align:center; font-size:26px;">Service Rating</h3>
+                <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+  
+            </div>
+            <div class="ui-md-6 ui-sm-11-ui-g-6">
+                  <h3 style="text-align:center; font-size:26px;">Query Rating</h3>
+                  <p-chart type="doughnut" [data]="data" [options]="options"></p-chart>
+    
+              </div>
+  </div>
+  <!--service Rating chart end-->
+  <!--Query Rating Rating chart-->
+  <div class="ui-g">
+          <div class="ui-md-11 ui-sm-11-ui-g-11">
+                  <h3 style="text-align:center; font-size:26px;">Total visitor</h3>
+              <p-chart type="line" [data]="dataBar"  [options]="opt"></p-chart> <br>
+  
+          </div>
+  </div>
+  <!--Query  Rating chart end-->
+  
+      </div>
+    
+  </div>
+  
