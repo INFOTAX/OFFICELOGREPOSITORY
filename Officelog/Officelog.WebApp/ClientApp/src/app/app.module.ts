@@ -29,6 +29,7 @@ import { MarketingConversionReportService } from './services/marketing-conversio
 import { SharedModule } from './shared/shared.module';
 import {ChartModule} from 'primeng/chart';
 
+
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
   { path: 'company_log/:id', component: CompanyLogFormComponent },
@@ -53,18 +54,18 @@ const appRoutes: Routes = [
     MarketingLogListComponent,
     NavigationBarComponent,
     DashboardComponent,
-    ChartModule,
+CompanydashboardComponent ,
     LoginUserFormComponent,
     ConversionListComponent,
     MarketingDashboardComponent,
-    CompanydashboardComponent,
+    
     SignInFormComponent
   ],
   imports: [
     SharedModule,   
     BrowserModule,
     HttpClientModule,
-    
+    ChartModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     FormsModule,

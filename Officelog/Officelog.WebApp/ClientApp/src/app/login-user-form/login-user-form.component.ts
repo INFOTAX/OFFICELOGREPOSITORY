@@ -20,9 +20,9 @@ export class LoginUserFormComponent implements OnInit {
   newForm(): FormGroup {
     return this.fb.group({
       id: 0,
-      userName: [''],
-      userContact: [''],
-      userDesigination: ['']
+      name: [''],
+      contactNumber: [''],
+      designation: ['']
       
     });
   }
