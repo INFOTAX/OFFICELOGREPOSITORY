@@ -8,6 +8,7 @@ namespace Officelog.WebApp.ConversionApi
         public int Id { get; set; }
         public string Name { get; set; }
         public string ContactNumber { get; set; }
+        public double Fee { get; set; }
          public List<SaveServiceItemResource> ServiceItems {get; set;}
 
     }

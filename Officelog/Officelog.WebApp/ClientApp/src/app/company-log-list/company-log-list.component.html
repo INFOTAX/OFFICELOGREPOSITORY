@@ -57,10 +57,10 @@
 
 
             <!--table list content start-->
-            <p-panel  [toggleable]="true"header="Company List Details :-">
+           
             <p-table #dtc [value]="companylogs" (onRowSelect)="onXYSelect($event)" selectionMode="single" [(selection)]="selectedCompanyLog"
-                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']" [paginator]="true" [rows]="5"
-                [scrollable]="true" scrollHeight="200px">
+                [globalFilterFields]="['serviceRating','name','contact','typeOfQuery','visitorType']" [paginator]="true" [rows]="7"
+                [scrollable]="true" scrollHeight="250px">
                 <ng-template pTemplate="header">
                     <tr>
                         <th>Name</th>
@@ -88,15 +88,12 @@
                     </tr>
                 </ng-template>
             </p-table>
-        </p-panel>
+        
 <br>
 <br>
 <!--summary content start -->
 
-
-
-
-
+<!-- <p-panel  [toggleable]="true"header="Company List Details :-"></p-panel>-->
 
 <!--summary content end -->
         </div>

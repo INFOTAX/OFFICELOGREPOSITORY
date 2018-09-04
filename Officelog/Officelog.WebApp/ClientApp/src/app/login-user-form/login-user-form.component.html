@@ -1,29 +1,30 @@
-<form [formGroup]="userProfileForm" style="margin-left: 220px; margin-right: 220px; margin-top:35px">
+<form [formGroup]="userProfileForm"  (ngSubmit)="saveUserLog()"
+style="margin-left: 220px; margin-right: 220px; margin-top:35px">
     <p-panel>
         <p-header  style="text-align:center;">
             <div class="ui-helper-clearfix">
-            <span class="ui-panel-title" style="font-family:Arial rounded bold;font-size:26px;display:inline-block;margin-top:2px">User Form</span>
+            <span class="ui-panel-title pan">User Form</span>
             </div>
         </p-header>
 
 <div class="ui-g ui-fluid">
     <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
-        <label for="userName"> Name:</label>
+        <label for="name"> Name:</label>
       </div>
-      <div class="ui-sm-8  ui-g-8">
-        <input id="userName" formControlName="userName" type="text" pInputText>
+      <div class="ui-sm-6  ui-g-6">
+        <input id="name" formControlName="name" type="text" pInputText>
       </div>
       <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
-          <label for="userContact">Contact:</label>
+          <label for="contactNumber">Contact:</label>
         </div>
-        <div class="ui-sm-8  ui-g-8">
-          <input id="name" formControlName="userContact" type="number" pInputText>
+        <div class="ui-sm-6  ui-g-6">
+          <input id="name" formControlName="contactNumber" type="number" pInputText>
         </div>
         <div class="ui-sm-4  ui-g-4" style="margin-top: 10px">
-            <label for="userDesigination">Desigination:</label>
+            <label for="designation">Desigination:</label>
           </div>
-          <div class="ui-sm-8  ui-g-8">
-            <input id="name" formControlName="userDesigination" type="text" pInputText>
+          <div class="ui-sm-6  ui-g-6">
+            <input id="name" formControlName="designation" type="text" pInputText>
           </div>
 
 </div>

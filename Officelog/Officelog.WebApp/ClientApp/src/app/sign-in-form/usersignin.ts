@@ -1,9 +1,9 @@
 export interface IUserSign {
 
         id: number;
-        signInName: string;
+        name: string;
 
-        signInPassword: string;
+        password: string;
 
 
 }

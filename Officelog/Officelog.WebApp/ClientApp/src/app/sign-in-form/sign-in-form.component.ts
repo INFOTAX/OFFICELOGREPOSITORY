@@ -19,8 +19,8 @@ export class SignInFormComponent implements OnInit {
   newForm(): FormGroup {
     return this.fb.group({
       id: 0,
-      signInName: [''],
-      signInPassword: ['']
+      name: [''],
+      password: ['']
      
       
     });

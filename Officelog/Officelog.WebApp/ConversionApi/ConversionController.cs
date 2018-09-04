@@ -42,5 +42,36 @@ namespace Officelog.WebApp.ConversionApi
 
                return _mapper.Map<Marketing,SaveConvertedResource>(convertedLogsById);                                             
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateConversionLog(int id, [FromBody] SaveConvertedResource model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var conversionFromDb = await _database.Marketings.Include(co => co.ServiceItems).Where(co => co.ConversionStatus == ConversionStatus.Achieved)
+                                                            .SingleOrDefaultAsync(co => co.Id == id);
+            if (conversionFromDb == null)
+            {
+                return NotFound();
+            }
+
+            conversionFromDb.ModifyConversion(model.Name, model.ContactNumber,
+                                  model.Fee,
+                                   
+                                   ServiceItems(model));
+
+            await _unitOfWork.CompleteAsync();
+            return Ok(_mapper.Map<Marketing, ConvertedResource>(conversionFromDb));
+
+
+        }
+
+        private static List<ServiceItem> ServiceItems(SaveConvertedResource model)
+        {
+            return model.ServiceItems.Select(item => ServiceItem.Add(item.ServiceType,
+                     item.Rate))
+                .ToList();
+        }
     }
 }

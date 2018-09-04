@@ -85,6 +85,18 @@ namespace Officelog.Domain.Marketinglog
             IsActive = true;
          }
 
+         public void ModifyConversion(string name,string contactNumber,
+                        double fee,List<ServiceItem> serviceItems)
+         {
+             Name = name;
+            ContactNumber = contactNumber;
+             Fee = fee;
+            ServiceItems = serviceItems;
+            IsActive = true;
+         }
+
+
+
          public void Delete()
          {
              IsActive = false;
