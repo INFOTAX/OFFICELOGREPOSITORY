@@ -81,7 +81,8 @@ searchByDate(startDate:Date,lastDate: Date){
   })
 }
 
-patchConversion(){
+patchConversion(rowData){
+  this.selectedMarketingLog = rowData;
   this._marketinglogService.conversion(this.selectedMarketingLog,this.selectedMarketingLog.id).subscribe(() =>{
     this.searchByDate(this.startDate,this.lastDate);
   })

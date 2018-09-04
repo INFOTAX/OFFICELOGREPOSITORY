@@ -32,10 +32,10 @@ export class MarketingDashboardComponent implements OnInit {
 
     
     this.data = { 
-      labels: ['Total Conversations','Total Software Interested','Total Software Interested'],
+      labels: ['Total Conversions','Total Software Interested','Total Software Interested'],
       datasets: [
           { 
-              data: [this.x,this.y,this.z],
+              data: [260,180,225],
               backgroundColor: [
                   "#FF6384",
                   "#36A2EB",

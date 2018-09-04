@@ -33,6 +33,8 @@ import { AdminUserProfileMarketingReportingComponent } from './admin-user-profil
 import { AdminUserProfileCompanyReportingComponent } from './admin-user-profile-company-reporting/admin-user-profile-company-reporting.component';
 import { AdminUserwiseReportDashboardComponent } from './admin-userwise-report-dashboard/admin-userwise-report-dashboard.component';
 import { AdminUserProfileReportingService } from './services/admin-user-profile-reporting.service';
+import { AdminConsolidatedMarketingReportingComponent } from './admin-consolidated-marketing-reporting/admin-consolidated-marketing-reporting.component';
+import { AdminConsolidatedCompanyReportingComponent } from './admin-consolidated-company-reporting/admin-consolidated-company-reporting.component';
 
 
 const appRoutes: Routes = [
@@ -51,7 +53,10 @@ const appRoutes: Routes = [
   { path: 'admin-userwise-report-dashboard', component: AdminUserwiseReportDashboardComponent},
   
   { path: 'admin_user_profile_company_reporting/:userName', component: AdminUserProfileCompanyReportingComponent},
-  { path: 'admin_user_profile_marketing_reporting/:userName', component: AdminUserProfileMarketingReportingComponent}
+  { path: 'admin_user_profile_marketing_reporting/:userName', component: AdminUserProfileMarketingReportingComponent},
+  { path: 'Marketing-report', component: AdminConsolidatedMarketingReportingComponent},
+  { path: 'Company-report', component: AdminConsolidatedCompanyReportingComponent},
+  { path: 'conversion-form/:id', component: ConversionFormComponent}
 ];
 
 @NgModule({
@@ -72,7 +77,9 @@ const appRoutes: Routes = [
     ConversionFormComponent,
     AdminUserProfileMarketingReportingComponent,
     AdminUserProfileCompanyReportingComponent,
-    AdminUserwiseReportDashboardComponent
+    AdminUserwiseReportDashboardComponent,
+    AdminConsolidatedMarketingReportingComponent,
+    AdminConsolidatedCompanyReportingComponent
   ],
   imports: [
     SharedModule,   
