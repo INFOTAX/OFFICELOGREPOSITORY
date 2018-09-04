@@ -41,6 +41,8 @@ namespace Officelog.WebApp.CompanyApi
         {
             var companies = await _database.
                                     Companies
+                                    .Where(co=>co.AdminId==AdminId)
+                                    .Where(co=>co.UserProfileId==UserProfileId)
                                     .Where(co => co.Date.Date >= fromDate.Date && co.Date.Date <= toDate.Date)
                                     .ToListAsync();
             
@@ -66,7 +68,7 @@ namespace Officelog.WebApp.CompanyApi
         var company = new Company ( model.Name, model.ContactNumber,  model.QueryHandling,
                          model.ServiceProvided,  model.VisitorType,
                          model.SoftwareInterested,  model.RateUs, 
-                         model.SuggestionForYes, model.SuggestionForNo,model.Date,model.RateUsForNo, UserProfileId
+                         model.SuggestionForYes, model.SuggestionForNo,model.Date,model.RateUsForNo, UserProfileId, AdminId
 );
       _companyRepository.Add(company);
 

@@ -24,6 +24,11 @@ export class DashboardComponent implements OnInit {
     // this.compLog=true;
     // this.markLog=false;
   }
+  companydashboardLog(){
+
+    this._router.navigate(['companydashboard_log']);
+   
+  }
   dashboardLog(){
 
     this._router.navigate(['dashboard_log']);

@@ -30,6 +30,7 @@ import { SharedModule } from './shared/shared.module';
 import { ChartModule } from 'primeng/chart';
 import { ConversionFormComponent } from './conversion-form/conversion-form.component';
 
+
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
   { path: 'company_log/:id', component: CompanyLogFormComponent },

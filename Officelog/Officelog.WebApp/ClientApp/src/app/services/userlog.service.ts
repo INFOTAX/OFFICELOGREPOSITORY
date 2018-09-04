@@ -16,14 +16,15 @@ export class UserlogService extends ServiceBase<IUserlog> {
     constructor(private http: HttpClient) {
         super(http,'')
     }
+    
 
     intializeObject(): IUserlog {
         return {
             id : 0,
-            userName: "",
-            userContact: "",
+            name: "",
+           contactNumber: "",
 
-            userDesigination: "",
+            designation: "",
 
         }
     }

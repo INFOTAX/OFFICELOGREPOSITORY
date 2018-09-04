@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,12 @@ namespace Officelog.WebApp.UserProfileApi
         private readonly IUnitOfWork _unitOfWork;
 
         protected string UserProfileId => GetCurrentUserProfileId();
+        protected int AdminId => GetAdminId();
+
+        private int GetAdminId()
+        {
+           return 1;
+        }
 
         public UserProfileController(IMapper mappper, IReadModelDatabase database,
                                      IUserProfileRepository userProfileRepository, 
@@ -35,7 +42,7 @@ namespace Officelog.WebApp.UserProfileApi
 
         [HttpGet("Profile")]
 
-        public async Task<UserProfileResource> GetUserProfileById(string id="1")
+        public async Task<UserProfileResource> GetUserProfileById(string id)
 
         {
             var userProfile = await _database.UserProfiles.SingleOrDefaultAsync(p=> p.Id == id);

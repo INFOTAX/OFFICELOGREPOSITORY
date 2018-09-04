@@ -22,8 +22,8 @@ export class UserSignService extends ServiceBase<IUserSign> {
     intializeObject(): IUserSign {
         return {
             id : 0,
-            signInName: "",
-            signInPassword: "",
+            name: "",
+        password: "",
 
            
 
