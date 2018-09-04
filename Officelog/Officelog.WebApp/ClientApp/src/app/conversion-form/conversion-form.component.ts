@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 export interface ServiceItems {
   serviceType: string;
-  price: number;
+  rate: number;
 }
 
 @Component({
@@ -67,13 +67,14 @@ export class ConversionFormComponent implements OnInit {
   private buildServiceType(serviceItem: ServiceItems): FormGroup {
     return this.fb.group({
         serviceType: [serviceItem.serviceType],
-        price : [serviceItem.price]
+        rate : [serviceItem.rate]
       
     })
   }
 
   private onMarketingLogRetrieved(marketingLog : IMarketinglog) :void{
     this.marketingLog = marketingLog;
+    console.log(this.marketingLog);
 
     if (this.marketingLog.id == 0) {
       this.conversionForm = this.newForm();
@@ -94,6 +95,7 @@ export class ConversionFormComponent implements OnInit {
 
     }
     }
+    console.log(this.marketingLog)
   }
 
 
