@@ -14,18 +14,23 @@ export class UserlogService extends ServiceBase<IUserlog> {
 
     userLogs: IUserlog[];
     constructor(private http: HttpClient) {
-        super(http,'')
+        super(http,'api/UserProfile')
     }
+    
 
     intializeObject(): IUserlog {
         return {
             id : 0,
-            userName: "",
-            userContact: "",
+            name: "",
+           contactNumber: "",
 
-            userDesigination: "",
+            designation: "",
 
         }
+    }
+
+    getProfile():Observable<IUserlog>{
+        return this.http.get<IUserlog>(`${this.baseUrl}/Profile`);
     }
    
 }

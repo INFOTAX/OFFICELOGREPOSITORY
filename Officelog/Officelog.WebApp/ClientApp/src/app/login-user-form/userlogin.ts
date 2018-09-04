@@ -1,11 +1,10 @@
 
-
 export interface IUserlog{
       id: number;
-      userName:string;
+      name:string;
      
-      userContact: string;
-      userDesigination: string;
+      contactNumber: string;
+      designation: string;
      
     
 }
