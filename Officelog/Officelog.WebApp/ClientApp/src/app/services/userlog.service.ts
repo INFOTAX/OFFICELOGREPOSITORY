@@ -32,6 +32,11 @@ export class UserlogService extends ServiceBase<IUserlog> {
     getProfile():Observable<IUserlog>{
         return this.http.get<IUserlog>(`${this.baseUrl}/Profile`);
     }
+
+    getUserUnits():Observable<IUserlog[]>{
+        return this.http.get<IUserlog[]>(`${this.baseUrl}/UserUnits`);
+    }
+
    
 }
 

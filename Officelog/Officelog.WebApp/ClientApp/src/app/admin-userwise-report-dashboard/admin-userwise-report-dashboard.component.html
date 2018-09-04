@@ -1,0 +1,15 @@
+
+    
+      <br>
+      <br>
+          <p-dropdown [style]="{'width': '175px'}" [options]="usersSelectList" [(ngModel)]="userName"  placeholder="Select a Type" filter="true">
+            <ng-template let-option pTemplate="item">
+              <div translate> {{option.label}}</div>
+            </ng-template>
+          </p-dropdown>
+          <p-button label="Submit" button type="button" (onClick)="adminUserProfileCompanyReporting()" icon="fa fa-fw fa-arrow-left" class="ui-button-rounded ui-button-success"></p-button>
+          <p>&nbsp;</p>
+       
+    
+
+ 

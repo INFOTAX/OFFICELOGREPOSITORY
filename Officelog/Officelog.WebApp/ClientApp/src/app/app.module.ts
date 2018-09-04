@@ -29,6 +29,10 @@ import { MarketingConversionReportService } from './services/marketing-conversio
 import { SharedModule } from './shared/shared.module';
 import { ChartModule } from 'primeng/chart';
 import { ConversionFormComponent } from './conversion-form/conversion-form.component';
+import { AdminUserProfileMarketingReportingComponent } from './admin-user-profile-marketing-reporting/admin-user-profile-marketing-reporting.component';
+import { AdminUserProfileCompanyReportingComponent } from './admin-user-profile-company-reporting/admin-user-profile-company-reporting.component';
+import { AdminUserwiseReportDashboardComponent } from './admin-userwise-report-dashboard/admin-userwise-report-dashboard.component';
+import { AdminUserProfileReportingService } from './services/admin-user-profile-reporting.service';
 
 
 const appRoutes: Routes = [
@@ -43,7 +47,11 @@ const appRoutes: Routes = [
   { path: 'marketing-dashBoard', component: MarketingDashboardComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
   { path: 'user_sign', component: SignInFormComponent},
-  { path: 'conversion-form/:id', component: ConversionFormComponent}
+  { path: 'conversion-form/:id', component: ConversionFormComponent},
+  { path: 'admin-userwise-report-dashboard', component: AdminUserwiseReportDashboardComponent},
+  
+  { path: 'admin_user_profile_company_reporting/:userName', component: AdminUserProfileCompanyReportingComponent},
+  { path: 'admin_user_profile_marketing_reporting/:userName', component: AdminUserProfileMarketingReportingComponent}
 ];
 
 @NgModule({
@@ -61,7 +69,10 @@ const appRoutes: Routes = [
     MarketingDashboardComponent,
     CompanydashboardComponent,
     SignInFormComponent,
-    ConversionFormComponent
+    ConversionFormComponent,
+    AdminUserProfileMarketingReportingComponent,
+    AdminUserProfileCompanyReportingComponent,
+    AdminUserwiseReportDashboardComponent
   ],
   imports: [
     SharedModule,   
@@ -74,7 +85,7 @@ const appRoutes: Routes = [
     
   ],
   providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,
-              CompanyReportService,MarketingConversionReportService],
+              CompanyReportService,MarketingConversionReportService,AdminUserProfileReportingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
