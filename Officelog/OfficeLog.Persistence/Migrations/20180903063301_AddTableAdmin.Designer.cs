@@ -12,9 +12,10 @@ using System;
 namespace OfficeLog.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180903063301_AddTableAdmin")]
+    partial class AddTableAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,8 +27,6 @@ namespace OfficeLog.Persistence.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name");
-
                     b.HasKey("Id");
 
                     b.ToTable("Admin");
@@ -37,8 +36,6 @@ namespace OfficeLog.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AdminId");
 
                     b.Property<string>("ContactNumber");
 
@@ -68,8 +65,6 @@ namespace OfficeLog.Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdminId");
-
                     b.HasIndex("UserProfileId");
 
                     b.ToTable("Companies");
@@ -79,8 +74,6 @@ namespace OfficeLog.Persistence.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<int>("AdminId");
 
                     b.Property<string>("Area");
 
@@ -115,8 +108,6 @@ namespace OfficeLog.Persistence.Migrations
                     b.Property<string>("UserProfileId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AdminId");
 
                     b.HasIndex("UserProfileId");
 
@@ -167,11 +158,6 @@ namespace OfficeLog.Persistence.Migrations
 
             modelBuilder.Entity("Officelog.Domain.Companylog.Company", b =>
                 {
-                    b.HasOne("Officelog.Domain.AdminLog.Admin", "Admin")
-                        .WithMany()
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Officelog.Domain.UserProfileLog.UserProfile", "UserProfile")
                         .WithMany()
                         .HasForeignKey("UserProfileId");
@@ -179,11 +165,6 @@ namespace OfficeLog.Persistence.Migrations
 
             modelBuilder.Entity("Officelog.Domain.Marketinglog.Marketing", b =>
                 {
-                    b.HasOne("Officelog.Domain.AdminLog.Admin", "Admin")
-                        .WithMany()
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Officelog.Domain.UserProfileLog.UserProfile", "UserProfile")
                         .WithMany()
                         .HasForeignKey("UserProfileId");

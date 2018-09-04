@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -17,6 +18,12 @@ namespace Officelog.WebApp.UserProfileApi
         private readonly IUnitOfWork _unitOfWork;
 
         protected string UserProfileId => GetCurrentUserProfileId();
+        protected int AdminId => GetAdminId();
+
+        private int GetAdminId()
+        {
+           return 1;
+        }
 
         public UserProfileController(IMapper mappper, IReadModelDatabase database,
                                      IUserProfileRepository userProfileRepository, 
