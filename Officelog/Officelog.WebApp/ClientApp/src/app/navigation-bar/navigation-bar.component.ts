@@ -25,6 +25,8 @@ export class NavigationBarComponent implements OnInit {
         {label: 'Company list', icon: 'fa fa-fw fa-book' ,routerLink: ['/company_log_list']},
       ],
        icon: 'fa fa-fw fa-book',routerLink: ['/companydashboard_log']},
+
+
        {label: 'Market', 
       items:[
         {label: 'Marketing Log', icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']},
@@ -33,9 +35,16 @@ export class NavigationBarComponent implements OnInit {
       icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']},
 
 
-           
-      {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']}
-]
+      {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']},
+
+      {label: 'Consolidated-admin',
+      items:[
+        {label: 'Marketing-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Marketing-report']},
+        {label: 'Company-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Company-report']},
+      ],
+       icon: 'fa fa-fw fa-book'},
+
+]   
 
   }
   marketingLogList() {

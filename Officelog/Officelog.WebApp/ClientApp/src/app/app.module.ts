@@ -29,6 +29,8 @@ import { MarketingConversionReportService } from './services/marketing-conversio
 import { SharedModule } from './shared/shared.module';
 import { ChartModule } from 'primeng/chart';
 import { ConversionFormComponent } from './conversion-form/conversion-form.component';
+import { AdminConsolidatedMarketingReportingComponent } from './admin-consolidated-marketing-reporting/admin-consolidated-marketing-reporting.component';
+import { AdminConsolidatedCompanyReportingComponent } from './admin-consolidated-company-reporting/admin-consolidated-company-reporting.component';
 
 
 const appRoutes: Routes = [
@@ -43,6 +45,8 @@ const appRoutes: Routes = [
   { path: 'marketing-dashBoard', component: MarketingDashboardComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
   { path: 'user_sign', component: SignInFormComponent},
+  { path: 'Marketing-report', component: AdminConsolidatedMarketingReportingComponent},
+  { path: 'Company-report', component: AdminConsolidatedCompanyReportingComponent},
   { path: 'conversion-form/:id', component: ConversionFormComponent}
 ];
 
@@ -61,7 +65,9 @@ const appRoutes: Routes = [
     MarketingDashboardComponent,
     CompanydashboardComponent,
     SignInFormComponent,
-    ConversionFormComponent
+    ConversionFormComponent,
+    AdminConsolidatedMarketingReportingComponent,
+    AdminConsolidatedCompanyReportingComponent
   ],
   imports: [
     SharedModule,   
