@@ -65,7 +65,7 @@ export class LoginUserFormComponent implements OnInit {
         }
       }
 
-      saveCompanyLog(): void {
+      saveUserLog(): void {
 
         if (this.userProfileForm.valid) {
     
