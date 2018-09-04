@@ -14,7 +14,7 @@ export class UserlogService extends ServiceBase<IUserlog> {
 
     userLogs: IUserlog[];
     constructor(private http: HttpClient) {
-        super(http,'')
+        super(http,'api/UserProfile')
     }
     
 
@@ -27,6 +27,10 @@ export class UserlogService extends ServiceBase<IUserlog> {
             designation: "",
 
         }
+    }
+
+    getProfile():Observable<IUserlog>{
+        return this.http.get<IUserlog>(`${this.baseUrl}/Profile`);
     }
    
 }

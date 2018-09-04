@@ -2,7 +2,7 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '../../../node_modules/@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import { SelectItem, Message } from 'primeng/api';
 import { UserlogService } from '../services/userlog.service';
 import { IUserlog } from './userlogin';
 
@@ -14,80 +14,71 @@ import { IUserlog } from './userlogin';
 })
 export class LoginUserFormComponent implements OnInit {
   userProfileForm: FormGroup;
+  action: string;
+  pageTitle;
   userlogs:IUserlog;
   id: number;
-
+  msgs:Message[] = [];
   constructor(private fb: FormBuilder,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
     private _userlogService: UserlogService) { }
 
   ngOnInit() {
+ this.userProfileForm=this.fb.group({
+   id:'',
+   name:[''],
+   contactNumber:[''],
+   desigination:[''],
+ });
+   this. _userlogService.getProfile().subscribe(up =>{
+     this.userlogs=up;
+     console.log(up);
+     this.userProfileForm.patchValue({
+       id:this.userlogs.id,
+       name:this.userlogs.name,
+       contactNumber:this.userlogs.contactNumber,
+       desigination:this.userlogs.designation
+
+     });
+    /* this._activatedRoute.params.subscribe(params=>
+    {
+      this.action=params['action'];
+      if(this.action=='edit'){
+        this.userProfileForm.enable();
+      }
+      else{
+        this.userProfileForm.disable();
+      }
+    });*/
+   });
+   this.pageTitle=`User Log`;
+
+  }
  
-    this.userProfileForm = this.newForm();
-    this._activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-      this.getUserLog(this.id);
-
-    });
+  onSave(): void{
+    if (this.userProfileForm.dirty && this.userProfileForm.valid){
+      let p =Object.assign({},this.userlogs,this.userProfileForm.value);
+    /* this.loadingService.busy= this._userlogservice.updateProfile(p)
+    .subscribe(()=>this.onSaveComplete());*/
+    }
+    else if( !this.userProfileForm.dirty){
+      this.onSaveComplete();
+    }
   }
-  newForm(): FormGroup {
-    return this.fb.group({
-      id: 0,
-      name: [''],
-      contactNumber: [''],
-      designation: ['']
-      
+  private onSaveComplete(): void {
+   /* UserSetting.setYearSettings(this.userProfileForm.get('selectedYear').value);
+    this.msgs = [];
+    this.msgs.push({
+      severity : 'success',
+      summary : 'Success Message',
+      detail : 'User Profile Updated' 
     });
+  
+    // Reset the form to clear the flags*/
+    this.userProfileForm.reset();
+    this._router.navigate(['/user_log']);
   }
-  private getUserLog(id: number) {
-    this._userlogService.getOne(id).subscribe( (userlogs: IUserlog) => this.onUserLogRetrieved(
-      userlogs));
-
-   
-      }
-      private onUserLogRetrieved(userlogs: IUserlog): void {
-
-        this.userlogs = userlogs;
-        if (this.userlogs.id == 0) {
-          this.userProfileForm = this.newForm();
-         
-        }
-        else{
-          this.userProfileForm.patchValue({
-    
-            id:this.userlogs.id,
-            name:this.userlogs.name,
-            contactNumber:this.userlogs.contactNumber,
-            designation:this.userlogs.designation
-          })
-
-        }
-      }
-
-      saveUserLog(): void {
-
-        if (this.userProfileForm.valid) {
-    
-          let userlogsToSave = Object.assign({}, this.userlogs, this.userProfileForm.value);
-    
-          this._userlogService.save(userlogsToSave, this.id).subscribe(() => {});
-          this.onSaveComplete();
-        }
-    
-    
-        else if (!this.userProfileForm.dirty) {
-          this.onSaveComplete();
-        }
-      }
-    
-      private onSaveComplete(): void {
-        const displayMsg = this.id == 0 ? 'Saved' : 'Updated';
-
-        this._router.navigate(['/user_log']);
-    
-    
-      }
 
   userLog(){
 
