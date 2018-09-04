@@ -6,11 +6,14 @@ using Officelog.Domain.UserProfileLog;
 using Officelog.WebApp.UserProfileApi;
 using OfficeLog.Persistence;
 using Officelog.Domain.Reports;
+using Microsoft.EntityFrameworkCore;
+using Officelog.WebApp.AdminReportingApi.Class;
+using Officelog.Domain.Marketinglog;
 
 namespace Officelog.WebApp.AdminReportingApi
 {
     [Produces("application/json")]
-    [Route("api/admin")]
+    [Route("api/AdminConsolidatedReport")]
     public class AdminConsolidatedReportingController : UserProfileController
     {
         private readonly IReadModelDatabase _database;
@@ -77,13 +80,38 @@ namespace Officelog.WebApp.AdminReportingApi
                   var totalServiceInterested = _database.Marketings.Where(m => m.AdminId == AdminId).Count(ts=>ts.ServiceInterested=="Yes");
 
             var totalSoftwareInterested = _database.Marketings.Where(m => m.AdminId == AdminId).Count(ts => ts.SoftwareInterested =="Yes");
-            
+            var averagePriceOfSoftware = _database.Marketings.Where(m => m.AdminId == AdminId).Average(m=> m.Fee);
+            var averageRate = _database.Marketings
+                                                    .Where(mk=>mk.AdminId==AdminId)
+                                                   .Include(mi=>mi.ServiceItems).ThenInclude(m => m.Rate)
+                                                   ; 
+                                                   
+                            
+                            
 
-            return Ok(new MarketingReport{
+            // return Ok(new MarketingReport{
 
+            //     TotalServiceInterested = totalServiceInterested,
+            //     TotalSoftwareInterested = totalSoftwareInterested
+            return Ok (new AdminConsolidatedMarketingReport{
+                TotalSoftwareInterested = totalSoftwareInterested,
                 TotalServiceInterested = totalServiceInterested,
-                TotalSoftwareInterested = totalSoftwareInterested
-            });
+                AveragePriceOfSoftware = averagePriceOfSoftware,
+                // AverageRate = averageRate
+                 });
+            // });
+            }
+
+            [HttpGet("Conversions")]
+            public IActionResult GetConsolidatedConversionsReports()
+            {
+                var totalConversions = _database.Marketings
+                                    .Where(a=>AdminId == AdminId)
+                                    .Count(tc=>tc.ConversionStatus == ConversionStatus.Achieved);
+                return Ok(new AdminConversionConsolidatedReport{
+                    TotalConversions = totalConversions,
+                });
+                    
             }
     }
 }

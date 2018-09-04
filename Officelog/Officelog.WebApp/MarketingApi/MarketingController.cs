@@ -41,6 +41,8 @@ namespace Officelog.WebApp.MarketingApi
         {
             var marketings = await _database.
                                     Marketings
+                                    .Where(mk=>mk.AdminId == AdminId)
+                                    .Where(mk=>mk.UserProfileId == UserProfileId)
                                     .Where(mk => mk.Date.Date >= fromDate.Date && mk.Date.Date <= toDate.Date)
                                     .Where(mk => mk.ConversionStatus == ConversionStatus.Created)
                                     .ToListAsync();
@@ -71,7 +73,7 @@ namespace Officelog.WebApp.MarketingApi
             var marketing = new Marketing(model.Name, model.ContactNumber, model.ServiceInterested,
                              model.SoftwareInterested, model.ConversionStatus,
                               model.RateUs, model.SuggestionForYes, model.SuggestionForNo, model.Area,model.Date,
-                              model.Price,model.CurrentScenario,model.RateUsForNo,model.Fee, UserProfileId, ServiceItems(model));
+                              model.Price,model.CurrentScenario,model.RateUsForNo,model.Fee, UserProfileId, AdminId, ServiceItems(model));
 
             _marketingRepository.Add(marketing);
 
