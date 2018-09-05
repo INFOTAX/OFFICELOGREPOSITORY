@@ -35,7 +35,7 @@ import { AdminUserwiseReportDashboardComponent } from './admin-userwise-report-d
 import { AdminUserProfileReportingService } from './services/admin-user-profile-reporting.service';
 import { AdminConsolidatedMarketingReportingComponent } from './admin-consolidated-marketing-reporting/admin-consolidated-marketing-reporting.component';
 import { AdminConsolidatedCompanyReportingComponent } from './admin-consolidated-company-reporting/admin-consolidated-company-reporting.component';
-
+import {CardModule} from 'primeng/card';
 
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
@@ -82,6 +82,7 @@ const appRoutes: Routes = [
     AdminConsolidatedCompanyReportingComponent
   ],
   imports: [
+    CardModule,
     SharedModule,   
     BrowserModule,
     HttpClientModule,
