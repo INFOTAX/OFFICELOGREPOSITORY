@@ -74,7 +74,7 @@ export class ConversionFormComponent implements OnInit {
 
   private onMarketingLogRetrieved(marketingLog : IMarketinglog) :void{
     this.marketingLog = marketingLog;
-    console.log(this.marketingLog);
+    console.log(this.marketingLog); 
 
     if (this.marketingLog.id == 0) {
       this.conversionForm = this.newForm();
