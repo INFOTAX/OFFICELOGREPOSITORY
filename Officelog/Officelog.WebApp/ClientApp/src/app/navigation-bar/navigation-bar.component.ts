@@ -12,9 +12,16 @@ export class NavigationBarComponent implements OnInit {
   [x: string]: any;
   items: MenuItem[];
 
-  constructor(private _router : Router) { }
+  constructor(private _router : Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params=>{
+      this.userName = params['userName'];
+      
+      
+       
+    })
     this.items = [ 
       {label: 'Home', icon: 'fa fa-fw fa-home' ,routerLink: ['/dashboard_log']},
       
@@ -32,11 +39,22 @@ export class NavigationBarComponent implements OnInit {
         {label: 'Marketing Log', icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']},
         {label: 'Marketing list', icon: 'fa fa-fw fa-book',routerLink: ['/marketing_log_list']},
       ],
-      icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']},
+      icon: 'fa fa-fw fa-book',routerLink: ['/marketing-dashBoard']
+    },
+    {label: 'Admin User ProfileReporting Dashboard', 
+    items:[
+      {label: 'Company User Profile', icon: 'fa fa-fw fa-book',routerLink: ['/admin_user_profile_company_reporting,userName']},
+      {label: 'Marketing User Profile', icon: 'fa fa-fw fa-book',routerLink: ['/admin_user_profile_marketing_reporting',this.userName]},
+    ],
+    icon: 'fa fa-fw fa-area-chart ',routerLink: ['/admin-userwise-report-dashboard']
+  },
 
-
-      {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']},
-
+     
+           
+      {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']}
+],
+      
+[
       {label: 'Consolidated-admin',
       items:[
         {label: 'Marketing-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Marketing-report']},
@@ -44,7 +62,7 @@ export class NavigationBarComponent implements OnInit {
       ],
        icon: 'fa fa-fw fa-book'},
 
-]   
+    ]
 
   }
   marketingLogList() {
@@ -63,5 +81,14 @@ export class NavigationBarComponent implements OnInit {
 
     this._router.navigate(['user_log']);
     
+  }
+  adminUserProfileCompanyReporting(){
+    this._router.navigate(['/admin_user_profile_company_reporting']);
+  }
+  adminUserMarketingCompanyReporting(){
+    this._router.navigate(['/admin_user_profile_marketing_reporting']);
+  }
+  adminUserWiseDashboardReporting(){
+    this._router.navigate(['/admin-userwise-report-dashboard']);
   }
 }
