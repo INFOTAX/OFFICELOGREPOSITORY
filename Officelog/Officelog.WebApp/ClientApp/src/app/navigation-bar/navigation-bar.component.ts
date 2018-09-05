@@ -51,20 +51,22 @@ export class NavigationBarComponent implements OnInit {
 
      
            
-      {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']}
-],
+      {label: 'Conversion list', icon:'fa fa-fw fa-book',routerLink: ['/conversion_list']
+    
+    },
+
+    {label: 'Consolidated-admin',
+    items:[
+      {label: 'Marketing-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Marketing-report']},
+      {label: 'Company-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Company-report']},
+    ],
+     icon: 'fa fa-fw fa-book'},
+  ]
       
-[
-      {label: 'Consolidated-admin',
-      items:[
-        {label: 'Marketing-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Marketing-report']},
-        {label: 'Company-report', icon: 'fa fa-fw fa-book' ,routerLink: ['/Company-report']},
-      ],
-       icon: 'fa fa-fw fa-book'},
 
-    ]
+     
 
-  }
+}
   marketingLogList() {
 
     this._router.navigate(['marketing_log_list']);
