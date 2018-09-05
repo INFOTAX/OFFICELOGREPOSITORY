@@ -43,7 +43,7 @@ export class NavigationBarComponent implements OnInit {
     },
     {label: 'Admin User ProfileReporting Dashboard', 
     items:[
-      {label: 'Company User Profile', icon: 'fa fa-fw fa-book',routerLink: ['/admin_user_profile_company_reporting,userName']},
+      {label: 'Company User Profile', icon: 'fa fa-fw fa-book',routerLink: ['/admin_user_profile_company_reporting',this.userName]},
       {label: 'Marketing User Profile', icon: 'fa fa-fw fa-book',routerLink: ['/admin_user_profile_marketing_reporting',this.userName]},
     ],
     icon: 'fa fa-fw fa-area-chart ',routerLink: ['/admin-userwise-report-dashboard']
