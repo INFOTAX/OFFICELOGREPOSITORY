@@ -11,6 +11,8 @@ namespace Officelog.Domain.UserProfileLog
         public string Password { get; set; }
         public string Subject { get; set; }
 
+        public string Role {get; set;}
+
         public Admin Admin {get; set;}
 
         public int AdminId {get; set;}

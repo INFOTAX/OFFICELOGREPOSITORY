@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -38,6 +39,18 @@ namespace Officelog
             
             
             services.AddAutoMapper();
+
+             services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = Configuration.GetSection("Auth0Settings").GetSection("Host").Value;
+                options.Audience = Configuration.GetSection("Auth0Settings").GetSection("Audience").Value;
+            });
+
             services.AddDbContext<ApplicationDbContext>(
                 options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Default"))
@@ -62,6 +75,8 @@ namespace Officelog
             app.UseSpaStaticFiles();
 
             app.UseMvc();
+
+            app.UseAuthentication();
 
             app.UseSpa(spa =>
             {
