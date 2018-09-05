@@ -33,33 +33,6 @@ export class MarketingDashboardComponent implements OnInit {
    
 
     
-  //   this.data = { 
-  //     labels: ['Total Conversions'],
-  //     datasets: [
-  //         { 
-  //             data: [this.x],
-  //             backgroundColor: [
-  //                 "#FF6384",
-  //                 "#36A2EB",
-  //                 "#FFCE56"
-  //             ],
-  //             hoverBackgroundColor: [
-  //                 "#FF6384",
-  //                 "#36A2EB",
-  //                 "#FFCE56"
-  //             ]
-  //         }]    
-  //     }
-  //     this.options={
-        
-  //       legend: {
-  //         labels:{
-  //             fontSize: 18,
-  //             fontColor: 'black',
-  //             padding: 20,
-  //         },
-  //           position: 'left',
-  //       }}
    }
 
 
@@ -67,10 +40,8 @@ export class MarketingDashboardComponent implements OnInit {
     this.marketingAndConversionService.getMarketingReports().subscribe(res => 
       {
       this.marketingReport = res;
-      // console.log(this.marketingReport.totalSoftwareInterested);
-      // console.log(this.marketingReport.totalServiceInterested);
-      
-      // this.marketingReport.datasets.data = this.marketingReport.map(a => a.totalSoftwareInterested)
+      this.y=this.marketingReport.totalSoftwareInterested;
+      this.z=this.marketingReport.totalServiceInterested;
     });
     
   }
@@ -79,11 +50,12 @@ export class MarketingDashboardComponent implements OnInit {
     this.marketingAndConversionService.getConversionReports().subscribe(res => {
       this.conversionReport = res;
       this.x=this.conversionReport.totalConversions;
+      console.log(this.x,this.y,this.z);
       this.conversionReport = { 
-        labels: ['Total Conversions'],
+        labels: ['Total Conversions','Total Software Interested','Total Service Interested'],
         datasets: [
             { 
-                data: [this.x],
+                data: [this.x,this.y,this.z],
                 backgroundColor: [
                     "#FF6384",
                     "#36A2EB",
