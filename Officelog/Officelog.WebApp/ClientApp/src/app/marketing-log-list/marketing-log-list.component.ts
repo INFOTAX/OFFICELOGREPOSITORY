@@ -55,7 +55,8 @@ onAddm(){
     this._router.navigate(['/marketing_log',this.id])
   }
 
-  showConfirm() {
+  showConfirm(rowData) {
+    this.selectedMarketingLog = rowData;
     this.messageService.clear();
     this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to proceed'});
 }
@@ -64,7 +65,7 @@ clear() {
  } 
 
 onConfirm() {
-   
+  
   this._marketinglogService.delete(this.selectedMarketingLog.id).subscribe(() =>{
     this.searchByDate(this.startDate,this.lastDate);
     

@@ -21,11 +21,15 @@
                           <th class="trt">
                               Total Service Interested
                           </th>
+                          <th class="trt">
+                                Average price of software
+                            </th>
                         </tr>
 
                       <tr>
-                          <th  style="background:white;"></th>
-                          <th style="background:white;"></th>
+                          <th  style="background:white;">{{reports?.totalSoftwareInterested}}</th>
+                          <th style="background:white;">{{reports?.totalServiceInterested}}</th>
+                          <th style="background:white;">{{reports?.averagePriceOfSoftware}}</th>
                       </tr>
 
                       <br>
@@ -50,10 +54,12 @@
                               <th class="trt">
                                 Total Conversions
                               </th>
+                              
                             </tr>
     
                           <tr>
-                              <th style="background:white;"></th>
+                              <th style="background:white;">{{conversionReports?.totalConversions}}</th>
+                              
                           </tr>
     
                           <br>

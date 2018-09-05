@@ -15,9 +15,9 @@ export class MarketingDashboardComponent implements OnInit {
   data:any;
   options:any;
   
-  x;
-  y;
-  z;
+  x:number;
+  y:number;
+  z:number;
   
 
 
@@ -29,13 +29,14 @@ export class MarketingDashboardComponent implements OnInit {
   ngOnInit() {
     this.getMarketingReport();
     this.getConversionReport();
+   
 
     
     this.data = { 
       labels: ['Total Conversions','Total Software Interested','Total Software Interested'],
       datasets: [
           { 
-              data: [260,180,225],
+              data: [this.x,this.y,this.z],
               backgroundColor: [
                   "#FF6384",
                   "#36A2EB",
@@ -58,14 +59,13 @@ export class MarketingDashboardComponent implements OnInit {
           },
             position: 'left',
         }}
-    console.log(this.x,this.y,this.z)
   }
 
 
   getMarketingReport(){
     this.marketingAndConversionService.getMarketingReports().subscribe(res => {this.marketingReport = res;
-      // console.log(this.marketingReport.totalSoftwareInterested);
-      // console.log(this.marketingReport.totalServiceInterested);
+      console.log(this.marketingReport.totalSoftwareInterested);
+      console.log(this.marketingReport.totalServiceInterested);
       this.y=this.marketingReport.totalSoftwareInterested;
       this.z=this.marketingReport.totalServiceInterested
     });
@@ -77,7 +77,7 @@ export class MarketingDashboardComponent implements OnInit {
       this.conversionReport = res;
       this.x=this.conversionReport.totalConversions;
       
-      // getData(this.x,this.y,this.z);
+      console.log(this.x,this.y,this.z);
       
       (error : any) => {
         alert('TimeOut')

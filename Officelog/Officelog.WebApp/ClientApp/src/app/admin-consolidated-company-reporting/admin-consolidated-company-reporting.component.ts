@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminConsolidatedReportingService } from '../services/admin-consolidated-reporting.service';
 
 @Component({
   selector: 'app-admin-consolidated-company-reporting',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminConsolidatedCompanyReportingComponent implements OnInit {
 
-  constructor() { }
+  companyReportData;
+
+  constructor(private consolidatedService: AdminConsolidatedReportingService) { }
 
   ngOnInit() {
+    this.getCompanyReports();
   }
-
+ getCompanyReports(){
+   this.consolidatedService.getCompanyReport().subscribe(res=>{
+     this.companyReportData=res;
+   })
+ }
 }
