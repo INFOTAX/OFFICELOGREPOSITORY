@@ -12,12 +12,13 @@ export class MarketingDashboardComponent implements OnInit {
   
   marketingReport;
   conversionReport;
-  data:any;
+  
   options:any;
   
   x:number;
   y:number;
   z:number;
+  data : any;
   
 
 
@@ -32,42 +33,44 @@ export class MarketingDashboardComponent implements OnInit {
    
 
     
-    this.data = { 
-      labels: ['Total Conversions','Total Software Interested','Total Software Interested'],
-      datasets: [
-          { 
-              data: [this.x,this.y,this.z],
-              backgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
-              ],
-              hoverBackgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
-              ]
-          }]    
-      }
-      this.options={
+  //   this.data = { 
+  //     labels: ['Total Conversions'],
+  //     datasets: [
+  //         { 
+  //             data: [this.x],
+  //             backgroundColor: [
+  //                 "#FF6384",
+  //                 "#36A2EB",
+  //                 "#FFCE56"
+  //             ],
+  //             hoverBackgroundColor: [
+  //                 "#FF6384",
+  //                 "#36A2EB",
+  //                 "#FFCE56"
+  //             ]
+  //         }]    
+  //     }
+  //     this.options={
         
-        legend: {
-          labels:{
-              fontSize: 18,
-              fontColor: 'black',
-              padding: 20,
-          },
-            position: 'left',
-        }}
-  }
+  //       legend: {
+  //         labels:{
+  //             fontSize: 18,
+  //             fontColor: 'black',
+  //             padding: 20,
+  //         },
+  //           position: 'left',
+  //       }}
+   }
 
 
   getMarketingReport(){
-    this.marketingAndConversionService.getMarketingReports().subscribe(res => {this.marketingReport = res;
-      console.log(this.marketingReport.totalSoftwareInterested);
-      console.log(this.marketingReport.totalServiceInterested);
-      this.y=this.marketingReport.totalSoftwareInterested;
-      this.z=this.marketingReport.totalServiceInterested
+    this.marketingAndConversionService.getMarketingReports().subscribe(res => 
+      {
+      this.marketingReport = res;
+      // console.log(this.marketingReport.totalSoftwareInterested);
+      // console.log(this.marketingReport.totalServiceInterested);
+      
+      // this.marketingReport.datasets.data = this.marketingReport.map(a => a.totalSoftwareInterested)
     });
     
   }
@@ -76,8 +79,35 @@ export class MarketingDashboardComponent implements OnInit {
     this.marketingAndConversionService.getConversionReports().subscribe(res => {
       this.conversionReport = res;
       this.x=this.conversionReport.totalConversions;
+      this.conversionReport = { 
+        labels: ['Total Conversions'],
+        datasets: [
+            { 
+                data: [this.x],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }]    
+        }
+        this.options={
+        
+                legend: {
+                  labels:{
+                      fontSize: 18,
+                      fontColor: 'black',
+                      padding: 20,
+                  },
+                    position: 'left',
+                }}
       
-      console.log(this.x,this.y,this.z);
+      console.log(this.x);
       
       (error : any) => {
         alert('TimeOut')
