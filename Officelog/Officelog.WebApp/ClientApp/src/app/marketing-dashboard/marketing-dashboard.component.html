@@ -75,11 +75,13 @@
                               </div>
                             </div>
                         <br><br><br><br><br>
+                        <div class="ui-g-6 ui-md-offset-3">
+                            <p-chart type="pie" 
+                            [data]="conversionReport" 
+                            [options]="options"></p-chart>
+                          </div>
           </div>
           </div>   
-
-          <p-chart type="pie" 
-          [data]="conversionReport" 
-          [options]="options"></p-chart>
+         
             
       
