@@ -42,12 +42,21 @@ namespace Officelog.WebApp.UserProfileApi
 
         [HttpGet("Profile")]
 
-        public async Task<UserProfileResource> GetUserProfileById(string id)
+        public async Task<UserProfileResource> GetUserProfileById()
 
         {
-            var userProfile = await _database.UserProfiles.SingleOrDefaultAsync(p=> p.Id == id);
+            var userProfile = await _database.UserProfiles.SingleOrDefaultAsync(p=> p.Id == "1");
 
             return _mappper.Map<UserProfile, UserProfileResource>(userProfile);
+        }
+
+        [HttpGet("UserUnits")]
+        public async Task<IActionResult> Get()
+        {
+             var userUnits = await _database.UserProfiles
+                                    .ToListAsync();
+
+               return Ok(userUnits); 
         }
 
     }

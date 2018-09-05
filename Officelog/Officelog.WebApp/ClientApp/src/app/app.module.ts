@@ -29,7 +29,13 @@ import { MarketingConversionReportService } from './services/marketing-conversio
 import { SharedModule } from './shared/shared.module';
 import { ChartModule } from 'primeng/chart';
 import { ConversionFormComponent } from './conversion-form/conversion-form.component';
-
+import { AdminUserProfileMarketingReportingComponent } from './admin-user-profile-marketing-reporting/admin-user-profile-marketing-reporting.component';
+import { AdminUserProfileCompanyReportingComponent } from './admin-user-profile-company-reporting/admin-user-profile-company-reporting.component';
+import { AdminUserwiseReportDashboardComponent } from './admin-userwise-report-dashboard/admin-userwise-report-dashboard.component';
+import { AdminUserProfileReportingService } from './services/admin-user-profile-reporting.service';
+import { AdminConsolidatedMarketingReportingComponent } from './admin-consolidated-marketing-reporting/admin-consolidated-marketing-reporting.component';
+import { AdminConsolidatedCompanyReportingComponent } from './admin-consolidated-company-reporting/admin-consolidated-company-reporting.component';
+import {CardModule} from 'primeng/card';
 
 const appRoutes: Routes = [
   { path: 'companydashboard_log', component: CompanydashboardComponent },
@@ -43,6 +49,13 @@ const appRoutes: Routes = [
   { path: 'marketing-dashBoard', component: MarketingDashboardComponent },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
   { path: 'user_sign', component: SignInFormComponent},
+  { path: 'conversion-form/:id', component: ConversionFormComponent},
+  { path: 'admin-userwise-report-dashboard', component: AdminUserwiseReportDashboardComponent},
+  
+  { path: 'admin_user_profile_company_reporting/:userName', component: AdminUserProfileCompanyReportingComponent},
+  { path: 'admin_user_profile_marketing_reporting/:userName', component: AdminUserProfileMarketingReportingComponent},
+  { path: 'Marketing-report', component: AdminConsolidatedMarketingReportingComponent},
+  { path: 'Company-report', component: AdminConsolidatedCompanyReportingComponent},
   { path: 'conversion-form/:id', component: ConversionFormComponent}
 ];
 
@@ -61,9 +74,15 @@ const appRoutes: Routes = [
     MarketingDashboardComponent,
     CompanydashboardComponent,
     SignInFormComponent,
-    ConversionFormComponent
+    ConversionFormComponent,
+    AdminUserProfileMarketingReportingComponent,
+    AdminUserProfileCompanyReportingComponent,
+    AdminUserwiseReportDashboardComponent,
+    AdminConsolidatedMarketingReportingComponent,
+    AdminConsolidatedCompanyReportingComponent
   ],
   imports: [
+    CardModule,
     SharedModule,   
     BrowserModule,
     HttpClientModule,
@@ -74,7 +93,7 @@ const appRoutes: Routes = [
     
   ],
   providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,
-              CompanyReportService,MarketingConversionReportService],
+              CompanyReportService,MarketingConversionReportService,AdminUserProfileReportingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

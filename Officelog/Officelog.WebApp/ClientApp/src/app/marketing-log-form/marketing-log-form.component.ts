@@ -10,7 +10,7 @@ import { IMarketinglog } from '../marketing-log-list/marketing';
 
 export interface ServiceItems {
   serviceType: string;
-  price: number;
+  rate: number;
 }
 
 
@@ -86,10 +86,10 @@ export class MarketingLogFormComponent implements OnInit {
       id: 0,
       name: [''],
       contactNumber: [],
-      softwareInterested: [],
+      softwareInterested: [''],
       rateUs: [''],
-      fee:[],
-      serviceInterested: [],
+      fee:0,
+      serviceInterested: [''],
       rateUsForNo: [''],
       currentScenario: [''],
       suggestionForNo: [''],
@@ -143,10 +143,10 @@ export class MarketingLogFormComponent implements OnInit {
     return <FormArray>this.userForm.get('serviceItems');
   }
 
-  addNewServiceType(type : HTMLInputElement,price : HTMLInputElement){
+  addNewServiceType(type : HTMLInputElement,rate : HTMLInputElement){
     var serviceItem : ServiceItems = {
       serviceType : String(type.value),
-      price : Number(price.value)
+      rate : Number(rate.value)
     }
     this.addServiceLine(serviceItem)
   }
@@ -161,7 +161,7 @@ export class MarketingLogFormComponent implements OnInit {
   private buildServiceType(serviceItem: ServiceItems): FormGroup {
     return this.fb.group({
         serviceType: [serviceItem.serviceType],
-        price : [serviceItem.price]
+        rate : [serviceItem.rate]
       
     })
   }
@@ -208,9 +208,10 @@ export class MarketingLogFormComponent implements OnInit {
       });
       for (let i = 0; i < this.marketingLog.serviceItems.length; i++) {
         this.serviceTypeItems.push(this.buildServiceType(this.marketingLog.serviceItems[i]));
-
+      }
+      
     }
-    }
+    
   }
 
 }

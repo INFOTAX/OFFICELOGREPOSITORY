@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MarketingConversionReportService } from '../services/marketing-conversion-report.service';
 import {ChartModule} from 'primeng/chart';
 
+
 @Component({
   selector: 'app-marketing-dashboard',
   templateUrl: './marketing-dashboard.component.html',
@@ -11,16 +12,61 @@ export class MarketingDashboardComponent implements OnInit {
   
   marketingReport;
   conversionReport;
-  data:any;
+  
   options:any;
+  
+  x:number;
+  y:number;
+  z:number;
+  data : any;
+  
 
 
   constructor(private marketingAndConversionService : MarketingConversionReportService) { 
-    this.data = {
-      labels: ['Total Conversations','Total Software Interested','Total Software Interested'],
+    
+   }
+   
+
+  ngOnInit() {
+    this.getMarketingReport();
+    this.getConversionReport();
+   
+
+    
+   }
+
+
+  getMarketingReport(){
+    this.marketingAndConversionService.getMarketingReports().subscribe(res => 
+      {
+      this.marketingReport = res;
+      this.y=this.marketingReport.totalSoftwareInterested;
+      this.z=this.marketingReport.totalServiceInterested;
+    });
+    
+  }
+
+  getConversionReport(){
+    this.marketingAndConversionService.getConversionReports().subscribe(res => {
+      this.conversionReport = res;
+      this.x=this.conversionReport.totalConversions;
+      this.getPieChartForConversion(this.conversionReport);
+      console.log(this.x);
+      
+      (error : any) => {
+        alert('TimeOut')
+      } 
+    })
+   
+  }
+ 
+  getPieChartForConversion(conversionReport){
+    this.conversionReport = conversionReport;
+    this.conversionReport = { 
+      labels: ['Total Conversions'],
       datasets: [
-          {
-              data: [],
+          { 
+              data: [this.x],
               backgroundColor: [
                   "#FF6384",
                   "#36A2EB",
@@ -34,36 +80,17 @@ export class MarketingDashboardComponent implements OnInit {
           }]    
       }
       this.options={
-        
-        legend: {
-          labels:{
-              fontSize: 18,
-              fontColor: 'black',
-              padding: 20,
-          },
-            position: 'left',
-        }}
-   }
+      
+              legend: {
+                labels:{
+                    fontSize: 18,
+                    fontColor: 'black',
+                    padding: 20,
+                },
+                  position: 'left',
+              }}
+    
 
-  ngOnInit() {
-    this.getMarketingReport();
-    this.getConversionReport();
-  }
-
-  getMarketingReport(){
-    this.marketingAndConversionService.getMarketingReports().subscribe(res => {this.marketingReport = res;
-      console.log(this.marketingReport);
-    });
-  }
-
-  getConversionReport(){
-    this.marketingAndConversionService.getConversionReports().subscribe(res => {
-      this.conversionReport = res;
-      console.log(this.conversionReport);
-      (error : any) => {
-        alert('TimeOut')
-      } 
-    })
   }
 
 }

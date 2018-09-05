@@ -17,7 +17,6 @@ export class MarketingLogListComponent implements OnInit {
   marketinglogs: IMarketinglog[];
   selectedMarketingLog : IMarketinglog;
   id : number;
-  //dataSource: IMarketinglog[];
   rowIndex;
   startDate:Date;
   lastDate:Date;
@@ -42,15 +41,9 @@ export class MarketingLogListComponent implements OnInit {
     
 }
 
-  // getMarketingLogList(){
-  //       this._marketinglogService.getAll().subscribe(marketingLogList=>{
-  //         this.marketinglogs=marketingLogList;
-  //       });
-  // }
+  
   marketingLog(){
     this._router.navigate(['marketing_log']);
-    // this.compLog=false;
-    // this.markLog=true;
   }
 onAddm(){
   this.id=0;
@@ -63,7 +56,7 @@ onAddm(){
   }
 
   showConfirm(rowData) {
-    this.selectedMarketingLog=rowData;
+    this.selectedMarketingLog = rowData;
     this.messageService.clear();
     this.messageService.add({key: 'c', sticky: true, severity:'warn', summary:'Are you sure?', detail:'Confirm to proceed'});
 }
@@ -72,11 +65,10 @@ clear() {
  } 
 
 onConfirm() {
-   
+  
   this._marketinglogService.delete(this.selectedMarketingLog.id).subscribe(() =>{
     this.searchByDate(this.startDate,this.lastDate);
     
-  //this.messageService.clear();
 });
 this.messageService.clear('c');
 }

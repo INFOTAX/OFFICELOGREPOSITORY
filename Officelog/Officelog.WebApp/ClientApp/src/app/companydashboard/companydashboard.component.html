@@ -52,7 +52,7 @@
                 <!--table content end-->
 <!---chart conetent start -->
                 <div class="ui-g-10 ui-md-offset-2">
-                        <p-chart type="line" [data]="dataBar"  [options]="opt"></p-chart> 
+                        <p-chart type="pie" [data]="visitData"  [options]="opt"></p-chart> 
                         
                 </div>
                 <!--chart conetnt end-->
@@ -141,6 +141,7 @@
                             <th style="background:white;">{{report?.totalVeryGoodQueryRating}}</th>
                             <th  style="background:white;">{{report?.totalExcellentQueryRating}}</th>
                         </tr>
+                        
                         <br>
                         <br>
 
@@ -179,124 +180,6 @@
                         </tr>
                     </ng-template>
 <br>
-        <br>
-<p-table>
-  <ng-template pTemplate="header">
-      <tr>
-          <th rowspan=2>
-              Summary
-          </th>
-          <th>
-              Total Visit
-          </th>
-          <th>
-                  Total Client Visits
-              </th>
-          <th>
-                  Total Franchise Visits
-              </th>
-          <th>
-                  Total First Visits
-              </th>
-              <th> 
-                  Total Second Or Third Visits
-                  </th>
-
-                 
-      </tr>
-
-    <tr>
-      <th>{{report?.totalVisits}}</th>
-      <th>{{report?.totalClientVisits}}</th>
-      <th>{{report?.totalFranchiseVisits}}</th>
-      <th>{{report?.totalFirstVisits}}</th>
-      <th>{{report?.totalSecondOrThirdVisits}}</th>
-      </tr>
-    
-      <br>
-        <br>
-     
-      </ng-template>
-            
-
-</p-table>
-
-
-<p-table>
-    <ng-template pTemplate="header">
-        <tr>
-            <th rowspan=2>
-                Summary
-            </th>
-            <th>
-                    Total Bad Query Rating 
-                </th>
-            <th>
-                    Total Good Query Rating
-                </th>
-            <th>
-                    Total Very Good Query Rating
-                </th>
-                <th> 
-                    Total Excellent Query Rating
-                    </th>
-  
-                   
-        </tr>
-  
-      <tr>
-        <th>{{report?.totalBadQueryRating}}</th>
-        <th>{{report?.totalGoodQueryRating}}</th>
-        <th>{{report?.totalVeryGoodQueryRating}}</th>
-        <th>{{report?.totalExcellentQueryRating}}</th>
-        </tr>
-      
-        <br>
-        <br>
-  
-        </ng-template>
-              
-        
-  
-  </p-table>
-  
-
-
-  <p-table>
-      <ng-template pTemplate="header">
-          <tr>
-              <th rowspan=2>
-                  Summary
-              </th>
-              <th>
-                      Total Bad Query Service 
-                  </th>
-              <th>
-                      Total Good Query Service
-                  </th>
-              <th>
-                      Total Very Good Query Service
-                  </th>
-                  <th> 
-                      Total Excellent Query Service
-                      </th>
-    
-                     
-          </tr>
-    
-        <tr>
-          <th>{{report?.totalBadQueryRating}}</th>
-          <th>{{report?.totalGoodQueryRating}}</th>
-          <th>{{report?.totalVeryGoodQueryRating}}</th>
-          <th>{{report?.totalExcellentQueryRating}}</th>
-          </tr>
-        
-         
-          </ng-template>
-                
-    
-    </p-table>
-    
 
                 </p-table>
                 </div>

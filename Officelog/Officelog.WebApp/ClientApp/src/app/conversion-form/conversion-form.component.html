@@ -39,25 +39,10 @@
               <ng-template pTemplate="body" let-item let-rowIndex = "rowIndex">
                 <tr>
                   <td>{{item.serviceType}}</td>
-                  <td>{{item.price}}</td>
+                  <td>{{item.rate}}</td>
                 </tr>
               </ng-template>
-              <ng-template pTemplate="footer">
-                <tr>
-                  <td>
-                    <p-dropdown [style]="{'width': '175px'}" 
-                    [options]="interrestedInService"
-                     placeholder="Select a Type" filter="true" #type>
-                      <ng-template let-option pTemplate="item">
-                        <div translate> {{option.label}}</div>
-                      </ng-template>
-                    </p-dropdown>
-                  </td>
-                  <td>
-                    <input type="number" pInputText style="height: 35px"  #price/>
-                  </td>
-                </tr>
-              </ng-template>
+              
   
             </p-table>
           </div>
