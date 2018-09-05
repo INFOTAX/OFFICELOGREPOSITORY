@@ -79,34 +79,7 @@ export class MarketingDashboardComponent implements OnInit {
     this.marketingAndConversionService.getConversionReports().subscribe(res => {
       this.conversionReport = res;
       this.x=this.conversionReport.totalConversions;
-      this.conversionReport = { 
-        labels: ['Total Conversions'],
-        datasets: [
-            { 
-                data: [this.x],
-                backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ]
-            }]    
-        }
-        this.options={
-        
-                legend: {
-                  labels:{
-                      fontSize: 18,
-                      fontColor: 'black',
-                      padding: 20,
-                  },
-                    position: 'left',
-                }}
-      
+      this.getPieChartForConversion(this.conversionReport);
       console.log(this.x);
       
       (error : any) => {
@@ -116,5 +89,37 @@ export class MarketingDashboardComponent implements OnInit {
    
   }
  
+  getPieChartForConversion(conversionReport){
+    this.conversionReport = conversionReport;
+    this.conversionReport = { 
+      labels: ['Total Conversions'],
+      datasets: [
+          { 
+              data: [this.x],
+              backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ],
+              hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB",
+                  "#FFCE56"
+              ]
+          }]    
+      }
+      this.options={
+      
+              legend: {
+                labels:{
+                    fontSize: 18,
+                    fontColor: 'black',
+                    padding: 20,
+                },
+                  position: 'left',
+              }}
+    
+
+  }
 
 }
