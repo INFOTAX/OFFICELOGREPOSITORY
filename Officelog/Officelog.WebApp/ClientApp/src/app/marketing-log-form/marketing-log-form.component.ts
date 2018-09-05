@@ -209,6 +209,7 @@ export class MarketingLogFormComponent implements OnInit {
       for (let i = 0; i < this.marketingLog.serviceItems.length; i++) {
         this.serviceTypeItems.push(this.buildServiceType(this.marketingLog.serviceItems[i]));
       }
+      
     }
     
   }
