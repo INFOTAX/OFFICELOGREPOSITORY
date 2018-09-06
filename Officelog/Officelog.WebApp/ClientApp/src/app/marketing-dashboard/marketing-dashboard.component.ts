@@ -12,13 +12,14 @@ export class MarketingDashboardComponent implements OnInit {
   
   marketingReport;
   conversionReport;
+  marketingReportData;
+  conversionReportData;
   
   options:any;
   
   x:number;
   y:number;
   z:number;
-  data : any;
   
 
 
@@ -28,25 +29,14 @@ export class MarketingDashboardComponent implements OnInit {
    
 
   ngOnInit() {
-    this.getMarketingReport();
-    this.getConversionReport();
-   
-
-    
-   }
-
-
-  getMarketingReport(){
     this.marketingAndConversionService.getMarketingReports().subscribe(res => 
       {
       this.marketingReport = res;
       this.y=this.marketingReport.totalSoftwareInterested;
       this.z=this.marketingReport.totalServiceInterested;
-    });
-    
-  }
+      this.getPieChartForMarketing(this.marketingReport);
+     });
 
-  getConversionReport(){
     this.marketingAndConversionService.getConversionReports().subscribe(res => {
       this.conversionReport = res;
       this.x=this.conversionReport.totalConversions;
@@ -56,32 +46,76 @@ export class MarketingDashboardComponent implements OnInit {
       (error : any) => {
         alert('TimeOut')
       } 
-    })
+    });
    
-  }
+
+    
+   }
+
  
-  getPieChartForConversion(conversionReport){
-    this.conversionReport = conversionReport;
-    this.conversionReport = { 
-      labels: ['Total Conversions'],
+  getPieChartForConversion(conversionReportData){
+    this.conversionReport = conversionReportData;
+    this.conversionReportData = { 
+      labels: ['Total Conversions',''],
       datasets: [
-          { 
+          {
+             label: '',
               data: [this.x],
               backgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
+                  "#FF6384"
               ],
               hoverBackgroundColor: [
-                  "#FF6384",
-                  "#36A2EB",
-                  "#FFCE56"
-              ]
+                  "#FF6384"
+              ],
           }]    
       }
       this.options={
+        scales:{
+          yAxes:[{
+            ticks:{
+              beginAtZero:true
+            }
+          }]
+        },
       
               legend: {
+                labels:{
+                    fontSize: 18,
+                    fontColor: 'black',
+                    padding: 20,
+                },
+                  position: 'left',
+              }}
+    
+
+  };
+  getPieChartForMarketing(marketingReportData){
+    this.marketingReport = marketingReportData;
+    this.marketingReportData = { 
+      labels: ['Total Software Interested','Total Service Interested'],
+      datasets: [
+          { 
+            label: '',
+              data: [this.y,this.z],
+              backgroundColor: [
+                  "#FF6384",
+                  "#36A2EB"
+              ],
+              hoverBackgroundColor: [
+                  "#FF6384",
+                  "#36A2EB"
+              ],
+          }]    
+      }
+      this.options={
+        scales:{
+          yAxes:[{
+            ticks:{
+              beginAtZero:true
+            }
+          }]
+        },
+        legend: {
                 labels:{
                     fontSize: 18,
                     fontColor: 'black',

@@ -4,6 +4,7 @@ import { SelectItem} from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
+import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
 //import { MessageService } from 'primeng/api';
 
 
@@ -21,6 +22,8 @@ export interface ServiceItems {
 })
 export class MarketingLogFormComponent implements OnInit {
 
+  public userForm: FormGroup;
+  marketingLog: IMarketinglog;
   interrestedInService: SelectItem[];
   currentScenario: SelectItem[];
   blockPreviewYes = false;
@@ -31,9 +34,9 @@ export class MarketingLogFormComponent implements OnInit {
   startDate: Date;
   lastDate: Date;
   id: number;
-  marketingLog: IMarketinglog;
+ 
 
-  public userForm: FormGroup;
+  
 
 
 
@@ -74,13 +77,6 @@ export class MarketingLogFormComponent implements OnInit {
 
 
   }
-
-  private getMarketingLog(id):void{
-    this.marketingLogService.getOne(id)
-    .subscribe((marketingLog:IMarketinglog)=> this.onMarketingLogRetrieved(marketingLog)
-    );
-  }
-
   newForm():FormGroup{
     return this.fb.group({
       id: 0,
@@ -99,6 +95,14 @@ export class MarketingLogFormComponent implements OnInit {
       serviceItems : this.fb.array([])
     });
   }
+
+  private getMarketingLog(id):void{
+    this.marketingLogService.getOne(id)
+    .subscribe((marketingLog:IMarketinglog)=> this.onMarketingLogRetrieved(marketingLog)
+    );
+  }
+
+ 
 
   saveMarketingLog():void {
 
@@ -194,24 +198,61 @@ export class MarketingLogFormComponent implements OnInit {
       id: this.marketingLog.id,
       name: this.marketingLog.name,
       contactNumber: this.marketingLog.contactNumber,
-      softwareInterested: this.marketingLog.softwareInterested,
+      softwareInterested: this.softwareConvert(),// this.marketingLog.softwareInterested,
       rateUs: this.marketingLog.rateUs,
-      serviceInterested: this.marketingLog.serviceInterested,
-      rateUsForNo: this.marketingLog.rateUsForNo,
+      serviceInterested: this.serviceConverter(),//marketingLog.serviceInterested,
+      rateUsForNo: this.rateUsConverter(),//marketingLog.rateUsForNo,
       currentScenario: this.marketingLog.currentScenario,
       suggestionForNo: this.marketingLog.suggestionForNo,
       suggestionForYes: this.marketingLog.suggestionForYes,
       area: this.marketingLog.area,
       date: this.marketingLog.date,
-      fee: this.marketingLog.fee
-
+      fee: this.marketingLog.fee,
+       
       });
+      
+     }
+  }
+  softwareConvert(){
+    if(this.marketingLog.softwareInterested=="Yes"){
+      console.log(this.marketingLog.softwareInterested);
+      this.redioYes();
+      return "Yes";
+    }
+    else{
+      console.log(this.marketingLog.softwareInterested)
+      this.redioNo();
+      return "No";
+    }
+    
+  }
+  serviceConverter(){
+    if(this.marketingLog.softwareInterested=="Yes"){
+      // console.log(this.marketingLog.softwareInterested);
       for (let i = 0; i < this.marketingLog.serviceItems.length; i++) {
         this.serviceTypeItems.push(this.buildServiceType(this.marketingLog.serviceItems[i]));
       }
-      
+      this.interestedYes();
+      return "Yes";
+    }
+    else{
+      console.log(this.marketingLog.softwareInterested)
+      this.interestedNo();
+      return "No";
     }
     
+  }
+  rateUsConverter(){
+    if(this.marketingLog.rateUsForNo=="others"){
+      this.otherReason();
+      return "others";
+    }
+    else if(this.marketingLog.rateUsForNo=="alreadyHave"){
+     return "alreadyHave";
+    }
+    else{
+      return "notFriendly";
+    }
   }
 
 }

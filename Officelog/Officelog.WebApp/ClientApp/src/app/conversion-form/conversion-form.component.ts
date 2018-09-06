@@ -84,7 +84,7 @@ export class ConversionFormComponent implements OnInit {
     else{
       this.conversionForm.patchValue({
 
-      id: this.marketingLog.id,
+      id: this.marketingLog.id, 
       name: this.marketingLog.name,
       contactNumber: this.marketingLog.contactNumber,
       fee: this.marketingLog.fee
@@ -96,6 +96,9 @@ export class ConversionFormComponent implements OnInit {
     }
     }
     console.log(this.marketingLog)
+  }
+  conversionList(){
+    this.router.navigate(['conversion_list']);
   }
 
 

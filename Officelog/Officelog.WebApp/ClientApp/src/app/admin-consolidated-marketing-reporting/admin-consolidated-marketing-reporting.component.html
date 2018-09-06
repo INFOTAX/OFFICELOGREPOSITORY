@@ -5,9 +5,7 @@
     
       <div class="ui-g card">
           <div class="ui-md-11 ui-sm-11-ui-g-11">
-              <br>
-              <br>
-              <u> <h3 style="text-align:center; font-size:26px;">Marketing Report</h3></u>
+              <h2 style="text-align:center;">MARKETING REPORT</h2>
               <p-table>
                 
                   <ng-template pTemplate="header">
@@ -27,23 +25,29 @@
                         </tr>
 
                       <tr>
-                          <th  style="background:white;">{{reports?.totalSoftwareInterested}}</th>
-                          <th style="background:white;">{{reports?.totalServiceInterested}}</th>
-                          <th style="background:white;">{{reports?.averagePriceOfSoftware}}</th>
+                          <th  style="background:white;">{{marketingReports?.totalSoftwareInterested}}</th>
+                          <th style="background:white;">{{marketingReports?.totalServiceInterested}}</th>
+                          <th style="background:white;">{{marketingReports?.averagePriceOfSoftware}}</th>
                       </tr>
-
-                      <br>
                       <br>
 
                   </ng-template>
               </p-table>
               </div>
+              <div class="ui-g-8 ui-md-offset-2" >
+                    <br><br>
+                    <p-chart type="bar" [data]="marketingReportData" [options]="options"></p-chart>
+                </div>
               </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
               <div class="ui-g card">
-              <div class="ui-md-11 ui-sm-11-ui-g-11">
-                  <br>
-                  <br>
-                  <u> <h3 style="text-align:center; font-size:26px;">Conversion Report</h3></u>
+                    
+              <div class="ui-md-11 ui-sm-11-ui-g">
+                <h2 style="text-align:center; font-size:26px;">CONVERSION REPORT</h2>
                   <p-table>
                     
                       <ng-template pTemplate="header">
@@ -68,6 +72,10 @@
                       </ng-template>
                   </p-table>
                   </div>
+                  <div class="ui-g-6 ui-md-offset-3">
+                        <br><br>
+                        <p-chart type="bar" [data]="conversionReportData" [options]="options"></p-chart>
+                    </div>
                   </div>
                   <br><br><br><br><br>
     </div>

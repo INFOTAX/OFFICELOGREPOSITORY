@@ -1,11 +1,12 @@
 <form [formGroup]="conversionForm" style="margin-left: 120px; margin-right: 120px; margin-top:5px">
-  <p-button label="Back" button type="button" icon="fa fa-fw fa-arrow-left" class="ui-button-rounded ui-button-success"></p-button>
+  <p-button label="Back" button type="button" icon="fa fa-fw fa-arrow-left" 
+  (onClick)="conversionList();" class="ui-button-rounded ui-button-success"></p-button>
   <p>&nbsp;</p>
   <p-panel>
     <p-header style="text-align:center; font-size: 20px">
       <div class="ui-helper-clearfix">
         <span class="ui-panel-title" style="display:inline-block;
-         font-weight: bold; font-size: 25px">conversion Form</span>
+         font-weight: bold; font-size: 25px">Conversion Form</span>
       </div>
     </p-header>
     <div class="ui-g">
@@ -49,4 +50,5 @@
     </div>
   </p-panel>
 </form>
+{{conversionForm.value |json}}
     

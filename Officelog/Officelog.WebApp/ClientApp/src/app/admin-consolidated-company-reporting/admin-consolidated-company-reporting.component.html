@@ -14,7 +14,7 @@
                               Summary
                           </th>
                           <th class="trt">
-                              Total Visit
+                              Total Visits
                           </th>
                           <th class="trt">
                               Total Client Visits
@@ -52,6 +52,10 @@
               <!--table content end-->
 
           </div>
+          <div class="ui-g-11 ui-md-offset-1" >
+            <br><br>
+            <p-chart type="bar" [data]="companyReportForVIsitor" [options]="options"></p-chart>
+        </div>
       </div>
       <!--client visit ended here-->
       <!--query started here-->
@@ -96,6 +100,10 @@
 
               </p-table>
           </div>
+          <div class="ui-g-9 ui-md-offset-1">
+            <br><br>
+            <p-chart type="bar" [data]="companyReportForQueryRating" [options]="options"></p-chart>
+        </div>
       </div>
       <!--query ended here-->
       <!--Query service started here-->
@@ -139,6 +147,12 @@
               </p-table>
               <!---chart conetent start -->
           </div>
+          <div class="ui-g-11 ui-md-offset-1">
+                <div class="ui-g-11">
+            <br><br>
+            <p-chart type="bar" [data]="companyReportForServiceRating" [options]="options"></p-chart>
+            </div>
+        </div>
       </div>
       <!--Query service  ended here-->
       <!--Software Query started here-->
@@ -168,6 +182,10 @@
               </div>
               </div>
           </div>
+          <div class="ui-g-5 ui-md-offset-3">
+            <br><br>
+            <p-chart type="bar" [data]="companyReportForSoftwareIntrested" [options]="options"></p-chart>
+        </div>
       </div>
       <!--Software Query ended here-->
 
