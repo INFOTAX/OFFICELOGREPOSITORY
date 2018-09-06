@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { SelectItem } from 'primeng/api';
-import { IMarketinglog } from '../marketing-log-list/marketing';
-import { MarketinglogService } from '../services/marketinglog.service';
+
 import { Router, ActivatedRoute } from '@angular/router';
+import { IMarketinglog } from '../../Marketing/marketing-log-list/marketing';
+import { MarketinglogService } from '../../../services/marketinglog.service';
 
 export interface ServiceItems {
   serviceType: string;

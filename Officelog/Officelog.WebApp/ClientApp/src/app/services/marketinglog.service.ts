@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IMarketinglog } from '../marketing-log-list/marketing';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable } from "../../../node_modules/rxjs";
 import { ServiceBase } from '../shared/service-base';
+import { IMarketinglog } from '../Component/Marketing/marketing-log-list/marketing';
 @Injectable({
   providedIn: 'root'
 })

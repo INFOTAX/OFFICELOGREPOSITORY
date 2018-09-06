@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ConversionServiceService } from '../services/conversion-service.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { IMarketinglog } from '../marketing-log-list/marketing';
+import { IMarketinglog } from '../../Marketing/marketing-log-list/marketing';
+import { ConversionServiceService } from '../../../services/conversion-service.service';
+
 
 
 

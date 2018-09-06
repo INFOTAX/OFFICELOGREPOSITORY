@@ -2,9 +2,9 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { SelectItem} from 'primeng/components/common/selectitem';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 import { convertActionBinding } from '@angular/compiler/src/compiler_util/expression_converter';
+import { MarketinglogService } from '../../../services/marketinglog.service';
 //import { MessageService } from 'primeng/api';
 
 

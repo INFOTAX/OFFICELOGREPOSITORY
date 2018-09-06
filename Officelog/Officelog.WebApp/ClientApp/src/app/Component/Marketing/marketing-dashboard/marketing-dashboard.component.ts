@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MarketingConversionReportService } from '../services/marketing-conversion-report.service';
 import {ChartModule} from 'primeng/chart';
+import { MarketingConversionReportService } from '../../../services/marketing-conversion-report.service';
 
 
 @Component({

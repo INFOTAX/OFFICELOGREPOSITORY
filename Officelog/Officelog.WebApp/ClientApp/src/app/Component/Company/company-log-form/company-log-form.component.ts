@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormControl, Validators } from '../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SelectItem } from 'primeng/components/common/selectitem';
-import { CompanylogService } from '../services/companylog.service';
 import { ICompanylog } from '../company-log-list/company';
 import { Message } from 'primeng/components/common/api';
+import { CompanylogService } from '../../../services/companylog.service';
 
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MarketinglogService } from "../services/marketinglog.service";
 import { IMarketinglog } from '../marketing-log-list/marketing';
 import { MessageService } from 'primeng/components/common/api';
-import { ConversionServiceService } from '../services/conversion-service.service';
+//import { ConversionServiceService } from '../services/conversion-service.service';
+import { MarketinglogService } from '../../../services/marketinglog.service';
 
 
 @Component({

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ICompanylog } from '../company-log-list/company';
 import { Observable } from "../../../node_modules/rxjs";
 import { HttpClient } from "../../../node_modules/@angular/common/http";
 import { ServiceBase } from '../shared/service-base';
+import { ICompanylog } from '../Component/Company/company-log-list/company';
 
 
 @Injectable({

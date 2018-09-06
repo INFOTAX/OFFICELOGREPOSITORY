@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CompanyReportService } from '../services/company-report.service';
 import {ChartModule} from 'primeng/chart';
+import { CompanyReportService } from '../../../services/company-report.service';
 @Component({
   selector: 'app-companydashboard',
   templateUrl: './companydashboard.component.html',

@@ -1,10 +1,10 @@
 
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
-import { CompanylogService } from '../services/companylog.service';
 import { ICompanylog } from '../company-log-list/company';
 import {ConfirmationService} from 'primeng/api';
 import {Message, LazyLoadEvent} from 'primeng/components/common/api';
+import { CompanylogService } from '../../../services/companylog.service';
 
 
 @Component({
