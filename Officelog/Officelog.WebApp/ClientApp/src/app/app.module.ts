@@ -13,7 +13,7 @@ import { FrontLayoutComponent } from './front-layout/front-layout.component';
 import { CompanyLogListComponent } from './company-log-list/company-log-list.component';
 import { CompanylogService } from './services/companylog.service';
 import { MarketingLogListComponent } from './marketing-log-list/marketing-log-list.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -36,27 +36,40 @@ import { AdminUserProfileReportingService } from './services/admin-user-profile-
 import { AdminConsolidatedMarketingReportingComponent } from './admin-consolidated-marketing-reporting/admin-consolidated-marketing-reporting.component';
 import { AdminConsolidatedCompanyReportingComponent } from './admin-consolidated-company-reporting/admin-consolidated-company-reporting.component';
 import {CardModule} from 'primeng/card';
+import { LoginService } from './services/login.service';
+import { AuthGuardService } from './guard/auth-guard.service';
+import { TokenInterceptor } from './services/token-interceptor';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
 
 const appRoutes: Routes = [
-  { path: 'companydashboard_log', component: CompanydashboardComponent },
-  { path: 'company_log/:id', component: CompanyLogFormComponent },
-  { path: 'marketing_log/:id', component: MarketingLogFormComponent },
-  { path: 'company_log_list', component: CompanyLogListComponent },
-  { path: 'marketing_log_list', component: MarketingLogListComponent },
-  { path: 'dashboard_log', component: DashboardComponent },
-  { path: 'user_log', component:LoginUserFormComponent},
-  { path: 'conversion_list', component: ConversionListComponent },
-  { path: 'marketing-dashBoard', component: MarketingDashboardComponent },
+  { path: 'companydashboard_log', component: CompanydashboardComponent,canActivate : [AuthGuardService] },
+  { path: 'company_log/:id', component: CompanyLogFormComponent,canActivate : [AuthGuardService] },
+  { path: 'marketing_log/:id', component: MarketingLogFormComponent,canActivate : [AuthGuardService] },
+  { path: 'company_log_list', component: CompanyLogListComponent,canActivate : [AuthGuardService] },
+  { path: 'marketing_log_list', component: MarketingLogListComponent,canActivate : [AuthGuardService] },
+  { path: 'dashboard_log', component: DashboardComponent,canActivate : [AuthGuardService] },
+  { path: 'user_log', component:LoginUserFormComponent,canActivate : [AuthGuardService]},
+  { path: 'conversion_list', component: ConversionListComponent,canActivate : [AuthGuardService] },
+  { path: 'marketing-dashBoard', component: MarketingDashboardComponent,canActivate : [AuthGuardService] },
   { path: '', redirectTo: '/dashboard_log', pathMatch: 'full' },
-  { path: 'user_sign', component: SignInFormComponent},
-  { path: 'conversion-form/:id', component: ConversionFormComponent},
-  { path: 'admin-userwise-report-dashboard', component: AdminUserwiseReportDashboardComponent},
+  { path: 'user_sign', component: SignInFormComponent,canActivate : [AuthGuardService]},
+  { path: 'conversion-form/:id', component: ConversionFormComponent,canActivate : [AuthGuardService]},
+  { path: 'admin-userwise-report-dashboard', component: AdminUserwiseReportDashboardComponent,
+    canActivate : [AuthGuardService]},
   
-  { path: 'admin_user_profile_company_reporting/:userName', component: AdminUserProfileCompanyReportingComponent},
+  { path: 'admin_user_profile_company_reporting/:userName', component: AdminUserProfileCompanyReportingComponent,canActivate : [AuthGuardService]},
   { path: 'admin_user_profile_marketing_reporting/:userName', component: AdminUserProfileMarketingReportingComponent},
   { path: 'Marketing-report', component: AdminConsolidatedMarketingReportingComponent},
   { path: 'Company-report', component: AdminConsolidatedCompanyReportingComponent},
-  { path: 'conversion-form/:id', component: ConversionFormComponent}
+  { path: 'conversion-form/:id', component: ConversionFormComponent},
+  {path: 'login',component: SignInFormComponent},
+  
+
 ];
 
 @NgModule({
@@ -90,10 +103,23 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
     FormsModule,
+    JwtModule.forRoot({
+      config: {
+        
+        headerName : 'Authorization',
+        authScheme : 'Bearer ',
+        tokenGetter : tokenGetter,
+        throwNoTokenError : true
+      }
+    })
     
   ],
   providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,
-              CompanyReportService,MarketingConversionReportService,AdminUserProfileReportingService],
+              CompanyReportService,MarketingConversionReportService,AdminUserProfileReportingService,LoginService,AuthGuardService,
+              { provide: HTTP_INTERCEPTORS,
+                useClass: TokenInterceptor,
+                multi: true
+              }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
