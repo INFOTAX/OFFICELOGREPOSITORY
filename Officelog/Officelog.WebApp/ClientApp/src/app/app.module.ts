@@ -10,7 +10,9 @@ import { FrontLayoutComponent } from './front-layout/front-layout.component';
 
 import { CompanylogService } from './services/companylog.service';
 
-import { HttpClientModule } from '@angular/common/http';
+
+
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MarketinglogService } from './services/marketinglog.service';
 import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -33,6 +35,10 @@ import { AdminConsolidatedCompanyReportingComponent } from './admin-consolidated
 import { CompanyModule } from './Component/Company/company.module';
 import { ConversionModule } from './Component/Conversion/conversion.module';
 import { MarketingModule } from './Component/Marketing/marketing.module';
+import { LoginService } from './services/login.service';
+import { AuthGuardService } from './guard/auth-guard.service';
+import { TokenInterceptor } from './services/token-interceptor';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 
 const appRoutes: Routes = [
  
@@ -45,13 +51,17 @@ const appRoutes: Routes = [
   { path: 'user_sign', component: SignInFormComponent},
   
   { path: 'admin-userwise-report-dashboard', component: AdminUserwiseReportDashboardComponent},
-  
-  { path: 'admin_user_profile_company_reporting/:userName', component: AdminUserProfileCompanyReportingComponent},
-  { path: 'admin_user_profile_marketing_reporting/:userName', component: AdminUserProfileMarketingReportingComponent},
-  { path: 'Marketing-report', component: AdminConsolidatedMarketingReportingComponent},
-  { path: 'Company-report', component: AdminConsolidatedCompanyReportingComponent},
+
+
+]
+export function tokenGetter() {
+  return localStorage.getItem("token");
+}
+
+
+
  
-];
+
 
 @NgModule({
   declarations: [
@@ -80,11 +90,24 @@ const appRoutes: Routes = [
     FormsModule,
     CompanyModule,
     ConversionModule,
-    MarketingModule
+    MarketingModule,
+    JwtModule.forRoot({
+      config: {
+        
+        headerName : 'Authorization',
+        authScheme : 'Bearer ',
+        tokenGetter : tokenGetter,
+        throwNoTokenError : true
+      }
+    })
     
   ],
   providers: [CompanylogService,UserlogService,MarketinglogService,UserSignService,
-              CompanyReportService,MarketingConversionReportService,AdminUserProfileReportingService],
+              CompanyReportService,MarketingConversionReportService,AdminUserProfileReportingService,LoginService,AuthGuardService,
+              { provide: HTTP_INTERCEPTORS,
+                useClass: TokenInterceptor,
+                multi: true
+              }],
   bootstrap: [AppComponent]
 })
 export class AppModule {

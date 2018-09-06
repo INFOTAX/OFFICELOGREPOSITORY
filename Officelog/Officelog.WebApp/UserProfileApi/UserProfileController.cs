@@ -1,15 +1,20 @@
 using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Officelog.Domain.UserProfileLog;
 using OfficeLog.Persistence;
 
 namespace Officelog.WebApp.UserProfileApi
-{
+{ 
     [Produces("application/json")]
+    
     [Route("api/UserProfile")]
+    [Authorize]
     public class UserProfileController:Controller
     {
         private readonly IMapper _mappper;
@@ -36,7 +41,10 @@ namespace Officelog.WebApp.UserProfileApi
         }
             private string GetCurrentUserProfileId(){
 
-                return "1";
+                      var userProfileId = _database.UserProfiles.SingleAsync(t => t.Subject == User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value).Result;
+
+            return userProfileId.Id;
+
         
     }
 
@@ -45,8 +53,8 @@ namespace Officelog.WebApp.UserProfileApi
         public async Task<UserProfileResource> GetUserProfileById()
 
         {
-            var userProfile = await _database.UserProfiles.SingleOrDefaultAsync(p=> p.Id == "1");
-
+               var userProfile = await _database.UserProfiles.SingleOrDefaultAsync
+                          (u => u.Subject == User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value);
             return _mappper.Map<UserProfile, UserProfileResource>(userProfile);
         }
 
